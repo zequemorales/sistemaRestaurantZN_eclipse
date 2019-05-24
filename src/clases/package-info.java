@@ -7,4 +7,3 @@
  */
 package clases;
 
-public void asd(){}
