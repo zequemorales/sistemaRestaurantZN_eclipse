@@ -1,8 +1,8 @@
 package clases;
 
-public interface IBaseDatos {
-	public void agregar();
-	public void borrar();
+public interface IBaseDatos<T>{
+	public void agregar(T o);
+	public void borrar(T o);
 	public String listar();
-	public String mostrar();
+	
 }
