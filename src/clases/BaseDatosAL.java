@@ -3,7 +3,7 @@ package clases;
 import java.util.ArrayList;
 
 public class BaseDatosAL <T> implements IBaseDatos<T>{
-	ArrayList<T> listaAL;
+	private ArrayList<T> listaAL;
 
 	@Override
 	public void agregar(T o) {
