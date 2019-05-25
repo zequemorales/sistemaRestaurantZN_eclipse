@@ -1,25 +1,44 @@
 package clases;
 
 import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Map;
 
-public class BaseDatosHM <K,T> implements IBaseDatos <T> {
-	private HashMap<K,T> listaMapa;
 
+public class BaseDatosHM <K,V> implements IBaseDatosHM <K,V>{
+	private HashMap<K,V> listaMapa;
+	
+	
 	@Override
-	public void agregar(T o) {
-		
+	public void agregar(K clave, V valor) {
+		listaMapa.put(clave, valor);
 		
 	}
 
 	@Override
-	public void borrar(T o) {
-		// TODO Auto-generated method stub
+	public void borrar(K clave) {
+		listaMapa.remove(clave);
 		
 	}
 
 	@Override
 	public String listar() {
-		// TODO Auto-generated method stub
-		return null;
+		Iterator<Map.Entry<K, V>> entradas = listaMapa.entrySet().iterator();
+		StringBuilder str = new StringBuilder();
+		str.append("( Clave |"+" Valor )"+"\r\n");
+		while (entradas.hasNext()) {
+		    Map.Entry<K, V> entrada = entradas.next();
+		    str.append("("+entrada.getKey()+" |"+entrada.getValue()+")");
+		}
+		return str.toString();
 	}
+
+	@Override
+	public V buscar(K clave) {
+		V value = listaMapa.get(clave);
+		return value;
+	}
+
+	
 }
+
