@@ -1,9 +1,9 @@
 package interfaces;
 
 public interface IBaseDeDatosAL<T> {
-	boolean agregar(T objeto);
-	boolean borrar(T objeto);
-	String listar ();
-	boolean buscar(T objeto);
+	public boolean agregar(T objeto);
+	public boolean borrar(T objeto);
+	public String listar ();
+	public T  buscar(T objeto);
 
 }

@@ -41,7 +41,7 @@ public class BaseDatosAL <T> implements IBaseDeDatosAL<T>{
 		}
 
 	@Override
-	public T buscar (T objeto) {
+	public  T buscar (T objeto) {
 		T copia = null;
 		for(T e : listaAL)
 		{
