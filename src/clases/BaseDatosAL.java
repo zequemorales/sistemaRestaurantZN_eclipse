@@ -2,19 +2,31 @@ package clases;
 
 import java.util.ArrayList;
 
-public class BaseDatosAL <T> implements IBaseDatos<T>{
+import interfaces.IBaseDeDatosAL;
+
+public class BaseDatosAL <T> implements IBaseDeDatosAL<T>{
+	
 	private ArrayList<T> listaAL;
-// Agrega un elemento
+	
+	// Agrega un elemento
 	@Override
-	public void agregar(T o) {
-		listaAL.add(o);
-		
+	public boolean agregar(T objeto) {
+		boolean flag=false;
+		if(listaAL.add(objeto)){
+			flag=true;
+		}
+		return flag;
 	}
-// Borra un elemento.
+	
+ // Borra un elemento.
+	
 	@Override
-	public void borrar(T o) {
-		listaAL.remove(o);
-		
+	public boolean borrar(T objeto) {
+		boolean flag=false;
+		if(listaAL.remove(objeto)){
+			flag=true;
+		}
+		return flag;
 	}
 // Lista en un String toda la coleccion.
 	@Override
@@ -27,18 +39,20 @@ public class BaseDatosAL <T> implements IBaseDatos<T>{
 		}
 		return str.toString();
 		}
+
 	@Override
-	public T buscar(T o) {
-		T resultado = null;
+	public T buscar (T objeto) {
+		T copia = null;
 		for(T e : listaAL)
 		{
-			if(e.equals(o))
-				resultado = o;
+			if(e.equals(objeto))
+				copia = objeto;
 		}
-		return resultado;
+		return copia;
+		
 	}
+
 	
 
 }
 	
-
