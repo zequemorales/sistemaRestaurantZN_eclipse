@@ -1,9 +1,9 @@
 package interfaces;
 
 public interface IBaseDeDatosHM<K, V> {
-	 boolean agregar(K clave, V valor);
-	 boolean borrar(K clave);
-	 String listar ();
-	 public V buscar (K clave);
+	public void agregar(K clave, V valor);
+	public void borrar(K clave);
+	public String listar ();
+	public V buscar (K clave);
 
 }

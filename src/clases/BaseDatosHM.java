@@ -4,8 +4,10 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 
+import interfaces.IBaseDeDatosHM;
 
-public class BaseDatosHM <K,V> implements IBaseDatosHM <K,V>{
+
+public class BaseDatosHM <K,V> implements IBaseDeDatosHM <K,V>{
 	private HashMap<K,V> listaMapa;
 	
 	
