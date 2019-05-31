@@ -4,41 +4,39 @@ public class Producto {
 	private int idProducto;
 	private String nombreProducto;
 	private double precioProducto;
-	
+		
+	public Producto(int idProducto, String nombreProducto, double precioProducto) {
+		super();
+		setIdProducto(idProducto);
+		setNombreProducto(nombreProducto);
+		setPrecioProducto(precioProducto);
+	}
+
 	public Producto()
 	{
-		setId(-1);
-		setNombre("");
-		setPrecio(-1);
+		setIdProducto(-1);
+		setNombreProducto("");
+		setPrecioProducto(-1);
 	}
-	
-	
-	private int getIdProducto()
-	{
+
+	public int getIdProducto() {
 		return idProducto;
 	}
-	
-	private String getNombre()
-	{
+	public void setIdProducto(int idProducto) {
+		this.idProducto = idProducto;
+	}
+	public String getNombreProducto() {
 		return nombreProducto;
 	}
-	
-	private double getPrecio() {
+	public void setNombreProducto(String nombreProducto) {
+		this.nombreProducto = nombreProducto;
+	}
+	public double getPrecioProducto() {
 		return precioProducto;
 	}
-	
-	private void setId(int id)
-	{
-		idProducto = id;
+	public void setPrecioProducto(double precioProducto) {
+		this.precioProducto = precioProducto;
 	}
 	
-	private void setNombre(String nombre)
-	{
-		nombreProducto = nombre;
-	}
 	
-	private void setPrecio(double precio)
-	{
-		precioProducto = precio;
-	}
 }
