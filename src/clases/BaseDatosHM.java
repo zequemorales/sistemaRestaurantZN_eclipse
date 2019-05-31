@@ -12,14 +12,27 @@ public class BaseDatosHM <K,V> implements IBaseDeDatosHM <K,V>{
 	
 	
 	@Override
-	public void agregar(K clave, V valor) {
-		listaMapa.put(clave, valor);
+	public boolean agregar(K clave, V valor) {
+		boolean flag=false;
+		if(listaMapa.get(clave)!=null){
+			
+			listaMapa.put(clave, valor);
+			flag=true;
+		}
+		return flag;
+		
 		
 	}
+	
 
 	@Override
-	public void borrar(K clave) {
-		listaMapa.remove(clave);
+	public boolean borrar(K clave) {
+		boolean flag=false;
+		if(listaMapa.get(clave)!=null){
+			listaMapa.remove(clave);
+			flag=true;
+		}
+		return flag;
 		
 	}
 
