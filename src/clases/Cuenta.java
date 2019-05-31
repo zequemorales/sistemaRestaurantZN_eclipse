@@ -1,11 +1,12 @@
 package clases;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
 
 public class Cuenta {
 	private HashMap<Integer, Integer>listaProductos;
-	private Date fecha;
+	private String fecha;
 	private int idMesa;
 	private int idMozo;
 	
@@ -13,7 +14,7 @@ public class Cuenta {
 		listaProductos = new HashMap<Integer, Integer>();
 		setIdMesa(idMesa);
 		setIdMozo(idMozo);
-		
+		setFecha(ponerFecha());
 	}
 	
 	
@@ -30,6 +31,21 @@ public class Cuenta {
 		this.idMozo = idMozo;
 	}
 	
+	public String getFecha()
+	{
+		return fecha;
+	}
 	
+	private void setFecha(String fechaNew)
+	{
+		fecha = fechaNew;
+	}
+	
+	private String ponerFecha()
+	{
+		Date date = new Date();
+		SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yy");
+		return formato.format(date);
+	}
 
 }
