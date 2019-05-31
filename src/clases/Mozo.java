@@ -5,7 +5,7 @@ public class Mozo extends Persona{
 
 	public Mozo(String nombre, String apellido, int idMozo) {
 		super(nombre, apellido);
-		this.idMozo = idMozo;
+		setIdMozo(idMozo);
 	}
 
 	public int getIdMozo() {
