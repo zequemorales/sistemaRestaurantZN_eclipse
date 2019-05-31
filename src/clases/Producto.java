@@ -1,6 +1,6 @@
 package clases;
 
-public class Producto {
+public abstract class Producto {
 	private int idProducto;
 	private String nombreProducto;
 	private double precioProducto;
