@@ -53,5 +53,9 @@ public class Restaurante {
 		this.direccion = direccion;
 	}
 	
-
+@Override
+	public String toString() {
+		
+		return "El establecimiento es :" + getNombre()+ " y se encuenta en : "+getDireccion()+" \r\n Vengan con su familia Los Esperamos";
+	}
 }
