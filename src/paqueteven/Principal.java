@@ -11,7 +11,6 @@ import java.awt.Color;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.Cursor;
-import org.eclipse.wb.swing.FocusTraversalOnArray;
 import java.awt.Component;
 
 public class Principal extends JFrame {
@@ -353,6 +352,6 @@ public class Principal extends JFrame {
 		canvas_21.setBackground(Color.RED);
 		canvas_21.setBounds(399, 196, 41, 40);
 		contentPane.add(canvas_21);
-		contentPane.setFocusTraversalPolicy(new FocusTraversalOnArray(new Component[]{canvas_0, canvas_1, canvas_3, canvas_2, canvas_4, canvas_5, canvas_7, canvas_6, canvas_8, canvas_9, canvas_11, canvas_10, canvas_12, canvas_13, canvas_15, canvas_14, canvas_16, canvas_17, canvas_19, canvas_18, canvas_21, canvas_20}));
+		
 	}
 }
