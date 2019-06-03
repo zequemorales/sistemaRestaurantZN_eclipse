@@ -1,4 +1,10 @@
 package clases;
+import org.json.JSONObject;
+
+import sun.security.action.GetBooleanAction;
+
+import org.json.JSONException;
+
 
 public class Comida extends Producto{
 	
@@ -32,6 +38,20 @@ public class Comida extends Producto{
 		this.caliente=caliente;
 	}
 	
+	@Override
+	public JSONObject getFormatoJSON() 
+	{
+		JSONObject jsonObject = super.getFormatoJSON();
+		try {
+			jsonObject.put("tipoDePlato", getTipoDePlato());
+			jsonObject.put("caliente", isCalienteOno());
+		} catch (JSONException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return jsonObject;
+	}
 	
 
 }

@@ -13,6 +13,9 @@ public class Main {
 		Bebida bebe = new Bebida(1,"IPA",90,"Cerveza",400);
 		JSONObject jason = bebe.getFormatoJSON();;
 		System.out.println(jason.toString());
+		
+		Comida comi = new Comida(1,"Arroz con Pollo",120,"Almuerzo",true);
+		System.out.println(comi.getFormatoJSON().toString());
 	}
 
 }
