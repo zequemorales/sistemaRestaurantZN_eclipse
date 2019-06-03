@@ -1,5 +1,7 @@
 package clases;
-
+import org.json.JSONException;
+import org.json.JSONObject;
+import org.json.JSONException;
 public class Bebida extends Producto{
 	
 	private String tipoDeBebida;
@@ -32,6 +34,20 @@ public class Bebida extends Producto{
 		this.tamanioML = tamanioML;
 	}
 	
-	
+	public JSONObject getFormatoJSON()
+	{
+		JSONObject jsonObject = new JSONObject();
+		try {
+			jsonObject = super.getFormatoJSON();
+			jsonObject.put("tipoDeBebida", getTipoDeBebida());
+			jsonObject.put("tamanioML", getTamanioML());
+		} catch (JSONException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return jsonObject;
+		
+	}
 
 }

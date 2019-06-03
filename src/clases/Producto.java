@@ -1,5 +1,8 @@
 package clases;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 public abstract class Producto {
 	private int idProducto;
 	private String nombreProducto;
@@ -41,4 +44,20 @@ public abstract class Producto {
 		this.precioProducto = precioProducto;
 	}
 
+	public JSONObject getFormatoJSON()
+	{
+		JSONObject jsonObject = new JSONObject();
+		try {
+			jsonObject.put("idProducto", getIdProducto());
+			jsonObject.put("nombreProducto", getNombreProducto());
+			jsonObject.put("precioProducto", getPrecioProducto());
+		} catch (JSONException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return jsonObject;
+		
+	}
+	
 }
