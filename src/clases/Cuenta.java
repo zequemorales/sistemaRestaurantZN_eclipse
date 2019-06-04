@@ -3,6 +3,11 @@ package clases;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.Map.Entry;
+
+import javax.swing.text.html.HTMLDocument.Iterator;
+
+import com.sun.javafx.collections.MappingChange.Map;
 
 public class Cuenta {
 	private HashMap<Integer, Integer>listaProductos;
@@ -40,6 +45,18 @@ public class Cuenta {
 	{
 		fecha = fechaNew;
 	}
+	
+	public boolean ponerEnCuenta(int id, int cant,BaseDatosHM<Integer,Producto> hmProducto)
+	{
+		boolean flag = false;
+		if(hmProducto.buscar(id) !=null)
+		{
+			flag = true;
+			listaProductos.put(id, cant);
+		}
+		return flag;
+	}
+	
 	
 	private String ponerFecha()
 	{

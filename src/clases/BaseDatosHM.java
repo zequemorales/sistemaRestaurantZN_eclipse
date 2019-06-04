@@ -10,11 +10,14 @@ import interfaces.IBaseDeDatosHM;
 public class BaseDatosHM <K,V> implements IBaseDeDatosHM <K,V>{
 	private HashMap<K,V> listaMapa;
 	
+	 public BaseDatosHM() {
+		listaMapa = new HashMap<K,V>();
+	}
 	
 	@Override
 	public boolean agregar(K clave, V valor) {
 		boolean flag=false;
-		if(listaMapa.get(clave)!=null){
+		if(listaMapa.containsKey(clave)){
 			
 			listaMapa.put(clave, valor);
 			flag=true;
@@ -48,10 +51,20 @@ public class BaseDatosHM <K,V> implements IBaseDeDatosHM <K,V>{
 		return str.toString();
 	}
 
+	
+	//?
 	@Override
 	public V buscar(K clave) {
-		V value = listaMapa.get(clave);
-		return value;
+			
+	return listaMapa.get(clave);
+		
+		
+	}
+
+	@Override
+	public boolean existe(K clave) {
+		
+		return listaMapa.containsKey(clave);
 	}
 
 	

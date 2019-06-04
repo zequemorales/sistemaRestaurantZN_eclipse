@@ -53,7 +53,31 @@ public class Restaurante {
 		this.direccion = direccion;
 	}
 	
-@Override
+	public double devolverTotal()
+	{
+		double total = 0;
+		
+	}
+	
+	public boolean crearCuenta(int nroMesa, int nroMozo)
+	{
+		boolean flag = false;
+		if(listadoDeMesas.existe(nroMesa))
+			if(!listadoDeMesas.buscar(nroMesa).isOcupadoONO())
+			{
+				flag = true;
+				Cuenta cuenta = new Cuenta(nroMozo,nroMesa);
+				cuentasActivas.agregar(cuenta);
+				listadoDeMesas.buscar(nroMesa).setOcupadoONO(true);
+				
+			}
+			return flag;
+			
+			
+			
+	}
+	
+	@Override
 	public String toString() {
 		
 		return "El establecimiento es :" + getNombre()+ " y se encuenta en : "+getDireccion()+" \r\n Vengan con su familia Los Esperamos";

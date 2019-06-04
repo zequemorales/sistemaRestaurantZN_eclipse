@@ -5,5 +5,5 @@ public interface IBaseDeDatosHM<K, V> {
 	public boolean borrar(K clave);
 	public String listar ();
 	public V buscar (K clave);
-
+	public boolean existe(K clave);
 }
