@@ -15,7 +15,7 @@ public class Comida extends Producto{
 	
 	@Override
 	public String toString() {
-		return super.toString()+ "Tipo De Plato:" + tipoDePlato + " Caliente:" + caliente;
+		return super.toString()+ "Tipo De Plato:" + getTipoDePlato() + " Caliente:" + isCalienteOno();
 	}
 
 
