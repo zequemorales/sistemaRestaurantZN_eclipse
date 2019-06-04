@@ -53,11 +53,11 @@ public class Restaurante {
 		this.direccion = direccion;
 	}
 	
-	public double devolverTotal()
+	/*public double devolverTotal()
 	{
 		double total = 0;
 		
-	}
+	}*/
 	
 	public boolean crearCuenta(int nroMesa, int nroMozo)
 	{
