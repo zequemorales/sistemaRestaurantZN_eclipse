@@ -8,10 +8,15 @@ public class BaseDatosAL <T> implements IBaseDeDatosAL<T>{
 	
 	private ArrayList<T> listaAL;
 	
+	public  BaseDatosAL() {
+		listaAL= new ArrayList<T>();
+	}
+	
 	// Agrega un elemento
 	@Override
 	public boolean agregar(T objeto) {
 		boolean flag=false;
+		
 		if(listaAL.add(objeto)){
 			flag=true;
 		}

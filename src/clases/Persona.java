@@ -24,5 +24,9 @@ public class Persona {
 	}
 	
 	
-
+ @Override
+public String toString() {
+	// TODO Apéndice de método generado automáticamente
+	return "Nombre: "+ getNombre()+" Apellido: "+ getApellido()+ " ";
+}
 }

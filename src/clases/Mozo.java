@@ -15,6 +15,11 @@ public class Mozo extends Persona{
 		this.idMozo = idMozo;
 	}
 	
+	@Override
+	public String toString() {
+		
+		return super.toString() + "Id Mozo: " + getIdMozo();
+	}
 	
 	
 	

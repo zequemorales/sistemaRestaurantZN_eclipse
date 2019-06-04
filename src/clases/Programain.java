@@ -7,10 +7,10 @@ public class Programain {
 		Restaurante restoprueba=new Restaurante("Antares", "Constitucion 5500");
 		System.out.println(restoprueba.toString());
 		
-//		System.out.println("LISTAR MESAS");
-//		restoprueba.listarMesas();
-//		System.out.println("LISTAR MOZOS");
-//		restoprueba.listarMozos();
+		System.out.println("LISTAR MESAS");
+		restoprueba.listarMesas();
+		System.out.println("LISTAR MOZOS");
+		restoprueba.listarMozos();
 		
 		Mesa mesa1 = new Mesa(1);
 		Mesa mesa2=new Mesa(2);
@@ -20,11 +20,21 @@ public class Programain {
 		Mozo mozo2 = new Mozo("Juan", "Perez", 2);
 		Mozo mozo3 = new Mozo("Nico", "Garcia", 3);
 		
-		restoprueba.agregarMesa(mesa1);
+		if(restoprueba.agregarMesa(mesa1)){
+			System.out.println("ok");
+		}
+		else
+			System.out.println("no");
+		
 		restoprueba.agregarMesa(mesa2);
 		restoprueba.agregarMesa(mesa3);
 		
-		restoprueba.agregarMozo(mozo1);
+		
+		if(restoprueba.agregarMozo(mozo1)){
+			System.out.println("ok");
+		}
+		else
+			System.out.println("no");
 		restoprueba.agregarMozo(mozo2);
 		restoprueba.agregarMozo(mozo3);
 		
@@ -32,7 +42,7 @@ public class Programain {
 		System.out.println("LISTAR MESAS");
 		System.out.println(restoprueba.listarMesas());
 		System.out.println("LISTAR MOZOS");
-		restoprueba.listarMozos();		
+		System.out.println(restoprueba.listarMozos());
 	
 		
 		

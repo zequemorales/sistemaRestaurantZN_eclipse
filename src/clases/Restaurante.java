@@ -128,9 +128,7 @@ public class Restaurante {
 	
 	
 	public String listarMozos(){
-		String listarmozos;
-		listarmozos=listadoDeMozos.listar();
-		return listarmozos;
+		return listadoDeMozos.listar();
 	}
 	
 	//////////////////////////////////////////////////////
