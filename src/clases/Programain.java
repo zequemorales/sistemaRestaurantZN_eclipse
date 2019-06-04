@@ -6,6 +6,7 @@ public class Programain {
 		// TODO Apéndice de método generado automáticamente
 		Restaurante restoprueba=new Restaurante("Antares", "Constitucion 5500");
 		System.out.println(restoprueba.toString());
+		restoprueba.listarMesas();
 
 	}
 

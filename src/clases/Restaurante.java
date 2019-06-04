@@ -34,7 +34,6 @@ public class Restaurante {
 		historialDeCuentas = new BaseDatosAL<Cuenta>();
 		
 		
-		
 	}
 
 	public String getNombre() {
@@ -52,6 +51,23 @@ public class Restaurante {
 	public void setDireccion(String direccion) {
 		this.direccion = direccion;
 	}
+	
+	public String listarMozos(){
+		String listarmozos;
+		listarmozos=listadoDeMozos.listar();
+		return listarmozos;
+	}
+	public String listarMesas(){
+		String listarmesas;
+		listarmesas=listadoDeMesas.listar();
+		return listarmesas;
+	}
+	public String listarProductos(){
+		String listarproductos;
+		listarproductos=listadoDeProductos.listar();
+		return listarproductos;
+	}
+	
 	
 @Override
 	public String toString() {

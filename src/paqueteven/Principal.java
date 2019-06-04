@@ -1,4 +1,6 @@
 package paqueteven;
+import clases.*;
+import interfaces.*;
 
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
@@ -12,6 +14,9 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.Cursor;
 import java.awt.Component;
+import javax.swing.JMenuBar;
+import javax.swing.JMenu;
+import javax.swing.JMenuItem;
 
 public class Principal extends JFrame {
 
@@ -25,6 +30,9 @@ public class Principal extends JFrame {
 			public void run() {
 				try {
 					Principal frame = new Principal();
+					Restaurante restoprueba=new Restaurante("ANTARES", "CONSTITUCION 5500");
+					System.out.println(restoprueba.toString());
+					
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -39,6 +47,21 @@ public class Principal extends JFrame {
 	public Principal() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 820, 714);
+		
+		JMenuBar menuBar = new JMenuBar();
+		setJMenuBar(menuBar);
+		
+		JMenu mnRestaurante = new JMenu("RESTAURANTE");
+		menuBar.add(mnRestaurante);
+		
+		JMenuItem mntmInfo = new JMenuItem("Info");
+		mnRestaurante.add(mntmInfo);
+		
+		JMenu mnVersion = new JMenu("VERSION");
+		menuBar.add(mnVersion);
+		
+		JMenuItem mntmAcerca = new JMenuItem("Acerca");
+		mnVersion.add(mntmAcerca);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
