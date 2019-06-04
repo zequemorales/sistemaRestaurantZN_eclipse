@@ -34,7 +34,6 @@ public class Restaurante {
 		historialDeCuentas = new BaseDatosAL<Cuenta>();
 		
 		
-		
 	}
 
 	public String getNombre() {
@@ -53,6 +52,7 @@ public class Restaurante {
 		this.direccion = direccion;
 	}
 	
+
 	/*public double devolverTotal()
 	{
 		double total = 0;
@@ -78,6 +78,24 @@ public class Restaurante {
 	}
 	
 	@Override
+	public String listarMozos(){
+		String listarmozos;
+		listarmozos=listadoDeMozos.listar();
+		return listarmozos;
+	}
+	public String listarMesas(){
+		String listarmesas;
+		listarmesas=listadoDeMesas.listar();
+		return listarmesas;
+	}
+	public String listarProductos(){
+		String listarproductos;
+		listarproductos=listadoDeProductos.listar();
+		return listarproductos;
+	}
+	
+	
+@Override
 	public String toString() {
 		
 		return "El establecimiento es :" + getNombre()+ " y se encuenta en : "+getDireccion()+" \r\n Vengan con su familia Los Esperamos";

@@ -28,6 +28,7 @@ public class Cuenta {
 	}
 	public void setIdMesa(int idMesa) {
 		this.idMesa = idMesa;
+		
 	}
 	public int getIdMozo() {
 		return idMozo;

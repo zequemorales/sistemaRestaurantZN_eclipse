@@ -1,9 +1,12 @@
 package clases;
 
+import java.io.IOException;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 public class Main {
+	
+	
 
 	public static void main(String[] args) {
 		//Prueba de fecha formateada.
@@ -16,6 +19,16 @@ public class Main {
 		
 		Comida comi = new Comida(1,"Arroz con Pollo",120,"Almuerzo",true);
 		System.out.println(comi.getFormatoJSON().toString());
+		
+		
+		
+		
+		
+		
+		
+		
 	}
 
+	
+	
 }
