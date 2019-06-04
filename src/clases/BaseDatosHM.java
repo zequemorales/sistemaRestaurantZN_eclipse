@@ -17,7 +17,7 @@ public class BaseDatosHM <K,V> implements IBaseDeDatosHM <K,V>{
 	@Override
 	public boolean agregar(K clave, V valor) {
 		boolean flag=false;
-		if(listaMapa.containsKey(clave)){
+		if(!listaMapa.containsKey(clave)){
 			
 			listaMapa.put(clave, valor);
 			flag=true;

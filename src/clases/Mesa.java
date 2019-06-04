@@ -29,6 +29,12 @@ public class Mesa {
 		this.ocupadoONO = ocupadoONO;
 	}
 	
+	@Override
+	public String toString() {
+		// TODO Apéndice de método generado automáticamente
+		return "Ocupada " +  isOcupadoONO() ;
+	}
+	
 	// OCUPADO TRUE
 	// DESOCUPADO FALSE
 	public void ocuparMesa(){

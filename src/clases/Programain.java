@@ -2,7 +2,7 @@ package clases;
 
 public class Programain {
 
-	public static void main(String[] args) {
+	public static void main (String[] args) {
 		// TODO Apéndice de método generado automáticamente
 		Restaurante restoprueba=new Restaurante("Antares", "Constitucion 5500");
 		System.out.println(restoprueba.toString());
@@ -21,7 +21,7 @@ public class Programain {
 		Mozo mozo3 = new Mozo("Nico", "Garcia", 3);
 		
 		if(restoprueba.agregarMesa(mesa1)){
-			System.out.println("ok");
+			System.out.println("la mesa "+ mesa1.getNumeroDeMesa() + "fue cargado correctamente");
 		}
 		else
 			System.out.println("no");
@@ -43,6 +43,19 @@ public class Programain {
 		System.out.println(restoprueba.listarMesas());
 		System.out.println("LISTAR MOZOS");
 		System.out.println(restoprueba.listarMozos());
+		
+		Cuenta cuenta1 = new Cuenta(1, 1);
+		
+		restoprueba.agregarCuentaActiva(cuenta1);
+		
+		
+		System.out.println(restoprueba.listarMesas());
+		
+		restoprueba.eliminarCuentaActiva(cuenta1);
+		
+		System.out.println(restoprueba.listarMesas());
+		
+		
 	
 		
 		
