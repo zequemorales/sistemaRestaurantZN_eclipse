@@ -5,5 +5,6 @@ public interface IBaseDeDatosAL<T> {
 	public boolean borrar(T objeto);
 	public String listar ();
 	public T  buscar(T objeto);
+	public boolean existe(T objeto);
 
 }

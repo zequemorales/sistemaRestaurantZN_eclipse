@@ -25,8 +25,17 @@ public class Mesa {
 	public boolean isOcupadoONO() {
 		return ocupadoONO;
 	}
-	public void setOcupadoONO(boolean ocupadoONO) {
+	private void setOcupadoONO(boolean ocupadoONO) {
 		this.ocupadoONO = ocupadoONO;
+	}
+	
+	// OCUPADO TRUE
+	// DESOCUPADO FALSE
+	public void ocuparMesa(){
+		setOcupadoONO(true);
+	}
+	public void desocuparMesa(){
+		setOcupadoONO(false);
 	}
 
 }

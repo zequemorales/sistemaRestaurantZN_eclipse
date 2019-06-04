@@ -6,7 +6,38 @@ public class Programain {
 		// TODO Apéndice de método generado automáticamente
 		Restaurante restoprueba=new Restaurante("Antares", "Constitucion 5500");
 		System.out.println(restoprueba.toString());
-		restoprueba.listarMesas();
+		
+//		System.out.println("LISTAR MESAS");
+//		restoprueba.listarMesas();
+//		System.out.println("LISTAR MOZOS");
+//		restoprueba.listarMozos();
+		
+		Mesa mesa1 = new Mesa(1);
+		Mesa mesa2=new Mesa(2);
+		Mesa mesa3=new Mesa(3);
+		
+		Mozo mozo1 = new Mozo("Ezequiel", "Morales", 1);
+		Mozo mozo2 = new Mozo("Juan", "Perez", 2);
+		Mozo mozo3 = new Mozo("Nico", "Garcia", 3);
+		
+		restoprueba.agregarMesa(mesa1);
+		restoprueba.agregarMesa(mesa2);
+		restoprueba.agregarMesa(mesa3);
+		
+		restoprueba.agregarMozo(mozo1);
+		restoprueba.agregarMozo(mozo2);
+		restoprueba.agregarMozo(mozo3);
+		
+		
+		System.out.println("LISTAR MESAS");
+		System.out.println(restoprueba.listarMesas());
+		System.out.println("LISTAR MOZOS");
+		restoprueba.listarMozos();		
+	
+		
+		
+		
+		
 
 	}
 

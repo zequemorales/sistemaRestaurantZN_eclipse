@@ -59,36 +59,115 @@ public class Restaurante {
 		
 	}*/
 	
+	//////////////////////////////////////////////////////
+	//////////////////////////////////////////////////////
+	///////////////////	CUENTA	//////////////////////////
+	//////////////////////////////////////////////////////
+	//////////////////////////////////////////////////////
 	
-	public boolean crearCuenta(int nroMesa, int nroMozo)
+/*	public boolean crearCuenta(Cuenta c)
 	{
 		boolean flag = false;
-		if(listadoDeMesas.existe(nroMesa))
+		if(listadoDeMesas.existe(c))
 			if(!listadoDeMesas.buscar(nroMesa).isOcupadoONO())
 			{
 				flag = true;
 				Cuenta cuenta = new Cuenta(nroMozo,nroMesa);
 				cuentasActivas.agregar(cuenta);
 				listadoDeMesas.buscar(nroMesa).setOcupadoONO(true);
-				
 			}
 			return flag;
 			
-			
-			
+	}*/
+	
+	public boolean agregarCuentaActiva (Cuenta c){
+		boolean flag=false;
+		if(listadoDeMesas.existe(c.getIdMesa())){
+			if(!listadoDeMesas.buscar(c.getIdMesa()).isOcupadoONO()){
+				cuentasActivas.agregar(c);
+				listadoDeMesas.buscar(c.getIdMesa()).ocuparMesa();;
+			}
+		}
+		return flag;
 	}
 	
-	@Override
+	public boolean eliminarCuentaActiva (Cuenta c){
+		boolean flag=false;
+		if(listadoDeMesas.existe(c.getIdMesa())){
+			if(listadoDeMesas.buscar(c.getIdMesa()).isOcupadoONO()){
+				cuentasActivas.borrar(c);
+				listadoDeMesas.buscar(c.getIdMesa()).desocuparMesa();
+			}
+		}
+		return flag;
+	}
+	
+
+	//////////////////////////////////////////////////////
+	//////////////////////////////////////////////////////
+	/////////////////	MOZOS	//////////////////////////
+	//////////////////////////////////////////////////////
+	//////////////////////////////////////////////////////
+	
+	public boolean agregarMozo(Mozo m){
+		boolean flag=false;
+		if(!listadoDeMozos.existe(m)){
+			listadoDeMozos.agregar(m);
+			flag=true;
+		}
+		return flag;
+	}
+	public boolean eliminarMozo(Mozo m){
+		boolean flag=false;
+		if(listadoDeMozos.existe(m)){
+			listadoDeMozos.borrar(m);
+			flag=true;
+		}
+		return flag;
+	}
+	
+	
 	public String listarMozos(){
 		String listarmozos;
 		listarmozos=listadoDeMozos.listar();
 		return listarmozos;
 	}
+	
+	//////////////////////////////////////////////////////
+	//////////////////////////////////////////////////////
+	//////////////////// MESAS	//////////////////////////
+	//////////////////////////////////////////////////////
+	//////////////////////////////////////////////////////
+	
 	public String listarMesas(){
 		String listarmesas;
 		listarmesas=listadoDeMesas.listar();
 		return listarmesas;
 	}
+	
+	public boolean agregarMesa (Mesa m){
+		boolean flag=false;
+		if(!listadoDeMesas.existe(m.getNumeroDeMesa())){
+			listadoDeMesas.agregar(m.getNumeroDeMesa(), m);
+			flag=true;
+		}
+		return flag;
+	}
+	public boolean eliminarMesa (Mesa m){
+		boolean flag=false;
+		if(listadoDeMesas.existe(m.getNumeroDeMesa())){
+			listadoDeMesas.borrar(m.getNumeroDeMesa());
+			flag=true;
+		}
+		return flag;
+	}
+	
+	
+	//////////////////////////////////////////////////////
+	//////////////////////////////////////////////////////
+	///////////////////	PRUDUCTOS	//////////////////////
+	//////////////////////////////////////////////////////
+	//////////////////////////////////////////////////////
 	public String listarProductos(){
 		String listarproductos;
 		listarproductos=listadoDeProductos.listar();

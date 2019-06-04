@@ -52,6 +52,18 @@ public class BaseDatosAL <T> implements IBaseDeDatosAL<T>{
 		
 	}
 
+	@Override
+	public boolean existe(T objeto) {
+		boolean flag=false;
+		for(T o : listaAL){
+			if(o.equals(objeto)){
+				flag=true;
+			}
+		}
+		return flag;
+	}
+	
+
 	
 
 }
