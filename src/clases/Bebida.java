@@ -1,4 +1,5 @@
 package clases;
+
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.json.JSONException;
@@ -7,7 +8,13 @@ public class Bebida extends Producto{
 	private String tipoDeBebida;
 	private int tamanioML;
 
+	
 		
+	@Override
+	public String toString() {
+		return super.toString()+ "Tipo De Bebida:" + getTipoDeBebida() + "Tamanio ML=" + getTamanioML();
+	}
+
 	public Bebida(int idProducto, String nombreProducto, double precioProducto, String tipoDeBebida, int tamanioML) {
 		super(idProducto, nombreProducto, precioProducto);
 		setTipoDeBebida(tipoDeBebida);

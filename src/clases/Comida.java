@@ -11,6 +11,14 @@ public class Comida extends Producto{
 	private String tipoDePlato;
 	private boolean caliente;
 	
+	
+	
+	@Override
+	public String toString() {
+		return super.toString()+ "Tipo De Plato:" + tipoDePlato + " Caliente:" + caliente;
+	}
+
+
 	public Comida(int idProducto, String nombreProducto, double precioProducto, String tipoDePlato, boolean caliente) {
 		super(idProducto, nombreProducto, precioProducto);
 		setTipoDePlato(tipoDePlato);
