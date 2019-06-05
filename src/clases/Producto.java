@@ -7,6 +7,14 @@ public abstract class Producto {
 	private int idProducto;
 	private String nombreProducto;
 	private double precioProducto;
+	
+	
+
+	@Override
+	public String toString() {
+		return "idProducto: " + getIdProducto() + " Nombre Producto: " + getNombreProducto() + " Precio Producto:"
+				+ getPrecioProducto();
+	}
 
 	public Producto(int idProducto, String nombreProducto, double precioProducto) {
 		setIdProducto(idProducto);
