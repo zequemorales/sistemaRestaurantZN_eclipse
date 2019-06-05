@@ -121,16 +121,18 @@ public class Restaurante {
 	}
 
 	/**
+	 * Elimina de la lista cuentaAtivas y la guarda en HistorialdeCuentas. 
+	 * @param idMesa Id de la mesa a borrar.
+	 * @return true si se elimino correctamente. False si no se elimino o hubo algun error.
 	 * 
-	 * @param c
-	 * @return
 	 */
 	public boolean eliminarCuentaActiva(int idMesa) {
 		boolean flag = false;
 		
-		//busca la mesa a elimina
+		
 		
 		for(int i=0;i<cuentasActivas.tamanioLista();i++){
+			//busca la mesa a eliminar
 			if(cuentasActivas.getindice(i).getIdMesa()==idMesa){
 				
 				creaCuentaEnHistorialCuentas(idMesa);
@@ -141,6 +143,12 @@ public class Restaurante {
 		}
 		return flag;
 	}
+	
+	/**
+	 * Agrega una cuenta en histotial de cuentas.
+	 * @param idMesa
+	 * @return
+	 */
 	public boolean creaCuentaEnHistorialCuentas(int idMesa){
 		boolean flag=false;
 	
