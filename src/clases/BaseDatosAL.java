@@ -68,6 +68,14 @@ public class BaseDatosAL <T> implements IBaseDeDatosAL<T>{
 		return flag;
 	}
 	
+	public int tamanioLista(){
+		return listaAL.size();
+	}
+	
+	public T getindice(int i){
+		return listaAL.get(i);
+	}
+	
 
 	
 

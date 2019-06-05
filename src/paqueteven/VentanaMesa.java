@@ -11,7 +11,7 @@ import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
-public class Mesa extends JFrame {
+public class VentanaMesa extends JFrame {
 
 	private JPanel contentPane;
 
@@ -22,7 +22,7 @@ public class Mesa extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					Mesa frame = new Mesa();
+					VentanaMesa frame = new VentanaMesa();
 					frame.setVisible(true);
 					
 				} catch (Exception e) {
@@ -35,7 +35,7 @@ public class Mesa extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public Mesa() {
+	public VentanaMesa() {
 		String estadoMesa;
 		estadoMesa="Mesa Vacia";
 		setTitle("");

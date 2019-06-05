@@ -65,5 +65,11 @@ public class Cuenta {
 		SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yy");
 		return formato.format(date);
 	}
+	
+	@Override
+	public String toString() {
+		
+		return "CUENTA\n " + " Fecha " + fecha+" ID MESA: "+ idMesa + " ID MOZO: " + idMozo;
+	}
 
 }

@@ -72,7 +72,7 @@ public class Principal extends JFrame {
 		canvas_0.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				Mesa mesa0 = new Mesa();
+				VentanaMesa mesa0 = new VentanaMesa();
 				mesa0.setTitle("MESA 1");
 				mesa0.setVisible(true);
 				
@@ -87,7 +87,7 @@ public class Principal extends JFrame {
 		canvas_1.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				Mesa mesa1 = new Mesa();
+				VentanaMesa mesa1 = new VentanaMesa();
 				mesa1.setTitle("MESA 2");
 				mesa1.setVisible(true);
 			}
@@ -101,7 +101,7 @@ public class Principal extends JFrame {
 		canvas_2.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				Mesa mesa2 = new Mesa();
+				VentanaMesa mesa2 = new VentanaMesa();
 				mesa2.setTitle("MESA 4");
 				mesa2.setVisible(true);
 			}
@@ -115,7 +115,7 @@ public class Principal extends JFrame {
 		canvas_3.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				Mesa mesa3 = new Mesa();
+				VentanaMesa mesa3 = new VentanaMesa();
 				mesa3.setTitle("MESA 3");
 				mesa3.setVisible(true);
 			}
@@ -129,7 +129,7 @@ public class Principal extends JFrame {
 		canvas_4.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				Mesa mesa4 = new Mesa();
+				VentanaMesa mesa4 = new VentanaMesa();
 				mesa4.setTitle("MESA 5");
 				mesa4.setVisible(true);
 			}
@@ -143,7 +143,7 @@ public class Principal extends JFrame {
 		canvas_5.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				Mesa mesa5 = new Mesa();
+				VentanaMesa mesa5 = new VentanaMesa();
 				mesa5.setTitle("MESA 6");
 				mesa5.setVisible(true);
 			}
@@ -156,7 +156,7 @@ public class Principal extends JFrame {
 		canvas_6.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				Mesa mesa6 = new Mesa();
+				VentanaMesa mesa6 = new VentanaMesa();
 				mesa6.setTitle("MESA 7");
 				mesa6.setVisible(true);
 			}
@@ -170,7 +170,7 @@ public class Principal extends JFrame {
 		canvas_7.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				Mesa mesa7 = new Mesa();
+				VentanaMesa mesa7 = new VentanaMesa();
 				mesa7.setTitle("MESA 8");
 				mesa7.setVisible(true);
 			}
@@ -184,7 +184,7 @@ public class Principal extends JFrame {
 		canvas_8.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				Mesa mesa8 = new Mesa();
+				VentanaMesa mesa8 = new VentanaMesa();
 				mesa8.setTitle("MESA 9");
 				mesa8.setVisible(true);
 			}
@@ -198,7 +198,7 @@ public class Principal extends JFrame {
 		canvas_9.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				Mesa mesa9 = new Mesa();
+				VentanaMesa mesa9 = new VentanaMesa();
 				mesa9.setTitle("MESA 10");
 				mesa9.setVisible(true);
 			}
@@ -212,7 +212,7 @@ public class Principal extends JFrame {
 		canvas_10.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				Mesa mesa10 = new Mesa();
+				VentanaMesa mesa10 = new VentanaMesa();
 				mesa10.setTitle("MESA 11");
 				mesa10.setVisible(true);
 			}
@@ -226,7 +226,7 @@ public class Principal extends JFrame {
 		canvas_11.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				Mesa mesa11 = new Mesa();
+				VentanaMesa mesa11 = new VentanaMesa();
 				mesa11.setTitle("MESA 12");
 				mesa11.setVisible(true);
 			}
@@ -240,7 +240,7 @@ public class Principal extends JFrame {
 		canvas_12.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				Mesa mesa12 = new Mesa();
+				VentanaMesa mesa12 = new VentanaMesa();
 				
 				mesa12.setTitle("MESA 13");
 				mesa12.setVisible(true);
@@ -255,7 +255,7 @@ public class Principal extends JFrame {
 		canvas_13.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				Mesa mesa13 = new Mesa();
+				VentanaMesa mesa13 = new VentanaMesa();
 				mesa13.setTitle("MESA 14");
 				mesa13.setVisible(true);
 			}
@@ -269,7 +269,7 @@ public class Principal extends JFrame {
 		canvas_14.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				Mesa mesa14 = new Mesa();
+				VentanaMesa mesa14 = new VentanaMesa();
 				mesa14.setTitle("MESA 15");
 				mesa14.setVisible(true);
 			}
@@ -283,7 +283,7 @@ public class Principal extends JFrame {
 		canvas_15.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				Mesa mesa15 = new Mesa();
+				VentanaMesa mesa15 = new VentanaMesa();
 				mesa15.setTitle("MESA 16");
 				mesa15.setVisible(true);
 			}
@@ -297,7 +297,7 @@ public class Principal extends JFrame {
 		canvas_16.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				Mesa mesa16 = new Mesa();
+				VentanaMesa mesa16 = new VentanaMesa();
 				mesa16.setTitle("MESA 17");
 				mesa16.setVisible(true);
 			}
@@ -311,7 +311,7 @@ public class Principal extends JFrame {
 		canvas_17.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				Mesa mesa17 = new Mesa();
+				VentanaMesa mesa17 = new VentanaMesa();
 				mesa17.setTitle("MESA 18");
 				mesa17.setVisible(true);
 			}
@@ -325,7 +325,7 @@ public class Principal extends JFrame {
 		canvas_18.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				Mesa mesa18 = new Mesa();
+				VentanaMesa mesa18 = new VentanaMesa();
 				mesa18.setTitle("MESA 19");
 				mesa18.setVisible(true);
 			}
@@ -339,7 +339,7 @@ public class Principal extends JFrame {
 		canvas_19.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				Mesa mesa19 = new Mesa();
+				VentanaMesa mesa19 = new VentanaMesa();
 				mesa19.setTitle("MESA 20");
 				mesa19.setVisible(true);
 			}
@@ -353,7 +353,7 @@ public class Principal extends JFrame {
 		canvas_20.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				Mesa mesa20 = new Mesa();
+				VentanaMesa mesa20 = new VentanaMesa();
 				mesa20.setTitle("MESA 21");
 				mesa20.setVisible(true);
 			}
@@ -367,7 +367,7 @@ public class Principal extends JFrame {
 		canvas_21.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				Mesa mesa21 = new Mesa();
+				VentanaMesa mesa21 = new VentanaMesa();
 				mesa21.setTitle("MESA 22");
 				mesa21.setVisible(true);
 			}

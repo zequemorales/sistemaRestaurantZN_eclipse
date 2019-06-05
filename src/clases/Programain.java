@@ -11,14 +11,14 @@ public class Programain {
 		restoprueba.listarMesas();
 		System.out.println("LISTAR MOZOS");
 		restoprueba.listarMozos();
+		System.out.println("CUENTAS ACTIVAS "+restoprueba.listarCuentasActivas());
+		System.out.println("HISTORIAL CUENTAS "+restoprueba.listarHistorialCuentas());
 		
 		Mesa mesa1 = new Mesa(1);
 		Mesa mesa2=new Mesa(2);
 		Mesa mesa3=new Mesa(3);
 		
-		Mozo mozo1 = new Mozo("Ezequiel", "Morales", 1);
-		Mozo mozo2 = new Mozo("Juan", "Perez", 2);
-		Mozo mozo3 = new Mozo("Nico", "Garcia", 3);
+	
 		
 		if(restoprueba.agregarMesa(mesa1)){
 			System.out.println("la mesa "+ mesa1.getNumeroDeMesa() + "fue cargado correctamente");
@@ -30,30 +30,28 @@ public class Programain {
 		restoprueba.agregarMesa(mesa3);
 		
 		
-		if(restoprueba.agregarMozo(mozo1)){
-			System.out.println("ok");
-		}
-		else
-			System.out.println("no");
-		restoprueba.agregarMozo(mozo2);
-		restoprueba.agregarMozo(mozo3);
-		
+		restoprueba.crearMozo("juan", "perez", 1);
+		restoprueba.crearMozo("eze", "morales", 2);
+		restoprueba.crearMozo("nico", "cristo", 3);
+
+	
 		
 		System.out.println("LISTAR MESAS");
 		System.out.println(restoprueba.listarMesas());
 		System.out.println("LISTAR MOZOS");
 		System.out.println(restoprueba.listarMozos());
 		
-		Cuenta cuenta1 = new Cuenta(1, 1);
-		
-		restoprueba.agregarCuentaActiva(cuenta1);
-		
-		
+		restoprueba.crearCuentaActiva(1, 1);
+	System.out.println("CUENTAS ACTIVAS "+restoprueba.listarCuentasActivas());
+	System.out.println("HISTORIAL CUENTAS "+restoprueba.listarHistorialCuentas());
+	
 		System.out.println(restoprueba.listarMesas());
 		
-		restoprueba.eliminarCuentaActiva(cuenta1);
+		restoprueba.eliminarCuentaActiva(1);
 		
 		System.out.println(restoprueba.listarMesas());
+		System.out.println("HISTORIAL CUENTAS "+restoprueba.listarHistorialCuentas());
+		System.out.println("CUENTAS ACTIVAS "+restoprueba.listarCuentasActivas());
 		
 		
 	
