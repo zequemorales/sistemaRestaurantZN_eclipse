@@ -155,7 +155,7 @@ public class Restaurante {
 		if(historialDeCuentas.agregar(devuelveCuenta(idMesa))){
 			
 			flag=true;
-		}
+		}				
 		return flag;
 		
 	}
