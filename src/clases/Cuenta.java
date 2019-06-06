@@ -3,11 +3,6 @@ package clases;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
-import java.util.Map.Entry;
-
-import javax.swing.text.html.HTMLDocument.Iterator;
-
-import com.sun.javafx.collections.MappingChange.Map;
 
 public class Cuenta {
 	private HashMap<Integer, Integer>listaProductos;

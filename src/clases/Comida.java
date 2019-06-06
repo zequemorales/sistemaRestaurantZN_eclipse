@@ -1,9 +1,6 @@
 package clases;
-import org.json.JSONObject;
-
-import sun.security.action.GetBooleanAction;
-
 import org.json.JSONException;
+import org.json.JSONObject;
 
 
 public class Comida extends Producto{
