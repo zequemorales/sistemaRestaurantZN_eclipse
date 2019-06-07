@@ -155,6 +155,7 @@ public class Principal extends JFrame {
  		}			
  		canvas_1.setBounds(10, 186, 60, 60);		
  		contentPane.add(canvas_1);		
+<<<<<<< HEAD
  		
  		JButton btnMesa = new JButton("mesa 1");
  		btnMesa.setBorder(UIManager.getBorder("Button.border"));
@@ -162,6 +163,8 @@ public class Principal extends JFrame {
  		btnMesa.setBounds(10, 357, 60, 54);
  		btnMesa.setBackground(Color.RED);
  		contentPane.add(btnMesa);
+=======
+>>>>>>> parent of fdb46cc... brnach_prueba
 
 //  		Canvas canvas_2 = new Canvas();		
 //  	
