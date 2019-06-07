@@ -305,16 +305,32 @@ public class Restaurante {
 	/////////////////// PRUDUCTOS //////////////////////
 	//////////////////////////////////////////////////////
 	//////////////////////////////////////////////////////
-	/**
-	 * Lista todos los productos
-	 * @return
-	 */
 	public String listarProductos() {
 		
 		return listadoDeProductos.listar();
 	}
 	
-/**
+	public String listarComidas() {
+		StringBuilder str = new StringBuilder();
+	    HashMap<Integer, Producto> listaC = listadoDeProductos.devolverLista();
+	    for (HashMap.Entry<Integer, Producto> entry : listaC.entrySet())  
+	    	if(entry.getValue() instanceof Comida)
+	    		str.append(entry.toString()+" \r\n");
+	    		
+	    return str.toString();
+		}
+	
+	public String listarBebidas() {
+	StringBuilder str = new StringBuilder();
+    HashMap<Integer, Producto> listaC = listadoDeProductos.devolverLista();
+    for (HashMap.Entry<Integer, Producto> entry : listaC.entrySet())  
+    	if(entry.getValue() instanceof Bebida)
+    		str.append(entry.toString()+" \r\n");
+    		
+    return str.toString();
+	}
+    
+	/**
  * Crea y agrega comida a la listaDeProductos
  * @param idProducto
  * @param nombreProducto
