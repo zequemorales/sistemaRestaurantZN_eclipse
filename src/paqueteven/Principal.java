@@ -43,11 +43,11 @@ public class Principal extends JFrame {
 	/**
 	 * Launch the application.
 	 */
-	public static void main(String[] args) {
+	public static void main(String[] args, String usuarioIngresado) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					Principal frame = new Principal();
+					Principal frame = new Principal(usuarioIngresado);
 					Restaurante restoprueba=new Restaurante("ANTARES", "CONSTITUCION 5500");
 					System.out.println(restoprueba.toString());
 					
@@ -62,7 +62,7 @@ public class Principal extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public Principal() {
+	public Principal(String usuarioIngresado) {
 		boolean ocupado1=true;
 		boolean ocupado2=false;
 		
@@ -97,10 +97,26 @@ public class Principal extends JFrame {
 		JMenu menu_reportes = new JMenu("REPORTES");
 		barra_menu.add(menu_reportes);
 		
+		JLabel menu_label_usuario = new JLabel(usuarioIngresado);
+		barra_menu.add(menu_label_usuario);
+		
+		JButton menu_boton_salir = new JButton("SALIR");
+		menu_boton_salir.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				dispose();
+				Logueo l = new Logueo();
+				l.setVisible(true);
+			}
+		});
+		
+		barra_menu.add(menu_boton_salir);
+		
 		RSLabelHora menu_hora = new RSLabelHora();
+		menu_hora.setPreferredSize(new Dimension(100, 40));
 		barra_menu.add(menu_hora);
 		
 		RSLabelFecha menu_fecha = new RSLabelFecha();
+		menu_fecha.setPreferredSize(new Dimension(100, 40));
 		barra_menu.add(menu_fecha);
 		
 		
@@ -154,15 +170,17 @@ public class Principal extends JFrame {
  			canvas_1.setBackground(Color.GREEN);	
  		}			
  		canvas_1.setBounds(10, 186, 60, 60);		
- 		contentPane.add(canvas_1);		
-
+ 		contentPane.add(canvas_1);
  		
- 		JButton btnMesa = new JButton("mesa 1");
- 		btnMesa.setBorder(UIManager.getBorder("Button.border"));
- 		btnMesa.setForeground(Color.RED);
- 		btnMesa.setBounds(10, 357, 60, 54);
- 		btnMesa.setBackground(Color.RED);
- 		contentPane.add(btnMesa);
+ 		JButton boton_mesa_1 = new JButton("MESA 1");
+ 		boton_mesa_1.setOpaque(true);
+ 		boton_mesa_1.setBackground(Color.RED);
+ 		boton_mesa_1.setFocusPainted(false);
+ 		boton_mesa_1.setContentAreaFilled(false);
+ 		boton_mesa_1.setBorderPainted(false);
+ 		boton_mesa_1.setBorder(null);
+ 		boton_mesa_1.setBounds(59, 372, 68, 60);
+ 		contentPane.add(boton_mesa_1);
 
 
 //  		Canvas canvas_2 = new Canvas();		

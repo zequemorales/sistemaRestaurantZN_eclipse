@@ -305,10 +305,15 @@ public class Restaurante {
 	/////////////////// PRUDUCTOS //////////////////////
 	//////////////////////////////////////////////////////
 	//////////////////////////////////////////////////////
+	/**
+	 * Lista todos los productos
+	 * @return
+	 */
 	public String listarProductos() {
 		
 		return listadoDeProductos.listar();
 	}
+	
 /**
  * Crea y agrega comida a la listaDeProductos
  * @param idProducto

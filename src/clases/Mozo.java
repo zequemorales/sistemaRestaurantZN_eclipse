@@ -3,7 +3,7 @@ package clases;
  * Clase Mozo
  * 
  * @param idMozo
- * 				número de identificación del mozo
+ * 				nï¿½mero de identificaciï¿½n del mozo
  *
  */
 public class Mozo extends Persona{
@@ -20,27 +20,27 @@ public class Mozo extends Persona{
 		setIdMozo(idMozo);
 	}
 	/**
-	 * Obtiene la identificación del mozo
+	 * Obtiene la identificaciï¿½n del mozo
 	 * @return int con la identificacion del mozo
 	 */
 	public int getIdMozo() {
 		return idMozo;
 	}
 	/**
-	 * Setea la identificación del mozo
+	 * Setea la identificaciï¿½n del mozo
 	 * @param idMozo
-	 * Recibe la identificación del mozo a setear
+	 * Recibe la identificaciï¿½n del mozo a setear
 	 */
 	public void setIdMozo(int idMozo) {
 		this.idMozo = idMozo;
 	}
 	/**
-	 * Descripción del mozo
-	 * @return String de la descripción del mozo
+	 * Descripciï¿½n del mozo
+	 * @return String de la descripciï¿½n del mozo
 	 */
 	@Override
 	public String toString() {		
-		return super.toString() + "Id Mozo: " + getIdMozo();
+		return "||" + super.toString() + "Id Mozo: " + getIdMozo() + " ||";
 	}
 	
 	

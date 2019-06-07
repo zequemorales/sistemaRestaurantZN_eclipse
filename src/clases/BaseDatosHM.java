@@ -46,12 +46,11 @@ public class BaseDatosHM <K,V> implements IBaseDeDatosHM <K,V>{
 		str.append("( Clave |"+" Valor )"+"\r\n");
 		while (entradas.hasNext()) {
 		    Map.Entry<K, V> entrada = entradas.next();
-		    str.append("("+entrada.getKey()+" |"+entrada.getValue()+")");
+		    str.append("( "+entrada.getKey()+ " | "+entrada.getValue()+" )\n");
 		}
 		return str.toString();
 	}
 
-	
 	//?
 	@Override
 	public V buscar(K clave) {

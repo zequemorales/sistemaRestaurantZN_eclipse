@@ -40,7 +40,7 @@ public class BaseDatosAL <T> implements IBaseDeDatosAL<T>{
 		for(T o : listaAL)
 		{
 			str.append(o.toString());
-			str.append(" |");
+			str.append("| \n");
 		}
 		return str.toString();
 		}
@@ -68,7 +68,7 @@ public class BaseDatosAL <T> implements IBaseDeDatosAL<T>{
 		return flag;
 	}
 	
-	//Devuelve el tamaño de la lista
+	//Devuelve el tamaï¿½o de la lista
 	@Override
 	public int tamanioLista(){
 		return listaAL.size();

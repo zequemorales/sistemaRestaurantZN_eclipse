@@ -60,7 +60,7 @@ public class Mesa {
 	 */
 	@Override
 	public String toString() {
-		return "Numero de Mesa " +  getNumeroDeMesa()+"Ocupada " +  isOcupadoONO() ;
+		return " Numero de Mesa " +  getNumeroDeMesa()+" Ocupada " +  isOcupadoONO() ;
 	}
 	
 	/**

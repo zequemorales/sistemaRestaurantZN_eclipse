@@ -16,6 +16,9 @@ import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.LineBorder;
+import javax.swing.JProgressBar;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 
 public class Logueo extends JFrame {
 
@@ -38,10 +41,44 @@ public class Logueo extends JFrame {
 			}
 		});
 	}
+	
+	
+	
+	public void boton_ingresar(){
+		accesoSistema();
+		
+	}
+	public void enter_ingresar(KeyEvent e){
+		if(e.getKeyCode() == KeyEvent.VK_ENTER){
+			accesoSistema();
+		}
+		
+		
+		
+	}
+	
+	public void accesoSistema(){
+		char [] clave= txtPassword.getPassword();
+		String claveFinal= new String (clave);
+	
+		if(txtUsuario.getText().equals("admin") && claveFinal.equals("admin")){
+			dispose();
+			Principal p = new Principal(txtUsuario.getText());
+			p.setVisible(true);
+			
+		}else{
+			JOptionPane.showMessageDialog(null, "Usuario o Contraseña incorrectos", "ERROR", JOptionPane.ERROR_MESSAGE);
+			txtUsuario.setText("");
+			txtPassword.setText("");
+			txtUsuario.requestFocus();
+		}
+		
+	}
 
 	/**
 	 * Create the frame.
 	 */
+	
 	public Logueo() {
 		setTitle("LOGIN");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -76,28 +113,27 @@ public class Logueo extends JFrame {
 		txtUsuario.setColumns(10);
 		
 		txtPassword = new JPasswordField();
+		txtPassword.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyPressed(KeyEvent e) {
+				enter_ingresar(e);
+			}
+		});
+		
 		txtPassword.setBounds(145, 127, 122, 27);
 		contentPane.add(txtPassword);
 		
 		JButton btnIngresar = new JButton("INGRESAR");
 		btnIngresar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				char [] clave= txtPassword.getPassword();
-				String claveFinal= new String (clave);
-				if(txtUsuario.getText().equals("admin") && claveFinal.equals("admin")){
-					dispose();
-					Principal p = new Principal();
-					p.setVisible(true);
-					
-				}else{
-					JOptionPane.showMessageDialog(null, "Usuario o Contraseña incorrectos", "ERROR", JOptionPane.ERROR_MESSAGE);
-					txtUsuario.setText("");
-					txtPassword.setText("");
-					txtUsuario.requestFocus();
-				}
+				boton_ingresar();
 			}
 		});
 		btnIngresar.setBounds(145, 178, 122, 66);
 		contentPane.add(btnIngresar);
+		
+		JProgressBar progressBar = new JProgressBar();
+		progressBar.setBounds(0, 255, 394, 19);
+		contentPane.add(progressBar);
 	}
 }

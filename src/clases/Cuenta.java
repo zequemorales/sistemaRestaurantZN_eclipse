@@ -79,7 +79,7 @@ public class Cuenta {
 	@Override
 	public String toString() {
 		
-		return "CUENTA\n " + " Fecha " + fecha+" ID MESA: "+ idMesa + " ID MOZO: " + idMozo;
+		return "\n|| "+ "Fecha " + fecha+" ID MESA: "+ idMesa + " ID MOZO: " + idMozo + " ||";
 	}
 
 }
