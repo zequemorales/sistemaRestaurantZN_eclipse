@@ -9,7 +9,6 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
-import javax.swing.JTable;
 
 public class VentanaMesa extends JFrame {
 
@@ -36,7 +35,6 @@ public class VentanaMesa extends JFrame {
 	 * Create the frame.
 	 */
 	private String estadoMesa;
-	private JTable table;
 	public VentanaMesa(boolean ocupado) {
 		
 		setEstadoMesa(ocupado);
@@ -61,15 +59,8 @@ public class VentanaMesa extends JFrame {
 			
 			}
 		});
-		btnGuardar.setBounds(186, 6, 117, 29);
-		
+		btnGuardar.setBounds(165, 232, 117, 29);
 		contentPane.add(btnGuardar);
-		
-		table = new JTable();
-		table.setBounds(28, 99, 275, 154);
-		table.addRowSelectionInterval(1, 4);
-		table.addColumnSelectionInterval(1, 4);
-		contentPane.add(table);
 	}
 	
 	public void setEstadoMesa(boolean ocupado){

@@ -66,10 +66,5 @@ public class Cuenta {
 		
 		return "CUENTA\n " + " Fecha " + fecha+" ID MESA: "+ idMesa + " ID MOZO: " + idMozo;
 	}
-	
-	public void listarProductosCuenta(String a){
-		
-		
-	}
 
 }
