@@ -47,18 +47,28 @@ public class Programain {
 	
 		System.out.println(restoprueba.listarMesas());
 		
-		restoprueba.eliminarCuentaActiva(1);
+		//restoprueba.eliminarCuentaActiva(1);
 		
 		System.out.println(restoprueba.listarMesas());
+		
+		
+		
+		restoprueba.agregarProducto(1,"IPA",90,"Cerveza",400);
+		restoprueba.agregarProducto(2,"Arroz con Pollo",120,"Almuerzo",true);
+		
+		System.out.println(restoprueba.listarProductos());
 		System.out.println("HISTORIAL CUENTAS "+restoprueba.listarHistorialCuentas());
 		System.out.println("CUENTAS ACTIVAS "+restoprueba.listarCuentasActivas());
 		
 		
+		restoprueba.agregaProductoAlaCuenta(1,1 , 3);
+		restoprueba.agregaProductoAlaCuenta(1, 1, 2);
+		restoprueba.agregaProductoAlaCuenta(1, 2,5);
+		System.out.println(restoprueba.calcularTotal(1));
+		restoprueba.eliminarCuentaActiva(1);
+		System.out.println("HISTORIAL CUENTAS "+restoprueba.listarHistorialCuentas());
+		System.out.println("CUENTAS ACTIVAS "+restoprueba.listarCuentasActivas());
 	
-		
-		
-		
-		
 
 	}
 

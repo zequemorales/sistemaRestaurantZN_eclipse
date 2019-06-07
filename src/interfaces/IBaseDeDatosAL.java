@@ -6,5 +6,6 @@ public interface IBaseDeDatosAL<T> {
 	public String listar ();
 	public T  buscar(T objeto);
 	public boolean existe(T objeto);
-
+	public int tamanioLista();
+	public T getindice(int i);
 }

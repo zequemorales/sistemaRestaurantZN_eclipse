@@ -1,5 +1,7 @@
 package clases;
 
+import java.util.HashMap;
+
 /**
  * Clase Restaurante
  * 
@@ -152,33 +154,77 @@ public class Restaurante {
 	public boolean creaCuentaEnHistorialCuentas(int idMesa){
 		boolean flag=false;
 	
-		if(historialDeCuentas.agregar(devuelveCuenta(idMesa))){
+		if(historialDeCuentas.agregar(cuentasActivas.getindice(devuelveIndiceCuenta(idMesa))))
+		{
 			
 			flag=true;
 		}				
 		return flag;
 		
 	}
+	
+	public double calcularTotal(int idMesa)
+	{
+		Cuenta cuenta = null;
+		double total = 0;
+		if (compruebaCuenta(idMesa))
+		{
+			cuenta = cuentasActivas.getindice(devuelveIndiceCuenta(idMesa)) ;
+		    HashMap<Integer, Integer> listaC = cuenta.devolverLista();
+		    for (HashMap.Entry<Integer, Integer> entry : listaC.entrySet())  
+		    	total += (listadoDeProductos.buscar(entry.getKey()).getPrecioProducto())*entry.getValue();
+	   	
+		    	
+		}	
+		    
+			return total;
+	}
+	
+	
 	public String listarCuentasActivas(){
 		return cuentasActivas.listar();
 	}
+	
 	public String listarHistorialCuentas(){
 		return historialDeCuentas.listar();
 	}
-	public Cuenta devuelveCuenta(int idMesa){
-		Cuenta copia=new Cuenta(0, 0);
-		
+	
+	
+	
+	public int devuelveIndiceCuenta(int idMesa){
+		//Cuenta copia=new Cuenta(0, 0);
+		int index = 0;
 		for(int i=0;i<cuentasActivas.tamanioLista();i++){
 			if(cuentasActivas.getindice(i).getIdMesa()==idMesa){
-				copia=cuentasActivas.getindice(i);
+				index = i;
 			}
 		}
 		
-		return copia;
+		return index;
 	}
 	
-
-
+	public boolean compruebaCuenta(int idMesa){
+		boolean flag = false;
+		for(int i=0;i<cuentasActivas.tamanioLista();i++){
+			if(cuentasActivas.getindice(i).getIdMesa()==idMesa){
+				flag = true;
+			}
+		}
+		
+		return flag;
+	}
+	
+	public boolean agregaProductoAlaCuenta(int idMesa,int idProducto, int cant)
+	{
+		boolean flag = false;
+		for(int i=0;i<cuentasActivas.tamanioLista();i++)
+			if(cuentasActivas.getindice(i).getIdMesa() == idMesa)
+			{
+				cuentasActivas.getindice(i).ponerEnCuenta(idProducto, cant);
+				flag = true;
+			}
+		return flag;
+	}
 	//////////////////////////////////////////////////////
 	//////////////////////////////////////////////////////
 	///////////////////// MOZOS //////////////////////////
@@ -249,6 +295,46 @@ public class Restaurante {
 	public String listarProductos() {
 		
 		return listadoDeProductos.listar();
+	}
+/**
+ * Crea y agrega comida a la listaDeProductos
+ * @param idProducto
+ * @param nombreProducto
+ * @param precioProducto
+ * @param tipoDePlato
+ * @param caliente
+ * @return true si se agrego y false si no.
+ */
+	public boolean agregarProducto(int idProducto, String nombreProducto, double precioProducto, String tipoDePlato, boolean caliente)
+	{
+		boolean flag = false;
+		Comida comida = new Comida(idProducto,nombreProducto,precioProducto,tipoDePlato,caliente);
+		if(!listadoDeProductos.existe(comida.getIdProducto()))
+		{
+			listadoDeProductos.agregar(comida.getIdProducto(), comida);
+			flag = true;
+		}
+		return flag;	
+	}
+	/**
+	 * Crea y agrega bebida a la listaDeProductos
+	 * @param idProducto
+	 * @param nombreProducto
+	 * @param precioProducto
+	 * @param tipoDeBebida
+	 * @param tamanioML
+	 * @return true si se agrego y false si no.
+	 */
+	public boolean agregarProducto(int idProducto, String nombreProducto, double precioProducto, String tipoDeBebida, int tamanioML)
+	{
+		boolean flag = false;
+		Bebida bebida = new Bebida(idProducto,nombreProducto,precioProducto,tipoDeBebida,tamanioML);
+		if(!listadoDeProductos.existe(bebida.getIdProducto()))
+		{
+			listadoDeProductos.agregar(bebida.getIdProducto(), bebida);
+			flag = true;
+		}
+		return flag;	
 	}
 
 	@Override

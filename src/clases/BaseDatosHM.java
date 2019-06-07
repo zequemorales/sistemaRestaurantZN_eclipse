@@ -65,7 +65,14 @@ public class BaseDatosHM <K,V> implements IBaseDeDatosHM <K,V>{
 	public boolean existe(K clave) {
 		
 		return listaMapa.containsKey(clave);
+		
 	}
 
+	
+	@Override
+	public V getCuenta(K clave)
+	{
+		return listaMapa.get(clave);
+	}
 	
 }

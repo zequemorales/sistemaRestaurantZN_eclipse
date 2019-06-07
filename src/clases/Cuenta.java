@@ -42,13 +42,28 @@ public class Cuenta {
 		fecha = fechaNew;
 	}
 	
-	public boolean ponerEnCuenta(int id, int cant,BaseDatosHM<Integer,Producto> hmProducto)
+	public HashMap<Integer, Integer> devolverLista()
+	{
+		HashMap<Integer, Integer> map = listaProductos;
+	
+	return map;
+		
+	}
+	
+	public boolean ponerEnCuenta(int id, int cant)
 	{
 		boolean flag = false;
-		if(hmProducto.buscar(id) !=null)
+		int cantNew = 0;
+		if(!listaProductos.containsKey(id))
 		{
 			flag = true;
 			listaProductos.put(id, cant);
+		}else
+		{
+			cantNew = listaProductos.get(id);
+			cantNew += cant;
+			listaProductos.put(id, cantNew);
+			flag = true;
 		}
 		return flag;
 	}

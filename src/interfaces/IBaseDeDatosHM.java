@@ -6,4 +6,5 @@ public interface IBaseDeDatosHM<K, V> {
 	public String listar ();
 	public V buscar (K clave);
 	public boolean existe(K clave);
+	public V getCuenta(K clave);
 }

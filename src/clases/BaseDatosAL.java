@@ -68,10 +68,13 @@ public class BaseDatosAL <T> implements IBaseDeDatosAL<T>{
 		return flag;
 	}
 	
+	//Devuelve el tamaño de la lista
+	@Override
 	public int tamanioLista(){
 		return listaAL.size();
 	}
-	
+	//Devuelve el objeto de una determinada posicion
+	@Override
 	public T getindice(int i){
 		return listaAL.get(i);
 	}
