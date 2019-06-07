@@ -16,6 +16,7 @@ import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.LineBorder;
+import javax.swing.JProgressBar;
 
 public class Logueo extends JFrame {
 
@@ -99,5 +100,10 @@ public class Logueo extends JFrame {
 		});
 		btnIngresar.setBounds(145, 178, 122, 66);
 		contentPane.add(btnIngresar);
+		
+		JProgressBar progressBar = new JProgressBar();
+		progressBar.setStringPainted(true);
+		progressBar.setBounds(0, 256, 394, 18);
+		contentPane.add(progressBar);
 	}
 }

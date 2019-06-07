@@ -107,32 +107,10 @@ public class Principal extends JFrame {
 	
 		
 		contentPane = new JPanel();
+		contentPane.setOpaque(false);
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
-		///////////////////////////////////
-		
-		Canvas canvas_0 = new Canvas();		
-		
- 		canvas_0.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));		
- 		canvas_0.addMouseListener(new MouseAdapter() {		
- 			@Override		
- 			public void mouseClicked(MouseEvent e) {		
- 				VentanaMesa mesa0 = new VentanaMesa(ocupado1);		
- 				mesa0.setTitle("MESA 1");		
- 				mesa0.setVisible(true);		
-
-  			}		
- 		});		
- 		if(ocupado1){
- 			canvas_0.setBackground(Color.RED);	
- 			
- 		}
- 		else
- 		{
- 			canvas_0.setBackground(Color.GREEN);	
- 		}		
- 		canvas_0.setBounds(10, 120, 60, 60);		
- 		contentPane.add(canvas_0);		
+ 		
 
   		Canvas canvas_1 = new Canvas();		
   		
@@ -153,8 +131,50 @@ public class Principal extends JFrame {
  		{
  			canvas_1.setBackground(Color.GREEN);	
  		}			
+ 		
+ 		JLabel label = new JLabel("1");
+ 		label.setOpaque(true);
+ 		label.setBackground(null);
+ 		label.setBounds(10, 142, 61, 16);
+ 		contentPane.add(label);
  		canvas_1.setBounds(10, 186, 60, 60);		
  		contentPane.add(canvas_1);		
+ 		///////////////////////////////////
+ 		
+ 		Canvas canvas_0 = new Canvas();		
+ 		
+ 		canvas_0.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));		
+ 		canvas_0.addMouseListener(new MouseAdapter() {		
+ 			@Override		
+ 			public void mouseClicked(MouseEvent e) {		
+ 				VentanaMesa mesa0 = new VentanaMesa(ocupado1);		
+ 				mesa0.setTitle("MESA 1");		
+ 				mesa0.setVisible(true);		
+
+  			}		
+ 		});		
+ 		canvas_0.setBounds(10, 120, 60, 60);		
+ 		contentPane.add(canvas_0);	
+ 		if(ocupado1){
+ 			canvas_0.setBackground(Color.RED);	
+ 			
+ 		}
+ 		else
+ 		{
+ 			canvas_0.setBackground(Color.GREEN);	
+ 		}	
+ 		
+ 		JButton btnAsdas = new JButton("asxxxxxdas");
+ 		btnAsdas.setBounds(42, 300, 117, 29);
+ 		btnAsdas.setBackground(Color.RED);
+ 		btnAsdas.setOpaque(true);
+ 		
+ 		contentPane.add(btnAsdas);
+ 		
+ 		Canvas canvas = new Canvas();
+ 		canvas.setBackground(Color.YELLOW);
+ 		canvas.setBounds(10, 202, 60, 60);
+ 		contentPane.add(canvas);
 
 //  		Canvas canvas_2 = new Canvas();		
 //  	
