@@ -17,11 +17,11 @@ public class VentanaMesa extends JFrame {
 	/**
 	 * Launch the application.
 	 */
-	public static void main(String[] args) {
+	public static void main(String[] args,boolean ocupado) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					VentanaMesa frame = new VentanaMesa();
+					VentanaMesa frame = new VentanaMesa( ocupado);
 					frame.setVisible(true);
 					
 				} catch (Exception e) {
@@ -34,9 +34,12 @@ public class VentanaMesa extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public VentanaMesa() {
-		String estadoMesa;
-		estadoMesa="Mesa Vacia";
+	private String estadoMesa;
+	public VentanaMesa(boolean ocupado) {
+		
+		setEstadoMesa(ocupado);
+		
+		
 		setTitle("");
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
@@ -45,7 +48,7 @@ public class VentanaMesa extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JLabel label = new JLabel(estadoMesa);
+		JLabel label = new JLabel(getEstadoMesa());
 		label.setBounds(6, 6, 84, 16);
 		contentPane.add(label);
 		
@@ -58,5 +61,20 @@ public class VentanaMesa extends JFrame {
 		});
 		btnGuardar.setBounds(165, 232, 117, 29);
 		contentPane.add(btnGuardar);
+	}
+	
+	public void setEstadoMesa(boolean ocupado){
+		if(ocupado){
+			this.estadoMesa="MESA OCUPADA";
+		}
+		else
+		{
+			this.estadoMesa="MESA VACIA";
+		}
+		
+	}
+	
+	public String getEstadoMesa(){
+		return estadoMesa;
 	}
 }
