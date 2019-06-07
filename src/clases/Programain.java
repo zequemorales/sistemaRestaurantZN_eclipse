@@ -33,6 +33,8 @@ public class Programain {
 		restoprueba.crearMozo("juan", "perez", 1);
 		restoprueba.crearMozo("eze", "morales", 2);
 		restoprueba.crearMozo("nico", "cristo", 3);
+		
+		//prueba
 
 	
 		
