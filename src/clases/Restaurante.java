@@ -210,29 +210,16 @@ public class Restaurante {
 
 	//////////////////////////////////////////////////////
 	//////////////////////////////////////////////////////
-	//////////////////// MESAS //////////////////////////
+	///////////////////// MESAS //////////////////////////
 	//////////////////////////////////////////////////////
 	//////////////////////////////////////////////////////
 
-	/**
-	 * Lista las mesas del Restaurante
-	 * @return devuelve un string con las "MESAS".
-	 */
 	public String listarMesas() {
 		
 		return listadoDeMesas.listar();
 	}
-	
-	/**
-	 * Crea y Agrega una mesa al Restaurante.
-	 * @param nromesa
-	 * Recibe el numero de mesa.
-	 * @return
-	 * devuelve 
-	 */
 
-	public boolean agregarMesa(int nromesa) {
-		Mesa m = new Mesa(nromesa);
+	public boolean agregarMesa(Mesa m) {
 		boolean flag = false;
 		if (!listadoDeMesas.existe(m.getNumeroDeMesa())) {
 			listadoDeMesas.agregar(m.getNumeroDeMesa(), m);
