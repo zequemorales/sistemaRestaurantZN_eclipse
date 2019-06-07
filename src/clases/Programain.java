@@ -14,20 +14,18 @@ public class Programain {
 		System.out.println("CUENTAS ACTIVAS "+restoprueba.listarCuentasActivas());
 		System.out.println("HISTORIAL CUENTAS "+restoprueba.listarHistorialCuentas());
 		
-		Mesa mesa1 = new Mesa(1);
-		Mesa mesa2=new Mesa(2);
-		Mesa mesa3=new Mesa(3);
+		
 		
 	
 		
-		if(restoprueba.agregarMesa(mesa1)){
-			System.out.println("la mesa "+ mesa1.getNumeroDeMesa() + "fue cargado correctamente");
+		if(restoprueba.agregarMesa(1)){
+			System.out.println("la mesa "+ restoprueba.devuelveMesa(1).getNumeroDeMesa() + "fue cargado correctamente");
 		}
 		else
 			System.out.println("no");
 		
-		restoprueba.agregarMesa(mesa2);
-		restoprueba.agregarMesa(mesa3);
+		restoprueba.agregarMesa(2);
+		restoprueba.agregarMesa(3);
 		
 		
 		restoprueba.crearMozo("juan", "perez", 1);

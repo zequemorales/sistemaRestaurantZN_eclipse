@@ -2,7 +2,7 @@ package clases;
 /**
  * Clase Mesa
  * @param numeroDeMesa
- * 					numero de identificación de la mesa
+ * 					numero de identificaciï¿½n de la mesa
  * @param ocupadoONO
  */
 public class Mesa {
@@ -25,42 +25,42 @@ public class Mesa {
 		setOcupadoONO(false);
 	}
 	/**
-	 * Obtiene el número de mesa
+	 * Obtiene el nï¿½mero de mesa
 	 * @return int con el numero de mesas
 	 */
 	public int getNumeroDeMesa() {
 		return numeroDeMesa;
 	}
 	/**
-	 * Setea el número de mesas
+	 * Setea el nï¿½mero de mesas
 	 * @param numeroDeMesa
-	 * Recibe el números de mesas a setear
+	 * Recibe el nï¿½meros de mesas a setear
 	 */
 	public void setNumeroDeMesa(int numeroDeMesa) {
 		this.numeroDeMesa = numeroDeMesa;
 	}
 	/*
 	 * Si esta ocupada o no la mesa
-	 * @return  si la mesa está ocupada devuelve true 
+	 * @return  si la mesa estï¿½ ocupada devuelve true 
 	 */
 	public boolean isOcupadoONO() {
 		return ocupadoONO;
 	}
 	/**
-	 * Setea la ocupación de la mesa
+	 * Setea la ocupaciï¿½n de la mesa
 	 * @param ocupadoONO
-	 * Recibe la ocupación a setear
+	 * Recibe la ocupaciï¿½n a setear
 	 */
 	private void setOcupadoONO(boolean ocupadoONO) {
 		this.ocupadoONO = ocupadoONO;
 	}
 	/**
-	 * Descripción de la mesa
-	 * @return String con la descripción de la mesa
+	 * Descripciï¿½n de la mesa
+	 * @return String con la descripciï¿½n de la mesa
 	 */
 	@Override
 	public String toString() {
-		return "N° de Mesa " +  getNumeroDeMesa()+"Ocupada " +  isOcupadoONO() ;
+		return "Numero de Mesa " +  getNumeroDeMesa()+"Ocupada " +  isOcupadoONO() ;
 	}
 	
 	/**
