@@ -34,7 +34,7 @@ public class Logueo extends JFrame {
 			public void run() {
 				try {
 					Logueo frame = new Logueo();
-					frame.setVisible(true);
+					
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -44,42 +44,16 @@ public class Logueo extends JFrame {
 	
 	
 	
-	public void boton_ingresar(){
-		accesoSistema();
-		
-	}
-	public void enter_ingresar(KeyEvent e){
-		if(e.getKeyCode() == KeyEvent.VK_ENTER){
-			accesoSistema();
-		}
-		
-		
-		
-	}
 	
-	public void accesoSistema(){
-		char [] clave= txtPassword.getPassword();
-		String claveFinal= new String (clave);
 	
-		if(txtUsuario.getText().equals("admin") && claveFinal.equals("admin")){
-			dispose();
-			Principal p = new Principal(txtUsuario.getText());
-			p.setVisible(true);
-			
-		}else{
-			JOptionPane.showMessageDialog(null, "Usuario o Contraseña incorrectos", "ERROR", JOptionPane.ERROR_MESSAGE);
-			txtUsuario.setText("");
-			txtPassword.setText("");
-			txtUsuario.requestFocus();
-		}
-		
-	}
+
 
 	/**
 	 * Create the frame.
 	 */
 	
 	public Logueo() {
+		setVisible(true);
 		setTitle("LOGIN");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 394, 296);
@@ -135,5 +109,38 @@ public class Logueo extends JFrame {
 		JProgressBar progressBar = new JProgressBar();
 		progressBar.setBounds(0, 255, 394, 19);
 		contentPane.add(progressBar);
+	}
+	
+	private void iniciarComponentes
+	
+	public void boton_ingresar(){
+		accesoSistema();
+		
+	}
+	public void enter_ingresar(KeyEvent e){
+		if(e.getKeyCode() == KeyEvent.VK_ENTER){
+			accesoSistema();
+		}
+		
+		
+		
+	}
+	
+	public void accesoSistema(){
+		char [] clave= txtPassword.getPassword();
+		String claveFinal= new String (clave);
+	
+		if(txtUsuario.getText().equals("admin") && claveFinal.equals("admin")){
+			dispose();
+			Principal p = new Principal(txtUsuario.getText());
+			p.setVisible(true);
+			
+		}else{
+			JOptionPane.showMessageDialog(null, "Usuario o Contraseña incorrectos", "ERROR", JOptionPane.ERROR_MESSAGE);
+			txtUsuario.setText("");
+			txtPassword.setText("");
+			txtUsuario.requestFocus();
+		}
+		
 	}
 }
