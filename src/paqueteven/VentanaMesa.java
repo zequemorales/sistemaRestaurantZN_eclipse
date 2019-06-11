@@ -8,16 +8,31 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.UIManager;
 import javax.swing.border.EmptyBorder;
 
+/**
+ * Clase de la Ventana de la MESA
+ * 
+ * Muestra si la mesa esta vacia o no. y podemos crear una cuenta agregar prodcutos etc
+ * @author Zeque
+ *
+ */
 public class VentanaMesa extends JFrame {
 
 	private JPanel contentPane;
 
 	/**
 	 * Launch the application.
+	 * @param args
+	 * @param ocupado
 	 */
 	public static void main(String[] args,boolean ocupado) {
+		try{
+			  UIManager.setLookAndFeel("javax.swing.plaf.metal.MetalLookAndFeel");
+			}catch(Exception e){
+			  e.printStackTrace();
+			} 
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
@@ -40,7 +55,6 @@ public class VentanaMesa extends JFrame {
 		setEstadoMesa(ocupado);
 		
 		
-		setTitle("");
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();

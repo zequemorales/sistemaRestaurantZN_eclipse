@@ -2,9 +2,7 @@ package clases;
 /**
  * Clase Mozo
  * 
- * @param idMozo
- * 				n�mero de identificaci�n del mozo
- *
+
  */
 public class Mozo extends Persona{
 	private int idMozo;

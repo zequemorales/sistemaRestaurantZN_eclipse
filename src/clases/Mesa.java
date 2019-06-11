@@ -1,17 +1,16 @@
 package clases;
 /**
  * Clase Mesa
- * @param numeroDeMesa
- * 					numero de identificaci�n de la mesa
- * @param ocupadoONO
+ * 
  */
 public class Mesa {
+	
 	private int numeroDeMesa;
 	private boolean ocupadoONO;
 	
 	/**
 	 * Constructor
-	 * @param nromesa
+	 * @param nromesa numero de la mesa
 	 */
 	public Mesa(int nromesa){
 		setNumeroDeMesa(nromesa);

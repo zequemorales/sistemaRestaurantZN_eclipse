@@ -4,7 +4,7 @@ package clases;
  * 
  * @param tipoDeBebida
  * @param tamanioML
- * 					tama�o del envace expresado en mililitros
+ * 					tamaño del envace expresado en mililitros
  */
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -23,11 +23,11 @@ public class Bebida extends Producto{
 	}
 	/**
 	 * Constructor
-	 * @param idProducto
-	 * @param nombreProducto
-	 * @param precioProducto
-	 * @param tipoDeBebida
-	 * @param tamanioML
+	 * @param idProducto identificador del producto
+	 * @param nombreProducto nombre del producto
+	 * @param precioProducto precio del producto
+	 * @param tipoDeBebida tipo de bebeido
+	 * @param tamanioML tamaño de la bebida 
 	 */
 	public Bebida(int idProducto, String nombreProducto, double precioProducto, String tipoDeBebida, int tamanioML) {
 		super(idProducto, nombreProducto, precioProducto);
@@ -50,23 +50,23 @@ public class Bebida extends Producto{
 	}
 	/**
 	 * Setea el tipo de bebida
-	 * @param tipoDeBebida
+	 * @param tipoDeBebida tipo de la bebida
 	 * Recibe el tipo de bebida a setear	 
 	 */
 	public void setTipoDeBebida(String tipoDeBebida) {
 		this.tipoDeBebida = tipoDeBebida;
 	}
 	/**
-	 * Obtiene el tama�o de la bebida
-	 * @return int con el tama�o de la beboda
+	 * Obtiene el tamañoo de la bebida
+	 * @return int con el tamaño de la beboda
 	 */
 	public int getTamanioML() {
 		return tamanioML;
 	}
 	/**
-	 * Setea el tama�o del envace
-	 * @param tamanioML
-	 * Recibe el tama�o del envace a setear	 
+	 * Setea el tamaño del envace
+	 * @param tamanioML tamaño de la bebida
+	 * Recibe el tamaño del envace a setear	 
 	 */
 	public void setTamanioML(int tamanioML) {
 		this.tamanioML = tamanioML;

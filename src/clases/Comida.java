@@ -4,8 +4,7 @@ import org.json.JSONObject;
 /**
  * Clase Comida
  * 
- * @param tipoDePlato
- * @param Caliente
+ * 
  */
 
 public class Comida extends Producto{
@@ -54,8 +53,8 @@ public class Comida extends Producto{
 	 * @param tipoDePlato
 	 * Recibie el tipo de plato a setear
 	 */
-	public void setTipoDePlato(String tipoDeComida) {
-		this.tipoDePlato = tipoDeComida;
+	public void setTipoDePlato(String tipoDePlato) {
+		this.tipoDePlato = tipoDePlato;
 	}
 	/*
 	 * Si el plato esta caliente 

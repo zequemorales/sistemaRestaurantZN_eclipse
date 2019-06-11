@@ -2,10 +2,7 @@ package clases;
 /**
  * Clase Persona
  * 
- * @param nombre
- * 				nombre de la persona
- * @param apellido 
- * 				apellido de la persona
+
  */
 public class Persona {
 	private String nombre;

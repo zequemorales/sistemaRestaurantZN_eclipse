@@ -299,6 +299,15 @@ public class Restaurante {
 	public Mesa devuelveMesa(int idMesa){
 		return listadoDeMesas.buscar((Integer)idMesa);
 	}
+	
+	public boolean mesaIsOcupada(int idMesa){
+		boolean ocupado=false;
+		if(listadoDeMesas.existe(idMesa)){
+			ocupado=listadoDeMesas.buscar(idMesa).isOcupadoONO();
+			
+		}
+		return ocupado;
+	}
 
 	//////////////////////////////////////////////////////
 	//////////////////////////////////////////////////////

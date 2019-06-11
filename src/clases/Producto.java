@@ -4,7 +4,7 @@ package clases;
  * Clase Producto
  * 
  * @param idProducto
- * 					numero de identificación del producto
+ * 					numero de identificaciÃ³n del producto
  * @param nombreProducto
  * 					nombre del producto
  * @param precioProducto
@@ -61,7 +61,7 @@ public abstract class Producto {
 	}
 	/**
 	 * Setea el identificador del producto
-	 * @param idProdcuto
+	 * @param idProducto
 	 * Recibe el identificador a setear
 	 */
 	public void setIdProducto(int idProducto) {
@@ -100,7 +100,7 @@ public abstract class Producto {
 
 	/**
 	 * Obtiene el formato json
-	 * @return 
+	 * @return devuelve un objeto json
 	 */
 	public JSONObject getFormatoJSON()
 	{

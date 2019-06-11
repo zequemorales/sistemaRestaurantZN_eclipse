@@ -25,6 +25,7 @@ import java.awt.Dimension;
 import javax.swing.JButton;
 import javax.swing.JScrollPane;
 import java.awt.Rectangle;
+import java.awt.Toolkit;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.SwingConstants;
@@ -36,151 +37,223 @@ import java.awt.event.FocusAdapter;
 import java.awt.event.FocusEvent;
 import java.awt.event.MouseMotionAdapter;
 
+/**
+ * Clase de la ventana principal del restaurante. Muestra el plano del local.
+ * @author Zeque
+ *
+ */
 public class Principal extends JFrame {
 
 	private JPanel contentPane;
 
 	/**
 	 * Launch the application.
+	 * @param args
+	 * @param usuarioIngresado
 	 */
-	public static void main(String[] args, String usuarioIngresado) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					Principal frame = new Principal(usuarioIngresado);
-					Restaurante restoprueba=new Restaurante("ANTARES", "CONSTITUCION 5500");
-					System.out.println(restoprueba.toString());
-					
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-
-	/**
-	 * Create the frame.
-	 */
+//	public static void main(String[] args) {
+//		try{
+//			  UIManager.setLookAndFeel("javax.swing.plaf.metal.MetalLookAndFeel");
+//			}catch(Exception e){
+//			  e.printStackTrace();
+//			} 
+//		EventQueue.invokeLater(new Runnable() {
+//			public void run() {
+//				try {
+//					
+//					Principal frame = new Principal("");
+//					
+//					frame.setVisible(true);
+//				} catch (Exception e) {
+//					e.printStackTrace();
+//				}
+//			}
+//		});
+//	}
+	
 	public Principal(String usuarioIngresado) {
-		boolean ocupado1=true;
-		boolean ocupado2=false;
+		
+		Toolkit mipantalla= Toolkit.getDefaultToolkit();
+		
+		Dimension tamanioPantalla = mipantalla.getScreenSize();
+		
+		int alturaPantalla = tamanioPantalla.height;
+		int anchoPantalla = tamanioPantalla.width;
+		
+		
+		setBounds(anchoPantalla/4, alturaPantalla/4, 500, 400);
+		
+		setResizable(true);
+		
+		String nombreRest = "ANTARES";
+		String direccionRest = "CONSTITUCION 5500";
+		
+		Restaurante restoprueba=new Restaurante(nombreRest, direccionRest);
+		
+		
+		// PROPIEDADES VENTANA
 		
 		setMinimumSize(new Dimension(750, 550));
 		setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 750, 550);
 		
-		JMenuBar barra_menu = new JMenuBar();
-		setJMenuBar(barra_menu);
 		
-		JMenu menu_restaurante = new JMenu("RESTAURANTE");
-		menu_restaurante.setRequestFocusEnabled(false);
-		barra_menu.add(menu_restaurante);
-		
-		JMenuItem menu_item_info = new JMenuItem("Info");
-		menu_restaurante.add(menu_item_info);
-		
-		JMenu menu_version = new JMenu("VERSION");
-		menu_version.setRequestFocusEnabled(false);
-		barra_menu.add(menu_version);
-		
-		JMenuItem menu_item_acerca = new JMenuItem("Acerca");
-		menu_version.add(menu_item_acerca);
-		
-		JMenu menu_gestion = new JMenu("GESTION");
-		barra_menu.add(menu_gestion);
-		
-		JMenuItem menu_item_AgregarMozo = new JMenuItem("Agregar Mozo");
-		menu_gestion.add(menu_item_AgregarMozo);
-		
-		JMenu menu_reportes = new JMenu("REPORTES");
-		barra_menu.add(menu_reportes);
-		
-		JLabel menu_label_usuario = new JLabel(usuarioIngresado);
-		barra_menu.add(menu_label_usuario);
-		
-		JButton menu_boton_salir = new JButton("SALIR");
-		menu_boton_salir.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				dispose();
-				Logueo l = new Logueo();
-				l.setVisible(true);
-			}
-		});
-		
-		barra_menu.add(menu_boton_salir);
-		
-		RSLabelHora menu_hora = new RSLabelHora();
-		menu_hora.setPreferredSize(new Dimension(100, 40));
-		barra_menu.add(menu_hora);
-		
-		RSLabelFecha menu_fecha = new RSLabelFecha();
-		menu_fecha.setPreferredSize(new Dimension(100, 40));
-		barra_menu.add(menu_fecha);
-		
-		
+///////////////  BARRA DE MENU   /////////////
+	// DECLARACION 
+	JMenuBar barra_menu = new JMenuBar();
+	JMenu menu_restaurante = new JMenu();
+	JMenuItem menu_item_info = new JMenuItem("Info");
 	
-		
-		contentPane = new JPanel();
-		setContentPane(contentPane);
-		contentPane.setLayout(null);
-		///////////////////////////////////
-		
-		Canvas canvas_0 = new Canvas();		
-		
- 		canvas_0.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));		
- 		canvas_0.addMouseListener(new MouseAdapter() {		
- 			@Override		
- 			public void mouseClicked(MouseEvent e) {		
- 				VentanaMesa mesa0 = new VentanaMesa(ocupado1);		
- 				mesa0.setTitle("MESA 1");		
- 				mesa0.setVisible(true);		
+	JMenu menu_version = new JMenu("VERSION");
+	JMenuItem menu_item_acerca = new JMenuItem("Acerca");
+	JMenu menu_gestion = new JMenu("GESTION");
+	JMenuItem menu_item_AgregarMozo = new JMenuItem("Agregar Mozo");
+	JMenu menu_reportes = new JMenu("REPORTES");
+	JButton menu_boton_salir = new JButton("SALIR");
+	
+	JLabel menu_label_usuario = new JLabel(usuarioIngresado);
+	JLabel menu_label_espacio = new JLabel("  |  ");
+	
+	menu_label_espacio.setBounds(new Rectangle(0, 0, 10, 10));
+	RSLabelHora menu_hora = new RSLabelHora();
+	menu_hora.setPreferredSize(new Dimension(60, 40));
+	menu_hora.setBounds(new Rectangle(0, 0, 30, 40));
+	
+	RSLabelFecha menu_fecha = new RSLabelFecha();
+	menu_fecha.setBounds(new Rectangle(0, 0, 60, 40));
+	menu_fecha.setPreferredSize(new Dimension(60, 40));
+	
+	
+	// PROPIEDADES
+	
+	// BARRA DE MENU
+	setJMenuBar(barra_menu);
+	
+	// MENU RESTAURANTE
+	menu_restaurante.setText("RESTAURANTE");
+	menu_restaurante.setRequestFocusEnabled(false);
+	barra_menu.add(menu_restaurante);
+	
+	// MENU INFO	
+	menu_item_info.addActionListener(new ActionListener() {
+		public void actionPerformed(ActionEvent e) {
+			VentanaInfo veninf = new VentanaInfo();
+			veninf.setVisible(true);
+			
+		}
+	});
+	menu_restaurante.add(menu_item_info);
+	
+	// MENU VERSION 
+	menu_version.setRequestFocusEnabled(false);
+	barra_menu.add(menu_version);
+	// MENU VERSION --> ACERCA
+	menu_version.add(menu_item_acerca);
+	
+	// MENU GESTION 
+	barra_menu.add(menu_gestion);
+	
+	// MENU GESTION --> AGREGAR MOZO
+	menu_gestion.add(menu_item_AgregarMozo);
+	
+	// MENU REPORTES 
+	barra_menu.add(menu_reportes);
+	
+	// MENU LABEL USUARIO
+	barra_menu.add(menu_label_usuario);
+	
+	// MENU LABEL VACIO
+	
+	barra_menu.add(menu_label_espacio);
+	
+	// MENU BOTON SALIR
+	menu_boton_salir.setText("SALIR");
+	menu_boton_salir.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+	menu_boton_salir.setRolloverEnabled(false);
+	menu_boton_salir.setBackground(Color.BLACK);
+	menu_boton_salir.setForeground(Color.WHITE);
+	menu_boton_salir.setFocusPainted(false);
+	
+	menu_boton_salir.addActionListener(new ActionListener() {
+		public void actionPerformed(ActionEvent e) {
+			dispose();
+			Logueo l = new Logueo();
+			l.setVisible(true);
+		}
+	});
+	barra_menu.add(menu_boton_salir);
+	
+	// MENU HORA
+	menu_hora.setForeground(Color.BLACK);
+	barra_menu.add(menu_hora);
+	menu_hora.setMinimumSize(new Dimension(1, 1));
+	menu_hora.setSize(30, 30);
+	
+	
+	// MENU FECHA 
 
-  			}		
- 		});		
- 		if(ocupado1){
- 			canvas_0.setBackground(Color.RED);	
- 			
- 		}
- 		else
- 		{
- 			canvas_0.setBackground(Color.GREEN);	
- 		}		
- 		canvas_0.setBounds(10, 120, 60, 60);		
- 		contentPane.add(canvas_0);		
+	barra_menu.add(menu_fecha);
+	menu_fecha.setMinimumSize(new Dimension(1, 1));
+	menu_fecha.setForeground(Color.BLACK);
+	menu_fecha.setSize(30,30);
+	
+	
+	//////////// PANEL //////////////
+	contentPane = new JPanel();
+	setContentPane(contentPane);
+	contentPane.setLayout(null);
+	
+	//  DECLARACIONES
+	
+	JButton boton_mesa_1 = new JButton("1");
+	boton_mesa_1.setBounds(12, 106, 50, 50);
+	
+	
+	
+	// boton mesa 1
+	
+	boton_mesa_1.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+	boton_mesa_1.setRolloverEnabled(false);
+	setColorMesa(restoprueba.mesaIsOcupada(1), boton_mesa_1);
+	boton_mesa_1.setForeground(Color.WHITE);
+	boton_mesa_1.setFocusPainted(false);
+	contentPane.add(boton_mesa_1);
+	
+	boton_mesa_1.addMouseListener(new MouseAdapter() {		
+			@Override		
+			public void mouseClicked(MouseEvent e) {		
+				VentanaMesa mesa1 = new VentanaMesa(restoprueba.mesaIsOcupada(1));		
+				mesa1.setTitle("MESA 1");		
+				mesa1.setVisible(true);		
+			}		
+		});		
+	
+	// boton mesa 2 
+	
+	JButton boton_mesa_2 = new JButton("2");
+	boton_mesa_2.setRolloverEnabled(false);
+	boton_mesa_2.setForeground(Color.WHITE);
+	boton_mesa_2.setFocusPainted(false);
+	boton_mesa_2.setBackground(Color.BLACK);
+	boton_mesa_2.setBounds(12, 168, 50, 50);
+	setColorMesa(restoprueba.mesaIsOcupada(2), boton_mesa_2);
+	contentPane.add(boton_mesa_2);
+	
+	boton_mesa_2.addMouseListener(new MouseAdapter() {		
+		@Override		
+		public void mouseClicked(MouseEvent e) {		
+			VentanaMesa mesa2 = new VentanaMesa(restoprueba.mesaIsOcupada(2));		
+			mesa2.setTitle("MESA 2");		
+			mesa2.setVisible(true);		
+		}		
+	});	
+	
+	
 
-  		Canvas canvas_1 = new Canvas();		
-  		
- 		canvas_1.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));		
- 		canvas_1.addMouseListener(new MouseAdapter() {		
- 			@Override		
- 			public void mouseClicked(MouseEvent e) {		
- 				VentanaMesa mesa1 = new VentanaMesa(ocupado2);		
- 				mesa1.setTitle("MESA 2");		
- 				mesa1.setVisible(true);		
- 			}		
- 		});		
- 		if(ocupado2){
- 			canvas_1.setBackground(Color.RED);	
- 			
- 		}
- 		else
- 		{
- 			canvas_1.setBackground(Color.GREEN);	
- 		}			
- 		canvas_1.setBounds(10, 186, 60, 60);		
- 		contentPane.add(canvas_1);
- 		
- 		JButton boton_mesa_1 = new JButton("MESA 1");
- 		boton_mesa_1.setOpaque(true);
- 		boton_mesa_1.setBackground(Color.RED);
- 		boton_mesa_1.setFocusPainted(false);
- 		boton_mesa_1.setContentAreaFilled(false);
- 		boton_mesa_1.setBorderPainted(false);
- 		boton_mesa_1.setBorder(null);
- 		boton_mesa_1.setBounds(59, 372, 68, 60);
- 		contentPane.add(boton_mesa_1);
+		
+		
+		
 
 
 //  		Canvas canvas_2 = new Canvas();		
@@ -494,4 +567,24 @@ public class Principal extends JFrame {
 	
 		
 	}
+
+	public void setColorMesa(boolean ocupado, JButton btnmesa){
+		if (ocupado) {
+			btnmesa.setBackground(Color.RED);
+		}
+		else{
+			btnmesa.setBackground(Color.GREEN);
+		}
+	}
+	public void iniciarComponentes(String usuarioIngresado){
+		
+		
+		
+	}
 }
+
+	/**
+	 * Create the frame.
+	 * @param usuarioIngresado
+	 */
+
