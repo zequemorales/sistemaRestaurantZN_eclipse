@@ -253,6 +253,17 @@ public class Restaurante {
 	public String listarMozos() {
 		return listadoDeMozos.listar();
 	}
+	
+	public boolean compruebaMozo(int idMozo){
+		boolean flag = false;
+		for(int i=0;i<listadoDeMozos.tamanioLista();i++){
+			if(listadoDeMozos.getindice(i).getIdMozo()==idMozo){
+				flag = true;
+			}
+		}
+		
+		return flag;
+	}
 
 	//////////////////////////////////////////////////////
 	//////////////////////////////////////////////////////

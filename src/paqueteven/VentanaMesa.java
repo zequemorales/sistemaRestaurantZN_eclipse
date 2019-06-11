@@ -52,7 +52,7 @@ public class VentanaMesa extends JFrame {
 	 * Create the frame.
 	 */
 	private String estadoMesa;
-	public VentanaMesa(Restaurante resto, int idMesa) {
+	public VentanaMesa(Restaurante resto, int idMesa, String usuarioIngresado) {
 		
 		setEstadoMesa(resto.mesaIsOcupada(idMesa));
 		
@@ -67,27 +67,34 @@ public class VentanaMesa extends JFrame {
 		JLabel label = new JLabel(getEstadoMesa());
 		label.setBounds(6, 6, 136, 16);
 		contentPane.add(label);
+	
+		
+		JButton btnCrearCuenta = new JButton("CREAR CUENTA");
+		btnCrearCuenta.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				VentanaCrearCuenta vencuenta = new VentanaCrearCuenta(resto, idMesa);
+				vencuenta.setVisible(true);
+				
+			}
+		});
+		btnCrearCuenta.setBounds(12, 59, 130, 25);
+		contentPane.add(btnCrearCuenta);
+		
+		
 		
 		JButton btnGuardar = new JButton("Guardar");
 		btnGuardar.setFocusPainted(false);
 		btnGuardar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				dispose();
+				Principal p = new Principal(usuarioIngresado);
+				p.setVisible(true);
 			
 			}
 		});
 		btnGuardar.setBounds(165, 232, 117, 29);
 		contentPane.add(btnGuardar);
 		
-		JButton btnCrearCuenta = new JButton("CREAR CUENTA");
-		btnCrearCuenta.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				VentanaCrearCuenta vencuenta = new VentanaCrearCuenta(resto, idMesa);
-				
-			}
-		});
-		btnCrearCuenta.setBounds(12, 59, 130, 25);
-		contentPane.add(btnCrearCuenta);
 	}
 	
 	public void setEstadoMesa(boolean ocupado){

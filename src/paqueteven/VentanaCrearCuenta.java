@@ -8,6 +8,7 @@ import java.awt.Toolkit;
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
@@ -16,6 +17,8 @@ import clases.Restaurante;
 
 import javax.swing.JTextField;
 import javax.swing.JButton;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class VentanaCrearCuenta extends JFrame {
 
@@ -71,13 +74,31 @@ public class VentanaCrearCuenta extends JFrame {
 		contentPane.add(txtIdMozo);
 		txtIdMozo.setColumns(10);
 		
-		JButton btnGuardar = new JButton("INGRESAR");
-		btnGuardar.setBounds(156, 78, 117, 29);
-		contentPane.add(btnGuardar);
 		
-		int idMozoIngresado = Integer.parseInt(txtIdMozo.getText());
+		JButton btnIngresar = new JButton("INGRESAR");
+		btnIngresar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				int idMozoIngresado = Integer.parseInt(txtIdMozo.getText());
+				if(restoprueba.compruebaMozo(idMozoIngresado)){
+					restoprueba.crearCuentaActiva(idMozoIngresado, idMesa);
+					System.out.println(restoprueba.listarCuentasActivas());
+					dispose();
+				}
+				else
+				{
+					JOptionPane.showMessageDialog(null, "ID MOZO INVALIDO", "ERROR", JOptionPane.ERROR_MESSAGE);
+					txtIdMozo.setText("");
+					txtIdMozo.requestFocus();
+				}
+				
+			}
+		});
+		btnIngresar.setBounds(156, 78, 117, 29);
+		contentPane.add(btnIngresar);
 		
-		restoprueba.crearCuentaActiva(idMozoIngresado, idMesa);
+		
+		
+		
 	
 		
 		
