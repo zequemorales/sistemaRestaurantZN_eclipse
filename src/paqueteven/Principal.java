@@ -19,6 +19,7 @@ import com.sun.xml.internal.ws.api.server.Container;
 
 import clases.Restaurante;
 import javafx.scene.shape.Circle;
+
 import rojeru_san.RSLabelHora;
 import rojeru_san.RSLabelFecha;
 import java.awt.Dimension;
@@ -36,6 +37,7 @@ import com.jgoodies.forms.factories.DefaultComponentFactory;
 import java.awt.event.FocusAdapter;
 import java.awt.event.FocusEvent;
 import java.awt.event.MouseMotionAdapter;
+import paqueteven.MyButton;
 
 /**
  * Clase de la ventana principal del restaurante. Muestra el plano del local.
@@ -89,6 +91,13 @@ public class Principal extends JFrame {
 		String direccionRest = "CONSTITUCION 5500";
 		
 		Restaurante restoprueba=new Restaurante(nombreRest, direccionRest);
+		
+		for(int i=0; i<14; i++){
+			restoprueba.agregarMesa(i+1);
+		}
+		
+		restoprueba.crearMozo("JUAN", "PEREZ", 1);
+	
 		
 		
 		// PROPIEDADES VENTANA
@@ -206,382 +215,350 @@ public class Principal extends JFrame {
 	
 	//  DECLARACIONES
 	
-	JButton boton_mesa_1 = new JButton("1");
-	boton_mesa_1.setBounds(12, 106, 50, 50);
+	
+	///////////BOTONES MESAS ////////////////
+	
+	
+	crearBotonMesa(restoprueba);
 	
 	
 	
-	// boton mesa 1
-	
-	boton_mesa_1.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-	boton_mesa_1.setRolloverEnabled(false);
-	setColorMesa(restoprueba.mesaIsOcupada(1), boton_mesa_1);
-	boton_mesa_1.setForeground(Color.WHITE);
-	boton_mesa_1.setFocusPainted(false);
-	contentPane.add(boton_mesa_1);
-	
-	boton_mesa_1.addMouseListener(new MouseAdapter() {		
-			@Override		
-			public void mouseClicked(MouseEvent e) {		
-				VentanaMesa mesa1 = new VentanaMesa(restoprueba.mesaIsOcupada(1));		
-				mesa1.setTitle("MESA 1");		
-				mesa1.setVisible(true);		
-			}		
-		});		
-	
-	// boton mesa 2 
-	
-	JButton boton_mesa_2 = new JButton("2");
-	boton_mesa_2.setRolloverEnabled(false);
-	boton_mesa_2.setForeground(Color.WHITE);
-	boton_mesa_2.setFocusPainted(false);
-	boton_mesa_2.setBackground(Color.BLACK);
-	boton_mesa_2.setBounds(12, 168, 50, 50);
-	setColorMesa(restoprueba.mesaIsOcupada(2), boton_mesa_2);
-	contentPane.add(boton_mesa_2);
-	
-	boton_mesa_2.addMouseListener(new MouseAdapter() {		
-		@Override		
-		public void mouseClicked(MouseEvent e) {		
-			VentanaMesa mesa2 = new VentanaMesa(restoprueba.mesaIsOcupada(2));		
-			mesa2.setTitle("MESA 2");		
-			mesa2.setVisible(true);		
-		}		
-	});	
-	
-	
-
-		
-		
-		
-
-
-//  		Canvas canvas_2 = new Canvas();		
-//  	
-// 		canvas_2.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));		
-// 		canvas_2.addMouseListener(new MouseAdapter() {		
-// 			@Override		
-// 			public void mouseClicked(MouseEvent e) {		
-// 				VentanaMesa mesa2 = new VentanaMesa();		
-// 				mesa2.setTitle("MESA 4");		
-// 				mesa2.setVisible(true);		
-// 			}		
-// 		});		
-// 		canvas_2.setBackground(Color.GREEN);		
-// 		canvas_2.setBounds(10, 252, 60, 60);	
-// 		contentPane.add(canvas_2);		
-//
-//  		Canvas canvas_3 = new Canvas();		
-//  		
-// 		canvas_3.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));		
-// 		canvas_3.addMouseListener(new MouseAdapter() {		
-// 			@Override		
-// 			public void mouseClicked(MouseEvent e) {		
-// 				VentanaMesa mesa3 = new VentanaMesa();		
-// 				mesa3.setTitle("MESA 3");		
-// 				mesa3.setVisible(true);		
-// 			}		
-// 		});		
-// 		canvas_3.setBackground(Color.GREEN);		
-// 		canvas_3.setBounds(10, 318, 60, 60);		
-// 		contentPane.add(canvas_3);		
-//
-//  		Canvas canvas_4 = new Canvas();		
-//  		
-// 		canvas_4.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));		
-// 		canvas_4.addMouseListener(new MouseAdapter() {		
-// 			@Override		
-// 			public void mouseClicked(MouseEvent e) {		
-// 				VentanaMesa mesa4 = new VentanaMesa();		
-// 				mesa4.setTitle("MESA 5");		
-// 				mesa4.setVisible(true);		
-// 			}		
-// 		});		
-// 		canvas_4.setBackground(Color.GREEN);		
-// 		canvas_4.setBounds(10, 384, 60, 60);	
-// 		contentPane.add(canvas_4);		
-//
-//  		Canvas canvas_5 = new Canvas();		
-// 		canvas_5.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));		
-// 		canvas_5.addMouseListener(new MouseAdapter() {		
-// 			@Override		
-// 			public void mouseClicked(MouseEvent e) {		
-// 				VentanaMesa mesa5 = new VentanaMesa();		
-// 				mesa5.setTitle("MESA 6");		
-// 				mesa5.setVisible(true);		
-// 			}		
-// 		});	
-// 		if(ocupado){
-// 			canvas_5.setBackground(Color.RED);	
-// 			
-// 		}
-// 		else
-// 		{
-// 			canvas_5.setBackground(Color.GREEN);	
-// 		}
-// 			
-// 		canvas_5.setBounds(100, 120, 60, 60);		
-// 		contentPane.add(canvas_5);		
-//
-//  		Canvas canvas_6 = new Canvas();		
-//  		canvas_6.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));	
-// 		canvas_6.addMouseListener(new MouseAdapter() {		
-// 			@Override		
-// 			public void mouseClicked(MouseEvent e) {		
-// 				VentanaMesa mesa6 = new VentanaMesa();		
-// 				mesa6.setTitle("MESA 7");		
-// 				mesa6.setVisible(true);		
-// 			}		
-// 		});		
-// 		canvas_6.setBackground(Color.GREEN);		
-// 		canvas_6.setBounds(100, 186, 60, 60);		
-// 		contentPane.add(canvas_6);		
-//
-//  		Canvas canvas_7 = new Canvas();		
-// 		canvas_7.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));		
-// 		canvas_7.addMouseListener(new MouseAdapter() {		
-// 			@Override		
-// 			public void mouseClicked(MouseEvent e) {		
-// 				VentanaMesa mesa7 = new VentanaMesa();		
-// 				mesa7.setTitle("MESA 8");		
-// 				mesa7.setVisible(true);		
-// 			}		
-// 		});		
-// 		canvas_7.setBackground(Color.GREEN);		
-// 		canvas_7.setBounds(100, 252, 60, 60);		
-// 		contentPane.add(canvas_7);		
-//
-// 
-//  		Canvas canvas_8 = new Canvas();		 		
-// 		canvas_8.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-// 		canvas_8.addMouseListener(new MouseAdapter() {		
-// 			@Override		
-// 			public void mouseClicked(MouseEvent e) {		
-// 				VentanaMesa mesa8 = new VentanaMesa();		
-// 				mesa8.setTitle("MESA 9");		
-// 				mesa8.setVisible(true);		
-// 			}		
-// 		});		
-// 		canvas_8.setBackground(Color.GREEN);		
-// 		canvas_8.setBounds(100, 318, 60, 60);		
-// 		contentPane.add(canvas_8);		
-//
-// 
-//  		Canvas canvas_9 = new Canvas();		 		
-// 		canvas_9.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));		 	
-// 		canvas_9.addMouseListener(new MouseAdapter() {
-// 			@Override		
-// 			public void mouseClicked(MouseEvent e) {		
-// 				VentanaMesa mesa9 = new VentanaMesa();		
-// 				mesa9.setTitle("MESA 10");		
-// 				mesa9.setVisible(true);		
-// 			}		
-// 		});		
-// 		canvas_9.setBackground(Color.GREEN);		
-// 		canvas_9.setBounds(100, 384, 60, 60);		
-// 		contentPane.add(canvas_9);		
-//
-// 
-//  		Canvas canvas_10 = new Canvas();
-//  		
-// 		canvas_10.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));	
-// 		
-// 		canvas_10.addMouseListener(new MouseAdapter() {		
-// 			@Override		
-// 			public void mouseClicked(MouseEvent e) {		
-// 				VentanaMesa mesa10 = new VentanaMesa();		
-// 				mesa10.setTitle("MESA 11");		
-// 				mesa10.setVisible(true);		
-// 			}		
-// 		});		
-// 		canvas_10.setBackground(Color.GREEN);		
-// 		canvas_10.setBounds(341, 120, 60, 60);		
-// 		contentPane.add(canvas_10);		
-//
-// 
-//  		Canvas canvas_11 = new Canvas();
-// 		canvas_11.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));		 	
-// 		canvas_11.addMouseListener(new MouseAdapter() {	
-// 			@Override		
-// 			public void mouseClicked(MouseEvent e) {		
-// 				VentanaMesa mesa11 = new VentanaMesa();		
-// 				mesa11.setTitle("MESA 12");		
-// 				mesa11.setVisible(true);		
-// 			}		
-// 		});		
-// 		canvas_11.setBackground(Color.GREEN);		
-// 		canvas_11.setBounds(341, 186, 60, 60);		
-// 		contentPane.add(canvas_11);		
-//
-// 
-//  		Canvas canvas_12 = new Canvas();		 		
-// 		canvas_12.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-// 		canvas_12.addMouseListener(new MouseAdapter() {		
-// 			@Override		
-// 			public void mouseClicked(MouseEvent e) {		
-// 				VentanaMesa mesa12 = new VentanaMesa();		
-//
-//  				mesa12.setTitle("MESA 13");		
-// 				mesa12.setVisible(true);		
-// 			}		
-// 		});		
-// 		canvas_12.setBackground(Color.GREEN);		
-// 		canvas_12.setBounds(341, 252, 60, 60);	
-// 		contentPane.add(canvas_12);		
-//
-//  		Canvas canvas_13 = new Canvas();		
-// 		canvas_13.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));		
-// 		canvas_13.addMouseListener(new MouseAdapter() {		
-// 			@Override		
-// 			public void mouseClicked(MouseEvent e) {		
-// 				VentanaMesa mesa13 = new VentanaMesa();		
-// 				mesa13.setTitle("MESA 14");		
-// 				mesa13.setVisible(true);		
-// 			}		
-// 		});		
-// 		canvas_13.setBackground(Color.GREEN);		
-// 		canvas_13.setBounds(341, 318, 60, 60);		
-// 		contentPane.add(canvas_13);		
-//
-// 
-//  		Canvas canvas_14 = new Canvas();		 		
-// 		canvas_14.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));	
-// 		canvas_14.addMouseListener(new MouseAdapter() {		
-// 			@Override		
-// 			public void mouseClicked(MouseEvent e) {		
-// 				VentanaMesa mesa14 = new VentanaMesa();		
-// 				mesa14.setTitle("MESA 15");		
-// 				mesa14.setVisible(true);		
-// 			}		
-// 		});		
-// 		canvas_14.setBackground(Color.GREEN);		
-// 		canvas_14.setBounds(341, 384, 60, 60);	
-// 		contentPane.add(canvas_14);		
-//
-//  		Canvas canvas_15 = new Canvas();		
-// 		canvas_15.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));		
-// 		canvas_15.addMouseListener(new MouseAdapter() {		
-// 			@Override		
-// 			public void mouseClicked(MouseEvent e) {		
-// 				VentanaMesa mesa15 = new VentanaMesa();		
-// 				mesa15.setTitle("MESA 16");		
-// 				mesa15.setVisible(true);		
-// 			}		
-// 		});		
-// 		canvas_15.setBackground(Color.GREEN);		
-// 		canvas_15.setBounds(407, 120, 60, 60);	
-// 		contentPane.add(canvas_15);		
-//
-// 
-//  		Canvas canvas_16 = new Canvas();		 	
-// 		canvas_16.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));		 	
-// 		canvas_16.addMouseListener(new MouseAdapter() {		
-// 			@Override		
-// 			public void mouseClicked(MouseEvent e) {		
-// 				VentanaMesa mesa16 = new VentanaMesa();		
-// 				mesa16.setTitle("MESA 17");		
-// 				mesa16.setVisible(true);		
-// 			}		
-// 		});		
-// 		canvas_16.setBackground(Color.GREEN);		
-// 		canvas_16.setBounds(407, 186, 60, 60);		
-// 		contentPane.add(canvas_16);		
-//
-// 
-//  		Canvas canvas_17 = new Canvas();		 		
-// 		canvas_17.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));		
-// 		canvas_17.addMouseListener(new MouseAdapter() {		
-// 			@Override		
-// 			public void mouseClicked(MouseEvent e) {		
-// 				VentanaMesa mesa17 = new VentanaMesa();		
-// 				mesa17.setTitle("MESA 18");		
-// 				mesa17.setVisible(true);		
-// 			}		
-// 		});		
-// 		canvas_17.setBackground(Color.GREEN);		
-// 		canvas_17.setBounds(407, 252, 60, 60);		
-// 		contentPane.add(canvas_17);		
-//
-// 
-//  		Canvas canvas_18 = new Canvas();		 		
-// 		canvas_18.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));		
-// 		canvas_18.addMouseListener(new MouseAdapter() {		
-// 			@Override		
-// 			public void mouseClicked(MouseEvent e) {		
-// 				VentanaMesa mesa18 = new VentanaMesa();		
-// 				mesa18.setTitle("MESA 19");		
-// 				mesa18.setVisible(true);		
-// 			}		
-// 		});		
-// 		canvas_18.setBackground(Color.GREEN);		
-// 		canvas_18.setBounds(407, 318, 60, 60);	
-// 		contentPane.add(canvas_18);		
-//
-// 
-//  		Canvas canvas_19 = new Canvas();		 		
-// 		canvas_19.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-// 		canvas_19.addMouseListener(new MouseAdapter() {		
-// 			@Override		
-// 			public void mouseClicked(MouseEvent e) {		
-// 				VentanaMesa mesa19 = new VentanaMesa();		
-// 				mesa19.setTitle("MESA 20");		
-// 				mesa19.setVisible(true);		
-// 			}		
-// 		});		
-// 		canvas_19.setBackground(Color.GREEN);		
-// 		canvas_19.setBounds(407, 384, 60, 60);		
-// 		contentPane.add(canvas_19);		
-//
-// 
-//  		Canvas canvas_20 = new Canvas();		
-//  		canvas_20.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));		
-// 		canvas_20.addMouseListener(new MouseAdapter() {		
-// 			@Override		
-// 			public void mouseClicked(MouseEvent e) {		
-// 				VentanaMesa mesa20 = new VentanaMesa();		
-// 				mesa20.setTitle("MESA 21");		
-// 				mesa20.setVisible(true);		
-// 			}		
-// 		});		
-// 		canvas_20.setBackground(Color.GREEN);		
-// 		canvas_20.setBounds(531, 120, 60, 60);		
-// 		contentPane.add(canvas_20);		
-//
-// 
-//  		Canvas canvas_21 = new Canvas();		 		
-// 		canvas_21.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));		 		
-// 		canvas_21.addMouseListener(new MouseAdapter() {		 		
-// 			@Override		 		
-// 			public void mouseClicked(MouseEvent e) {		
-// 				VentanaMesa mesa21 = new VentanaMesa();		
-// 				mesa21.setTitle("MESA 22");		
-// 				mesa21.setVisible(true);		
-// 			}		
-// 		});		
-// 		canvas_21.setBackground(Color.GREEN);	
-// 		canvas_21.setBounds(531, 186, 60, 60);		
-// 		contentPane.add(canvas_21);
-
 		
 	
 	
 		
 	}
 
-	public void setColorMesa(boolean ocupado, JButton btnmesa){
+	
+	
+	public void setPropiedadesBotonMesa(MyButton btnSave, boolean ocupado){
+		   btnSave.setForeground(Color.BLACK); 
+		     btnSave.setHorizontalTextPosition(SwingConstants.CENTER); 
+		     btnSave.setBorder(null);  
+		     btnSave.setHoverBackgroundColor(new Color(208, 208, 208)); 
+		     btnSave.setPressedBackgroundColor(Color.BLACK);
+		     setColorMesa(ocupado, btnSave);
+		     btnSave.setSize(50, 50);
+		     btnSave.setMinimumSize(new Dimension(50, 50));
+		     btnSave.setMaximumSize(new Dimension(50, 50));
+		     btnSave.setPreferredSize(new Dimension(50, 50));
+		     btnSave.setFocusPainted(false);
+	}
+	public void setColorMesa(boolean ocupado, MyButton btnSave){
 		if (ocupado) {
-			btnmesa.setBackground(Color.RED);
+			btnSave.setBackground(Color.RED);
 		}
 		else{
-			btnmesa.setBackground(Color.GREEN);
+			btnSave.setBackground(Color.GREEN);
 		}
 	}
-	public void iniciarComponentes(String usuarioIngresado){
+	
+	public void crearBotonMesa(Restaurante resto){
 		
+		MyButton mesa1 = new MyButton("1");
+		setPropiedadesBotonMesa(mesa1, resto.mesaIsOcupada(1));
+		mesa1.setBounds(12, 54, 50, 50);
+		mesa1.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+		mesa1.addMouseListener(new MouseAdapter() {		
+			@Override		
+			public void mouseClicked(MouseEvent e) {		
+				VentanaMesa mesa = new VentanaMesa(resto, 1);		
+				mesa.setTitle("MESA "+ "1");		
+				mesa.setVisible(true);		
+			}		
+		});	
 		
+		contentPane.add(mesa1);
+//		
+//		MyButton mesa2 = new MyButton("2");
+//		mesa2.setPressedBackgroundColor(Color.BLACK);
+//		mesa2.setPreferredSize(new Dimension(50, 50));
+//		mesa2.setMinimumSize(new Dimension(50, 50));
+//		mesa2.setMaximumSize(new Dimension(50, 50));
+//		mesa2.setHoverBackgroundColor(new Color(208, 208, 208));
+//		mesa2.setHorizontalTextPosition(SwingConstants.CENTER);
+//		mesa2.setForeground(Color.BLACK);
+//		mesa2.setFocusPainted(false);
+//		mesa2.setBorder(null);
+//		mesa2.setBounds(12, 116, 50, 50);
+//		mesa2.addMouseListener(new MouseAdapter() {		
+//			@Override		
+//			public void mouseClicked(MouseEvent e) {		
+//				VentanaMesa mesa2 = new VentanaMesa(resto,resto.mesaIsOcupada(2));		
+//				mesa2.setTitle("MESA "+ "2");		
+//				mesa2.setVisible(true);		
+//			}		
+//		});	
+//		setColorMesa(resto.mesaIsOcupada(2), mesa2);
+//		contentPane.add(mesa2);
+//		
+//		MyButton mesa3 = new MyButton("3");
+//		mesa3.setPressedBackgroundColor(Color.BLACK);
+//		mesa3.setPreferredSize(new Dimension(50, 50));
+//		mesa3.setMinimumSize(new Dimension(50, 50));
+//		mesa3.setMaximumSize(new Dimension(50, 50));
+//		mesa3.setHoverBackgroundColor(new Color(208, 208, 208));
+//		mesa3.setHorizontalTextPosition(SwingConstants.CENTER);
+//		mesa3.setForeground(Color.BLACK);
+//		mesa3.setFocusPainted(false);
+//		mesa3.setBorder(null);
+//		mesa3.setBounds(12, 178, 50, 50);
+//		mesa3.addMouseListener(new MouseAdapter() {		
+//			@Override		
+//			public void mouseClicked(MouseEvent e) {		
+//				VentanaMesa mesa3 = new VentanaMesa(resto.mesaIsOcupada(3));		
+//				mesa3.setTitle("MESA "+ "3");		
+//				mesa3.setVisible(true);		
+//			}		
+//		});	
+//		setColorMesa(resto.mesaIsOcupada(3), mesa3);
+//		contentPane.add(mesa3);
+//		
+//		MyButton mesa4 = new MyButton("4");
+//		mesa4.setPressedBackgroundColor(Color.BLACK);
+//		mesa4.setPreferredSize(new Dimension(50, 50));
+//		mesa4.setMinimumSize(new Dimension(50, 50));
+//		mesa4.setMaximumSize(new Dimension(50, 50));
+//		mesa4.setHoverBackgroundColor(new Color(208, 208, 208));
+//		mesa4.setHorizontalTextPosition(SwingConstants.CENTER);
+//		mesa4.setForeground(Color.BLACK);
+//		mesa4.setFocusPainted(false);
+//		mesa4.setBorder(null);
+//		mesa4.setBounds(12, 240, 50, 50);
+//		mesa4.addMouseListener(new MouseAdapter() {		
+//			@Override		
+//			public void mouseClicked(MouseEvent e) {		
+//				VentanaMesa mesa4 = new VentanaMesa(resto.mesaIsOcupada(4));		
+//				mesa4.setTitle("MESA "+ "4");		
+//				mesa4.setVisible(true);		
+//			}		
+//		});	
+//		setColorMesa(resto.mesaIsOcupada(4), mesa4);
+//		contentPane.add(mesa4);
+//		
+//		MyButton mesa5 = new MyButton("5");
+//		mesa5.setPressedBackgroundColor(Color.BLACK);
+//		mesa5.setPreferredSize(new Dimension(50, 50));
+//		mesa5.setMinimumSize(new Dimension(50, 50));
+//		mesa5.setMaximumSize(new Dimension(50, 50));
+//		mesa5.setHoverBackgroundColor(new Color(208, 208, 208));
+//		mesa5.setHorizontalTextPosition(SwingConstants.CENTER);
+//		mesa5.setForeground(Color.BLACK);
+//		mesa5.setFocusPainted(false);
+//		mesa5.setBorder(null);
+//		mesa5.setBounds(12, 302, 50, 50);
+//		mesa5.addMouseListener(new MouseAdapter() {		
+//			@Override		
+//			public void mouseClicked(MouseEvent e) {		
+//				VentanaMesa mesa5 = new VentanaMesa(resto.mesaIsOcupada(5));		
+//				mesa5.setTitle("MESA "+ "5");		
+//				mesa5.setVisible(true);		
+//			}		
+//		});	
+//		setColorMesa(resto.mesaIsOcupada(5), mesa5);
+//		contentPane.add(mesa5);
+//		
+//		MyButton mesa6 = new MyButton("6");
+//		mesa6.setPressedBackgroundColor(Color.BLACK);
+//		mesa6.setPreferredSize(new Dimension(50, 50));
+//		mesa6.setMinimumSize(new Dimension(50, 50));
+//		mesa6.setMaximumSize(new Dimension(50, 50));
+//		mesa6.setHoverBackgroundColor(new Color(208, 208, 208));
+//		mesa6.setHorizontalTextPosition(SwingConstants.CENTER);
+//		mesa6.setForeground(Color.BLACK);
+//		mesa6.setFocusPainted(false);
+//		mesa6.setBorder(null);
+//		mesa6.setBounds(12, 364, 50, 50);
+//		mesa6.addMouseListener(new MouseAdapter() {		
+//			@Override		
+//			public void mouseClicked(MouseEvent e) {		
+//				VentanaMesa mesa6 = new VentanaMesa(resto.mesaIsOcupada(6));		
+//				mesa6.setTitle("MESA "+ "6");		
+//				mesa6.setVisible(true);		
+//			}		
+//		});
+//		setColorMesa(resto.mesaIsOcupada(6), mesa6);
+//		contentPane.add(mesa6);
+//		
+//		MyButton mesa7 = new MyButton("1");
+//		mesa7.setPressedBackgroundColor(Color.BLACK);
+//		mesa7.setPreferredSize(new Dimension(50, 50));
+//		mesa7.setMinimumSize(new Dimension(50, 50));
+//		mesa7.setMaximumSize(new Dimension(50, 50));
+//		mesa7.setHoverBackgroundColor(new Color(208, 208, 208));
+//		mesa7.setHorizontalTextPosition(SwingConstants.CENTER);
+//		mesa7.setForeground(Color.BLACK);
+//		mesa7.setFocusPainted(false);
+//		mesa7.setBorder(null);
+//		mesa7.setBounds(178, 54, 50, 50);
+//		mesa7.addMouseListener(new MouseAdapter() {		
+//			@Override		
+//			public void mouseClicked(MouseEvent e) {		
+//				VentanaMesa mesa7 = new VentanaMesa(resto.mesaIsOcupada(7));		
+//				mesa7.setTitle("MESA "+ "7");		
+//				mesa7.setVisible(true);		
+//			}		
+//		});	
+//		setColorMesa(resto.mesaIsOcupada(7), mesa7);
+//		contentPane.add(mesa7);
+//		
+//		MyButton mesa8 = new MyButton("8");
+//		mesa8.setPressedBackgroundColor(Color.BLACK);
+//		mesa8.setPreferredSize(new Dimension(50, 50));
+//		mesa8.setMinimumSize(new Dimension(50, 50));
+//		mesa8.setMaximumSize(new Dimension(50, 50));
+//		mesa8.setHoverBackgroundColor(new Color(208, 208, 208));
+//		mesa8.setHorizontalTextPosition(SwingConstants.CENTER);
+//		mesa8.setForeground(Color.BLACK);
+//		mesa8.setFocusPainted(false);
+//		mesa8.setBorder(null);
+//		mesa8.setBounds(178, 116, 50, 50);
+//		mesa8.addMouseListener(new MouseAdapter() {		
+//			@Override		
+//			public void mouseClicked(MouseEvent e) {		
+//				VentanaMesa mesa8 = new VentanaMesa(resto.mesaIsOcupada(8));		
+//				mesa8.setTitle("MESA "+ "8");		
+//				mesa8.setVisible(true);		
+//			}		
+//		});	
+//		setColorMesa(resto.mesaIsOcupada(8), mesa8);
+//		contentPane.add(mesa8);
+//		
+//		MyButton mesa9 = new MyButton("9");
+//		mesa9.setPressedBackgroundColor(Color.BLACK);
+//		mesa9.setPreferredSize(new Dimension(50, 50));
+//		mesa9.setMinimumSize(new Dimension(50, 50));
+//		mesa9.setMaximumSize(new Dimension(50, 50));
+//		mesa9.setHoverBackgroundColor(new Color(208, 208, 208));
+//		mesa9.setHorizontalTextPosition(SwingConstants.CENTER);
+//		mesa9.setForeground(Color.BLACK);
+//		mesa9.setFocusPainted(false);
+//		mesa9.setBorder(null);
+//		mesa9.setBounds(178, 178, 50, 50);
+//		mesa9.addMouseListener(new MouseAdapter() {		
+//			@Override		
+//			public void mouseClicked(MouseEvent e) {		
+//				VentanaMesa mesa9 = new VentanaMesa(resto.mesaIsOcupada(9));		
+//				mesa9.setTitle("MESA "+ "9");		
+//				mesa9.setVisible(true);		
+//			}		
+//		});
+//		setColorMesa(resto.mesaIsOcupada(9), mesa9);
+//		contentPane.add(mesa9);
+//		
+//		MyButton mesa10 = new MyButton("10");
+//		mesa10.setPressedBackgroundColor(Color.BLACK);
+//		mesa10.setPreferredSize(new Dimension(50, 50));
+//		mesa10.setMinimumSize(new Dimension(50, 50));
+//		mesa10.setMaximumSize(new Dimension(50, 50));
+//		mesa10.setHoverBackgroundColor(new Color(208, 208, 208));
+//		mesa10.setHorizontalTextPosition(SwingConstants.CENTER);
+//		mesa10.setForeground(Color.BLACK);
+//		mesa10.setFocusPainted(false);
+//		mesa10.setBorder(null);
+//		mesa10.setBounds(178, 240, 50, 50);
+//		mesa10.addMouseListener(new MouseAdapter() {		
+//			@Override		
+//			public void mouseClicked(MouseEvent e) {		
+//				VentanaMesa mesa2 = new VentanaMesa(resto.mesaIsOcupada(10));		
+//				mesa2.setTitle("MESA "+ "10");		
+//				mesa2.setVisible(true);		
+//			}		
+//		});	
+//		setColorMesa(resto.mesaIsOcupada(10), mesa10);
+//		contentPane.add(mesa10);
+//		
+//		MyButton mesa11 = new MyButton("11");
+//		mesa11.setPressedBackgroundColor(Color.BLACK);
+//		mesa11.setPreferredSize(new Dimension(50, 50));
+//		mesa11.setMinimumSize(new Dimension(50, 50));
+//		mesa11.setMaximumSize(new Dimension(50, 50));
+//		mesa11.setHoverBackgroundColor(new Color(208, 208, 208));
+//		mesa11.setHorizontalTextPosition(SwingConstants.CENTER);
+//		mesa11.setForeground(Color.BLACK);
+//		mesa11.setFocusPainted(false);
+//		mesa11.setBorder(null);
+//		mesa11.setBounds(178, 302, 50, 50);
+//		mesa11.addMouseListener(new MouseAdapter() {		
+//			@Override		
+//			public void mouseClicked(MouseEvent e) {		
+//				VentanaMesa mesa11 = new VentanaMesa(resto.mesaIsOcupada(11));		
+//				mesa11.setTitle("MESA "+ "2");		
+//				mesa11.setVisible(true);		
+//			}		
+//		});	
+//		setColorMesa(resto.mesaIsOcupada(11), mesa11);
+//		contentPane.add(mesa11);
+//		
+//		MyButton mesa12 = new MyButton("12");
+//		mesa12.setPressedBackgroundColor(Color.BLACK);
+//		mesa12.setPreferredSize(new Dimension(50, 50));
+//		mesa12.setMinimumSize(new Dimension(50, 50));
+//		mesa12.setMaximumSize(new Dimension(50, 50));
+//		mesa12.setHoverBackgroundColor(new Color(208, 208, 208));
+//		mesa12.setHorizontalTextPosition(SwingConstants.CENTER);
+//		mesa12.setForeground(Color.BLACK);
+//		mesa12.setFocusPainted(false);
+//		mesa12.setBorder(null);
+//		mesa12.setBounds(178, 364, 50, 50);
+//		mesa12.addMouseListener(new MouseAdapter() {		
+//			@Override		
+//			public void mouseClicked(MouseEvent e) {		
+//				VentanaMesa mesa12 = new VentanaMesa(resto.mesaIsOcupada(12));		
+//				mesa12.setTitle("MESA "+ "2");		
+//				mesa12.setVisible(true);		
+//			}		
+//		});	
+//		setColorMesa(resto.mesaIsOcupada(12), mesa12);
+//		contentPane.add(mesa12);
+//		
+//		MyButton mesa13 = new MyButton("13");
+//		mesa13.setPressedBackgroundColor(Color.BLACK);
+//		mesa13.setPreferredSize(new Dimension(50, 50));
+//		mesa13.setMinimumSize(new Dimension(50, 50));
+//		mesa13.setMaximumSize(new Dimension(50, 50));
+//		mesa13.setHoverBackgroundColor(new Color(208, 208, 208));
+//		mesa13.setHorizontalTextPosition(SwingConstants.CENTER);
+//		mesa13.setForeground(Color.BLACK);
+//		mesa13.setFocusPainted(false);
+//		mesa13.setBorder(null);
+//		mesa13.setBounds(348, 54, 50, 50);
+//		mesa13.addMouseListener(new MouseAdapter() {		
+//			@Override		
+//			public void mouseClicked(MouseEvent e) {		
+//				VentanaMesa mesa13 = new VentanaMesa(resto.mesaIsOcupada(13));		
+//				mesa13.setTitle("MESA "+ "13");		
+//				mesa13.setVisible(true);		
+//			}		
+//		});	
+//		setColorMesa(resto.mesaIsOcupada(13), mesa13);
+//		contentPane.add(mesa13);
+//		
+//		MyButton mesa14 = new MyButton("14");
+//		mesa14.setPressedBackgroundColor(Color.BLACK);
+//		mesa14.setPreferredSize(new Dimension(50, 50));
+//		mesa14.setMinimumSize(new Dimension(50, 50));
+//		mesa14.setMaximumSize(new Dimension(50, 50));
+//		mesa14.setHoverBackgroundColor(new Color(208, 208, 208));
+//		mesa14.setHorizontalTextPosition(SwingConstants.CENTER);
+//		mesa14.setForeground(Color.BLACK);
+//		mesa14.setFocusPainted(false);
+//		mesa14.setBorder(null);
+//		mesa14.setBounds(348, 116, 50, 50);
+//		mesa14.addMouseListener(new MouseAdapter() {		
+//			@Override		
+//			public void mouseClicked(MouseEvent e) {		
+//				VentanaMesa mesa14 = new VentanaMesa(resto.mesaIsOcupada(14));		
+//				mesa14.setTitle("MESA "+ "14");		
+//				mesa14.setVisible(true);		
+//			}		
+//		});	
+//		setColorMesa(resto.mesaIsOcupada(14), mesa14);
+//		contentPane.add(mesa14);
 		
 	}
 }
+
 
 	/**
 	 * Create the frame.

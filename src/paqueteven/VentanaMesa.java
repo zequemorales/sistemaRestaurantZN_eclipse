@@ -11,6 +11,8 @@ import javax.swing.JPanel;
 import javax.swing.UIManager;
 import javax.swing.border.EmptyBorder;
 
+import clases.Restaurante;
+
 /**
  * Clase de la Ventana de la MESA
  * 
@@ -36,8 +38,8 @@ public class VentanaMesa extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					VentanaMesa frame = new VentanaMesa( ocupado);
-					frame.setVisible(true);
+					//VentanaMesa frame = new VentanaMesa();
+					//frame.setVisible(true);
 					
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -50,9 +52,9 @@ public class VentanaMesa extends JFrame {
 	 * Create the frame.
 	 */
 	private String estadoMesa;
-	public VentanaMesa(boolean ocupado) {
+	public VentanaMesa(Restaurante resto, int idMesa) {
 		
-		setEstadoMesa(ocupado);
+		setEstadoMesa(resto.mesaIsOcupada(idMesa));
 		
 		
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -63,10 +65,11 @@ public class VentanaMesa extends JFrame {
 		contentPane.setLayout(null);
 		
 		JLabel label = new JLabel(getEstadoMesa());
-		label.setBounds(6, 6, 84, 16);
+		label.setBounds(6, 6, 136, 16);
 		contentPane.add(label);
 		
 		JButton btnGuardar = new JButton("Guardar");
+		btnGuardar.setFocusPainted(false);
 		btnGuardar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				dispose();
@@ -75,6 +78,16 @@ public class VentanaMesa extends JFrame {
 		});
 		btnGuardar.setBounds(165, 232, 117, 29);
 		contentPane.add(btnGuardar);
+		
+		JButton btnCrearCuenta = new JButton("CREAR CUENTA");
+		btnCrearCuenta.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				VentanaCrearCuenta vencuenta = new VentanaCrearCuenta(resto, idMesa);
+				
+			}
+		});
+		btnCrearCuenta.setBounds(12, 59, 130, 25);
+		contentPane.add(btnCrearCuenta);
 	}
 	
 	public void setEstadoMesa(boolean ocupado){
