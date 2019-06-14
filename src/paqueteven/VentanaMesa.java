@@ -12,6 +12,9 @@ import javax.swing.UIManager;
 import javax.swing.border.EmptyBorder;
 
 import clases.Restaurante;
+import javax.swing.JTable;
+import javax.swing.SwingConstants;
+import java.awt.Cursor;
 
 /**
  * Clase de la Ventana de la MESA
@@ -52,13 +55,14 @@ public class VentanaMesa extends JFrame {
 	 * Create the frame.
 	 */
 	private String estadoMesa;
+	private JTable tabla_pedido;
 	public VentanaMesa(Restaurante resto, int idMesa, String usuarioIngresado) {
 		
 		setEstadoMesa(resto.mesaIsOcupada(idMesa));
 		
 		
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		setBounds(100, 100, 450, 300);
+		setBounds(100, 100, 600, 500);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -68,17 +72,29 @@ public class VentanaMesa extends JFrame {
 		label.setBounds(6, 6, 136, 16);
 		contentPane.add(label);
 	
+		if ( resto.mesaIsOcupada(idMesa)){
+			
+			
+			
+			
+			
+		}
+		else{
+			
+			JButton btnCrearCuenta = new JButton("CREAR CUENTA");
+			btnCrearCuenta.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					VentanaCrearCuenta vencuenta = new VentanaCrearCuenta(resto, idMesa);
+					vencuenta.setVisible(true);
+					
+				}
+			});
+			btnCrearCuenta.setBounds(12, 59, 130, 25);
+			contentPane.add(btnCrearCuenta);
+			
+		}
 		
-		JButton btnCrearCuenta = new JButton("CREAR CUENTA");
-		btnCrearCuenta.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				VentanaCrearCuenta vencuenta = new VentanaCrearCuenta(resto, idMesa);
-				vencuenta.setVisible(true);
-				
-			}
-		});
-		btnCrearCuenta.setBounds(12, 59, 130, 25);
-		contentPane.add(btnCrearCuenta);
+		
 		
 		
 		
@@ -87,16 +103,52 @@ public class VentanaMesa extends JFrame {
 		btnGuardar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				dispose();
-				Principal p = new Principal(usuarioIngresado);
-				p.setVisible(true);
 			
 			}
 		});
-		btnGuardar.setBounds(165, 232, 117, 29);
+		btnGuardar.setBounds(250, 401, 117, 29);
 		contentPane.add(btnGuardar);
+		
+		tabla_pedido = new JTable(5, 5);
+		tabla_pedido.setBounds(51, 100, 339, 280);
+		contentPane.add(tabla_pedido);
+		
+		JButton btnAgregarProducto = new JButton("Agregar Producto");
+		btnAgregarProducto.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+		btnAgregarProducto.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				VentanaMesa_AgregarProducto ventanaagregar = new VentanaMesa_AgregarProducto(resto, idMesa);
+				ventanaagregar.setVisible(true);
+				
+			}
+		});
+		btnAgregarProducto.setBounds(442, 95, 146, 25);
+		contentPane.add(btnAgregarProducto);
+		
+		JButton btnCerrarCuenta = new JButton("Cerrar Cuenta");
+		btnCerrarCuenta.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				resto.eliminarCuentaActiva(idMesa);
+			}
+		});
+		btnCerrarCuenta.setBounds(442, 148, 146, 25);
+		contentPane.add(btnCerrarCuenta);
+		
+		
+		
+
 		
 	}
 	
+	private String [] nombresColumnas= {"Producto", "Cantidad", "Precio Unitario", "Importe"};
+	
+	private Object [] [] datosFila= {
+			{
+				""
+			}
+			
+	};
 	public void setEstadoMesa(boolean ocupado){
 		if(ocupado){
 			this.estadoMesa="MESA OCUPADA";

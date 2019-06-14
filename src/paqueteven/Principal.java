@@ -97,6 +97,9 @@ public class Principal extends JFrame {
 		}
 		
 		restoprueba.crearMozo("JUAN", "PEREZ", 1);
+		
+		restoprueba.agregarProducto(1, "Fideos", 100, "Pastas", true);
+		restoprueba.agregarProducto(2, "Honey", 90, "Cerveza", 500);
 	
 		
 		
@@ -227,7 +230,6 @@ public class Principal extends JFrame {
 	mesa1.addMouseListener(new MouseAdapter() {		
 		@Override		
 		public void mouseClicked(MouseEvent e) {
-			dispose();
 			VentanaMesa mesa = new VentanaMesa(restoprueba, 1, usuarioIngresado);		
 			mesa.setTitle("MESA "+ "1");		
 			mesa.setVisible(true);		
@@ -251,7 +253,6 @@ public class Principal extends JFrame {
 		@Override		
 		public void mouseClicked(MouseEvent e) {		
 			VentanaMesa mesa2 = new VentanaMesa(restoprueba,2, usuarioIngresado);
-			dispose();
 			mesa2.setTitle("MESA "+ "2");		
 			mesa2.setVisible(true);		
 		}		
