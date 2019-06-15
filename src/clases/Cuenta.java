@@ -67,6 +67,18 @@ public class Cuenta {
 		}
 		return flag;
 	}
+	/**
+	 * Devuelve la cantidad de prodcitos de ese id en paricular
+	 * @param idProducto
+	 * Producto a averiguar
+	 * @return
+	 * la cantidad de ese producto en la cuenta
+	 */
+	public int getCantidadProductoPedido (int idProducto) {
+		
+		return listaProductos.get(idProducto);
+		
+	}
 	
 	
 	private String ponerFecha()

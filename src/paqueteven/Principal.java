@@ -218,7 +218,7 @@ public class Principal extends JFrame {
 	
 	//  DECLARACIONES
 	
-	restoprueba.crearCuentaActiva(1, 2);
+	
 	
 	///////////BOTONES MESAS ////////////////
 	

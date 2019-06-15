@@ -1,6 +1,10 @@
 package clases;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
+
+import com.sun.xml.internal.bind.v2.runtime.unmarshaller.XsiNilLoader.Array;
 
 /**
  * Clase Restaurante
@@ -57,6 +61,7 @@ public class Restaurante {
 
 	/**
 	 * Obtiene el nombre del Restaurante
+	 * 
 	 * @return String con el nombre del restaurante
 	 */
 	public String getNombre() {
@@ -65,8 +70,9 @@ public class Restaurante {
 
 	/**
 	 * Setea el nombre del Restaurante
+	 * 
 	 * @param nombre
-	 * Recibie el nombre a setear
+	 *            Recibie el nombre a setear
 	 */
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
@@ -74,21 +80,23 @@ public class Restaurante {
 
 	/**
 	 * Obtiene la direccion del Restaurante
+	 * 
 	 * @return String con la direccion del Restaurante
 	 */
 	public String getDireccion() {
 		return direccion;
 	}
+
 	/**
 	 * Setea la direccion del Restaurante
+	 * 
 	 * @param direccion
-	 * Recibe la direccion a setear
+	 *            Recibe la direccion a setear
 	 */
 
 	public void setDireccion(String direccion) {
 		this.direccion = direccion;
 	}
-
 
 	//////////////////////////////////////////////////////
 	//////////////////////////////////////////////////////
@@ -123,109 +131,167 @@ public class Restaurante {
 	}
 
 	/**
-	 * Elimina de la lista cuentaAtivas y la guarda en HistorialdeCuentas. 
-	 * @param idMesa Id de la mesa a borrar.
-	 * @return true si se elimino correctamente. False si no se elimino o hubo algun error.
+	 * Elimina de la lista cuentaAtivas y la guarda en HistorialdeCuentas.
+	 * 
+	 * @param idMesa
+	 *            Id de la mesa a borrar.
+	 * @return true si se elimino correctamente. False si no se elimino o hubo
+	 *         algun error.
 	 * 
 	 */
 	public boolean eliminarCuentaActiva(int idMesa) {
 		boolean flag = false;
-		
-		
-		
-		for(int i=0;i<cuentasActivas.tamanioLista();i++){
-			//busca la mesa a eliminar
-			if(cuentasActivas.getindice(i).getIdMesa()==idMesa){
-				
+
+		for (int i = 0; i < cuentasActivas.tamanioLista(); i++) {
+			// busca la mesa a eliminar
+			if (cuentasActivas.getindice(i).getIdMesa() == idMesa) {
+
 				creaCuentaEnHistorialCuentas(idMesa);
 				listadoDeMesas.buscar(idMesa).desocuparMesa();
 				cuentasActivas.borrar(cuentasActivas.getindice(i));
-				flag=true;
-			}
-		}
-		return flag;
-	}
-	
-	/**
-	 * Agrega una cuenta en histotial de cuentas.
-	 * @param idMesa
-	 * @return
-	 */
-	public boolean creaCuentaEnHistorialCuentas(int idMesa){
-		boolean flag=false;
-	
-		if(historialDeCuentas.agregar(cuentasActivas.getindice(devuelveIndiceCuenta(idMesa))))
-		{
-			
-			flag=true;
-		}				
-		return flag;
-		
-	}
-	
-	public double calcularTotal(int idMesa)
-	{
-		Cuenta cuenta = null;
-		double total = 0;
-		if (compruebaCuenta(idMesa))
-		{
-			cuenta = cuentasActivas.getindice(devuelveIndiceCuenta(idMesa)) ;
-		    HashMap<Integer, Integer> listaC = cuenta.devolverLista();
-		    for (HashMap.Entry<Integer, Integer> entry : listaC.entrySet())  
-		    	total += (listadoDeProductos.buscar(entry.getKey()).getPrecioProducto())*entry.getValue();
-	   	
-		    	
-		}	
-		    
-			return total;
-	}
-	
-	
-	public String listarCuentasActivas(){
-		return cuentasActivas.listar();
-	}
-	
-	public String listarHistorialCuentas(){
-		return historialDeCuentas.listar();
-	}
-	
-	
-	
-	public int devuelveIndiceCuenta(int idMesa){
-		//Cuenta copia=new Cuenta(0, 0);
-		int index = 0;
-		for(int i=0;i<cuentasActivas.tamanioLista();i++){
-			if(cuentasActivas.getindice(i).getIdMesa()==idMesa){
-				index = i;
-			}
-		}
-		
-		return index;
-	}
-	
-	public boolean compruebaCuenta(int idMesa){
-		boolean flag = false;
-		for(int i=0;i<cuentasActivas.tamanioLista();i++){
-			if(cuentasActivas.getindice(i).getIdMesa()==idMesa){
 				flag = true;
 			}
 		}
-		
 		return flag;
 	}
-	
-	public boolean agregaProductoAlaCuenta(int idMesa,int idProducto, int cant)
-	{
+
+	/**
+	 * Agrega una cuenta en histotial de cuentas.
+	 * 
+	 * @param idMesa
+	 * @return
+	 */
+	public boolean creaCuentaEnHistorialCuentas(int idMesa) {
 		boolean flag = false;
-		for(int i=0;i<cuentasActivas.tamanioLista();i++)
-			if(cuentasActivas.getindice(i).getIdMesa() == idMesa)
-			{
+
+		if (historialDeCuentas.agregar(cuentasActivas.getindice(devuelveIndiceCuenta(idMesa)))) {
+
+			flag = true;
+		}
+		return flag;
+
+	}
+
+	public double calcularTotal(int idMesa) {
+		Cuenta cuenta = null;
+		double total = 0;
+		if (compruebaCuenta(idMesa)) {
+			cuenta = devuelveCuenta(idMesa);
+			HashMap<Integer, Integer> listaC = cuenta.devolverLista();
+			for (HashMap.Entry<Integer, Integer> entry : listaC.entrySet())
+				total += (listadoDeProductos.buscar(entry.getKey()).getPrecioProducto()) * entry.getValue();
+		}
+
+		return total;
+	}
+
+	public Producto[] devuelveProductosEnCuenta(Cuenta c) {
+		Producto [] productosEnCuenta = null;
+		int i =0;
+
+		HashMap<Integer, Integer> listaC = c.devolverLista();
+		for (HashMap.Entry<Integer, Integer> entry : listaC.entrySet()) {
+			productosEnCuenta[i]=(listadoDeProductos.buscar(entry.getKey()));
+			i++;
+		}
+
+		return productosEnCuenta;
+	}
+
+	public double calcularImporte(int cantidad, double precio) {
+		return cantidad * precio;
+	}
+
+	public void devuelveArrayDoble(Cuenta c) {
+		Producto [] productosEnCuenta = devuelveProductosEnCuenta(c);
+		
+		Object [] [] ListadoProductosPedidos = null;
+	
+		for ( Producto p : productosEnCuenta){
+			
+			for (int i=0; i< ListadoProductosPedidos.length;i++){
+				
+				for (int z=0; z<ListadoProductosPedidos[i].length;z++ ){
+					
+					//ListadoProductosPedidos[i][z] = 
+						
+						
+						//{p.getNombreProducto(),c.getCantidadProductoPedido(p.getIdProducto()),p.getPrecioProducto(), calcularImporte(c.getCantidadProductoPedido(idProducto), p.getPrecioProducto())};
+					
+				}
+				
+				
+			}
+
+			
+		}
+		
+		
+		
+		
+	}
+
+	public String listarCuentasActivas() {
+		return cuentasActivas.listar();
+	}
+
+	public String listarHistorialCuentas() {
+		return historialDeCuentas.listar();
+	}
+
+	public int devuelveIndiceCuenta(int idMesa) {
+		// Cuenta copia=new Cuenta(0, 0);
+		int index = 0;
+		for (int i = 0; i < cuentasActivas.tamanioLista(); i++) {
+			if (cuentasActivas.getindice(i).getIdMesa() == idMesa) {
+				index = i;
+			}
+		}
+
+		return index;
+	}
+
+	public BaseDatosAL<Cuenta> devuelveListadoCuentasActivas() {
+		return cuentasActivas;
+
+	}
+
+	public Cuenta devuelveCuenta(int idMesa) {
+		return cuentasActivas.getindice(devuelveIndiceCuenta(idMesa));
+	}
+
+	public String devuelveNombreProducto(int idProducto) {
+		Producto p = null;
+		p = listadoDeProductos.buscar(idProducto);
+		return p.getNombreProducto();
+	}
+
+	public Producto devuelveProducto(int idProducto) {
+
+		return listadoDeProductos.buscar(idProducto);
+
+	}
+
+	public boolean compruebaCuenta(int idMesa) {
+		boolean flag = false;
+		for (int i = 0; i < cuentasActivas.tamanioLista(); i++) {
+			if (cuentasActivas.getindice(i).getIdMesa() == idMesa) {
+				flag = true;
+			}
+		}
+
+		return flag;
+	}
+
+	public boolean agregaProductoAlaCuenta(int idMesa, int idProducto, int cant) {
+		boolean flag = false;
+		for (int i = 0; i < cuentasActivas.tamanioLista(); i++)
+			if (cuentasActivas.getindice(i).getIdMesa() == idMesa) {
 				cuentasActivas.getindice(i).ponerEnCuenta(idProducto, cant);
 				flag = true;
 			}
 		return flag;
 	}
-	
 
 	//////////////////////////////////////////////////////
 	//////////////////////////////////////////////////////
@@ -255,15 +321,15 @@ public class Restaurante {
 	public String listarMozos() {
 		return listadoDeMozos.listar();
 	}
-	
-	public boolean compruebaMozo(int idMozo){
+
+	public boolean compruebaMozo(int idMozo) {
 		boolean flag = false;
-		for(int i=0;i<listadoDeMozos.tamanioLista();i++){
-			if(listadoDeMozos.getindice(i).getIdMozo()==idMozo){
+		for (int i = 0; i < listadoDeMozos.tamanioLista(); i++) {
+			if (listadoDeMozos.getindice(i).getIdMozo() == idMozo) {
 				flag = true;
 			}
 		}
-		
+
 		return flag;
 	}
 
@@ -275,19 +341,20 @@ public class Restaurante {
 
 	/**
 	 * Lista las mesas del Restaurante
+	 * 
 	 * @return devuelve un string con las "MESAS".
 	 */
 	public String listarMesas() {
-		
+
 		return listadoDeMesas.listar();
 	}
-	
+
 	/**
 	 * Crea y Agrega una mesa al Restaurante.
+	 * 
 	 * @param nromesa
-	 * Recibe el numero de mesa.
-	 * @return
-	 * devuelve 
+	 *            Recibe el numero de mesa.
+	 * @return devuelve
 	 */
 
 	public boolean agregarMesa(int nromesa) {
@@ -308,16 +375,16 @@ public class Restaurante {
 		}
 		return flag;
 	}
-	
-	public Mesa devuelveMesa(int idMesa){
-		return listadoDeMesas.buscar((Integer)idMesa);
+
+	public Mesa devuelveMesa(int idMesa) {
+		return listadoDeMesas.buscar((Integer) idMesa);
 	}
-	
-	public boolean mesaIsOcupada(int idMesa){
-		boolean ocupado=false;
-		if(listadoDeMesas.existe(idMesa)){
-			ocupado=listadoDeMesas.buscar(idMesa).isOcupadoONO();
-			
+
+	public boolean mesaIsOcupada(int idMesa) {
+		boolean ocupado = false;
+		if (listadoDeMesas.existe(idMesa)) {
+			ocupado = listadoDeMesas.buscar(idMesa).isOcupadoONO();
+
 		}
 		return ocupado;
 	}
@@ -328,52 +395,54 @@ public class Restaurante {
 	//////////////////////////////////////////////////////
 	//////////////////////////////////////////////////////
 	public String listarProductos() {
-		
+
 		return listadoDeProductos.listar();
 	}
-	
+
 	public String listarComidas() {
 		StringBuilder str = new StringBuilder();
-	    HashMap<Integer, Producto> listaC = listadoDeProductos.devolverLista();
-	    for (HashMap.Entry<Integer, Producto> entry : listaC.entrySet())  
-	    	if(entry.getValue() instanceof Comida)
-	    		str.append(entry.toString()+" \r\n");
-	    		
-	    return str.toString();
-		}
-	
-	public String listarBebidas() {
-	StringBuilder str = new StringBuilder();
-    HashMap<Integer, Producto> listaC = listadoDeProductos.devolverLista();
-    for (HashMap.Entry<Integer, Producto> entry : listaC.entrySet())  
-    	if(entry.getValue() instanceof Bebida)
-    		str.append(entry.toString()+" \r\n");
-    		
-    return str.toString();
+		HashMap<Integer, Producto> listaC = listadoDeProductos.devolverLista();
+		for (HashMap.Entry<Integer, Producto> entry : listaC.entrySet())
+			if (entry.getValue() instanceof Comida)
+				str.append(entry.toString() + " \r\n");
+
+		return str.toString();
 	}
-    
+
+	public String listarBebidas() {
+		StringBuilder str = new StringBuilder();
+		HashMap<Integer, Producto> listaC = listadoDeProductos.devolverLista();
+		for (HashMap.Entry<Integer, Producto> entry : listaC.entrySet())
+			if (entry.getValue() instanceof Bebida)
+				str.append(entry.toString() + " \r\n");
+
+		return str.toString();
+	}
+
 	/**
- * Crea y agrega comida a la listaDeProductos
- * @param idProducto
- * @param nombreProducto
- * @param precioProducto
- * @param tipoDePlato
- * @param caliente
- * @return true si se agrego y false si no.
- */
-	public boolean agregarProducto(int idProducto, String nombreProducto, double precioProducto, String tipoDePlato, boolean caliente)
-	{
+	 * Crea y agrega comida a la listaDeProductos
+	 * 
+	 * @param idProducto
+	 * @param nombreProducto
+	 * @param precioProducto
+	 * @param tipoDePlato
+	 * @param caliente
+	 * @return true si se agrego y false si no.
+	 */
+	public boolean agregarProducto(int idProducto, String nombreProducto, double precioProducto, String tipoDePlato,
+			boolean caliente) {
 		boolean flag = false;
-		Comida comida = new Comida(idProducto,nombreProducto,precioProducto,tipoDePlato,caliente);
-		if(!listadoDeProductos.existe(comida.getIdProducto()))
-		{
+		Comida comida = new Comida(idProducto, nombreProducto, precioProducto, tipoDePlato, caliente);
+		if (!listadoDeProductos.existe(comida.getIdProducto())) {
 			listadoDeProductos.agregar(comida.getIdProducto(), comida);
 			flag = true;
 		}
-		return flag;	
+		return flag;
 	}
+
 	/**
 	 * Crea y agrega bebida a la listaDeProductos
+	 * 
 	 * @param idProducto
 	 * @param nombreProducto
 	 * @param precioProducto
@@ -381,16 +450,15 @@ public class Restaurante {
 	 * @param tamanioML
 	 * @return true si se agrego y false si no.
 	 */
-	public boolean agregarProducto(int idProducto, String nombreProducto, double precioProducto, String tipoDeBebida, int tamanioML)
-	{
+	public boolean agregarProducto(int idProducto, String nombreProducto, double precioProducto, String tipoDeBebida,
+			int tamanioML) {
 		boolean flag = false;
-		Bebida bebida = new Bebida(idProducto,nombreProducto,precioProducto,tipoDeBebida,tamanioML);
-		if(!listadoDeProductos.existe(bebida.getIdProducto()))
-		{
+		Bebida bebida = new Bebida(idProducto, nombreProducto, precioProducto, tipoDeBebida, tamanioML);
+		if (!listadoDeProductos.existe(bebida.getIdProducto())) {
 			listadoDeProductos.agregar(bebida.getIdProducto(), bebida);
 			flag = true;
 		}
-		return flag;	
+		return flag;
 	}
 
 	@Override
