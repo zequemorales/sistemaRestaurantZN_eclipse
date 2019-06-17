@@ -1,5 +1,7 @@
 package clases;
 
+import org.json.JSONArray;
+
 public class Programain {
 
 	public static void main (String[] args) {
@@ -67,12 +69,20 @@ public class Programain {
 		restoprueba.agregaProductoAlaCuenta(1, 1, 2);
 		restoprueba.agregaProductoAlaCuenta(1, 2,5);
 		System.out.println(restoprueba.calcularTotal(1));
-		restoprueba.eliminarCuentaActiva(1);
+		//restoprueba.eliminarCuentaActiva(1);
 		System.out.println("HISTORIAL CUENTAS "+restoprueba.listarHistorialCuentas());
 		System.out.println("CUENTAS ACTIVAS "+restoprueba.listarCuentasActivas());
 		System.out.println("Bebidas\r\n"+restoprueba.listarBebidas());
 		System.out.println("Comidas \r\n"+restoprueba.listarComidas());
-
+		System.out.println("Indice Cuenta "+ restoprueba.devuelveIndiceCuenta(1));
+		Cuenta cuenta = new Cuenta(1,1);
+		cuenta.ponerEnCuenta(1, 1);
+		cuenta.ponerEnCuenta(2, 2);
+		cuenta.ponerEnCuenta(3, 3);
+		cuenta.ponerEnCuenta(4, 4);
+		JSONArray jsonA = new JSONArray();
+		jsonA.put(cuenta.getJson());
+		JsonUtiles.grabar(jsonA);
 	}
 
 }

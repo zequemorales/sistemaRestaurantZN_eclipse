@@ -4,6 +4,10 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 public class Cuenta {
 	private HashMap<Integer, Integer>listaProductos;
 	private String fecha;
@@ -80,6 +84,31 @@ public class Cuenta {
 		
 	}
 	
+	public JSONObject getJson()
+	{
+		JSONObject jsonObject = new JSONObject();
+		try {
+			jsonObject.put("Fecha", getFecha());
+			jsonObject.put("IdMesa", getIdMesa());
+			jsonObject.put("IdMozo", getIdMozo());
+			JSONArray jsonArray = new JSONArray();
+			HashMap<Integer, Integer> listaC = listaProductos;
+			for (HashMap.Entry<Integer, Integer> entry : listaC.entrySet())
+			{
+				jsonArray.put(entry.getKey());
+				jsonArray.put(entry.getValue());
+			}
+				
+			jsonObject.put("Cuenta",jsonArray);
+		} catch (JSONException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		
+		return jsonObject;
+		
+	}
 	
 	private String ponerFecha()
 	{
