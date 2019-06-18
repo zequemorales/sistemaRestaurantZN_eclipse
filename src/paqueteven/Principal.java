@@ -271,7 +271,7 @@ public class Principal extends JFrame {
 	
 	
 		
-	int tiempoEnMilisegundos=1000;
+	int tiempoEnMilisegundos=3000;
 	Timer timer = new Timer (tiempoEnMilisegundos, new ActionListener () 
 	{ 
 	    public void actionPerformed(ActionEvent e) 
