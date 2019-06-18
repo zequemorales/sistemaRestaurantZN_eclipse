@@ -231,16 +231,6 @@ public class Principal extends JFrame {
 	
 	contentPane.setLayout(new GridLayout(0, 3, 200, 10));
 	
-	JButton botonActualizar = new JButton("Actualizar");
-	botonActualizar.addActionListener(new ActionListener() {
-		public void actionPerformed(ActionEvent e) {
-			
-			contentPane.add(botonActualizar);
-			
-			
-		}
-	});
-	contentPane.add(botonActualizar);
 	
 	
 	crearBotonesMesaLista(restoprueba, usuarioIngresado);
