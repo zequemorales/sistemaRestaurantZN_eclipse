@@ -1,10 +1,17 @@
 package clases;
 
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import com.sun.xml.internal.bind.v2.runtime.unmarshaller.XsiNilLoader.Array;
+
+import jdk.nashorn.internal.parser.JSONParser;
 
 /**
  * Clase Restaurante
@@ -171,6 +178,16 @@ public class Restaurante {
 		return flag;
 
 	}
+	
+	//Necesario para pasar de archivos a historial 
+	public boolean creaCuentaEnHistorialCuentas(Cuenta cuenta) {
+		boolean flag = false;
+
+		if(historialDeCuentas.agregar(cuenta)); 
+			flag = true;
+		return flag;
+
+	}
 
 	public double calcularTotal(int idMesa) {
 		Cuenta cuenta = null;
@@ -185,13 +202,13 @@ public class Restaurante {
 		return total;
 	}
 
-	public Producto[] devuelveProductosEnCuenta(Cuenta c) {
-		Producto [] productosEnCuenta = null;
+	public ArrayList devuelveProductosEnCuenta(Cuenta c) {
+		ArrayList productosEnCuenta = new ArrayList();
 		int i =0;
 
 		HashMap<Integer, Integer> listaC = c.devolverLista();
 		for (HashMap.Entry<Integer, Integer> entry : listaC.entrySet()) {
-			productosEnCuenta[i]=(listadoDeProductos.buscar(entry.getKey()));
+			productosEnCuenta.add(listadoDeProductos.buscar(entry.getKey()));
 			i++;
 		}
 
@@ -202,34 +219,7 @@ public class Restaurante {
 		return cantidad * precio;
 	}
 
-	public void devuelveArrayDoble(Cuenta c) {
-		Producto [] productosEnCuenta = devuelveProductosEnCuenta(c);
-		
-		Object [] [] ListadoProductosPedidos = null;
 	
-		for ( Producto p : productosEnCuenta){
-			
-			for (int i=0; i< ListadoProductosPedidos.length;i++){
-				
-				for (int z=0; z<ListadoProductosPedidos[i].length;z++ ){
-					
-					//ListadoProductosPedidos[i][z] = 
-						
-						
-						//{p.getNombreProducto(),c.getCantidadProductoPedido(p.getIdProducto()),p.getPrecioProducto(), calcularImporte(c.getCantidadProductoPedido(idProducto), p.getPrecioProducto())};
-					
-				}
-				
-				
-			}
-
-			
-		}
-		
-		
-		
-		
-	}
 
 	public String listarCuentasActivas() {
 		return cuentasActivas.listar();
@@ -467,4 +457,51 @@ public class Restaurante {
 		return "El establecimiento es :" + getNombre() + " y se encuenta en : " + getDireccion()
 				+ " \r\n Vengan con su familia Los Esperamos";
 	}
+	
+	//////////////////////////////////////////////////////
+	//////////////////////////////////////////////////////
+	/////////////////// JSON /////////////////////////////
+	//////////////////////////////////////////////////////
+	//////////////////////////////////////////////////////
+	
+	/**
+	 * Lee un Archivo JSON y lo agrega al Historial de Cuentas.
+	 * @return
+	 */
+	public boolean JsonReader ()
+	{	boolean flag = false;
+
+		JSONArray array;
+		try {
+			array = new JSONArray(JsonUtiles.leer());
+			Cuenta cuenta = new Cuenta();
+			for (int i = 0;i<array.length();i++)
+			{
+				JSONObject jsonObject = array.getJSONObject(i);
+				cuenta.setIdMesa(jsonObject.getInt("IdMesa"));
+				cuenta.setIdMozo(jsonObject.getInt("IdMozo"));
+				cuenta.setFecha(jsonObject.getString("Fecha"));
+				JSONArray listaCuenta = jsonObject.getJSONArray("Cuenta");
+				for(int x = 0 ; x<listaCuenta.length();x++)
+				{
+					JSONObject key = listaCuenta.getJSONObject(x);
+					JSONObject value = listaCuenta.getJSONObject(x);
+					int key_cuenta = key.getInt("Key");
+					int value_Cuenta = value.getInt("Value");
+					cuenta.ponerEnCuenta(key_cuenta,value_Cuenta);
+				}
+				//agregar cuenta a historial cuenta.
+				creaCuentaEnHistorialCuentas(cuenta);
+				
+			}
+		} catch (JSONException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return flag;
+	}
+		
+		
 }
+

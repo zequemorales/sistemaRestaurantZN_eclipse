@@ -21,6 +21,14 @@ public class Cuenta {
 		setFecha(ponerFecha());
 	}
 	
+	public Cuenta()
+	{
+		listaProductos = new HashMap<Integer, Integer>();
+		setIdMesa(0);
+		setIdMozo(0);
+		setFecha(ponerFecha());
+	}
+	
 	
 	public int getIdMesa() {
 		return idMesa;
@@ -41,7 +49,7 @@ public class Cuenta {
 		return fecha;
 	}
 	
-	private void setFecha(String fechaNew)
+	public void setFecha(String fechaNew)
 	{
 		fecha = fechaNew;
 	}
@@ -95,10 +103,15 @@ public class Cuenta {
 			HashMap<Integer, Integer> listaC = listaProductos;
 			for (HashMap.Entry<Integer, Integer> entry : listaC.entrySet())
 			{
-				jsonArray.put(entry.getKey());
-				jsonArray.put(entry.getValue());
-			}
 				
+				JSONObject jsonObjectLista = new JSONObject();
+				jsonObjectLista.put("Key",entry.getKey());
+				jsonObjectLista.put("Value",entry.getValue());
+				System.out.println("Key "+entry.getKey()+ " Value "+ entry.getValue() +"\r\n");
+				
+				jsonArray.put(jsonObjectLista);
+			}
+			
 			jsonObject.put("Cuenta",jsonArray);
 		} catch (JSONException e) {
 			// TODO Auto-generated catch block
