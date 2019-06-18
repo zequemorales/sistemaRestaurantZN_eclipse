@@ -44,7 +44,7 @@ public class VentanaCrearCuenta extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public VentanaCrearCuenta(Restaurante restoprueba, int idMesa) {
+	public VentanaCrearCuenta(String usuarioIngresado, Restaurante restoprueba, int idMesa) {
 		Toolkit mipantalla= Toolkit.getDefaultToolkit();
 		
 		Dimension tamanioPantalla = mipantalla.getScreenSize();
@@ -83,6 +83,8 @@ public class VentanaCrearCuenta extends JFrame {
 					restoprueba.crearCuentaActiva(idMozoIngresado, idMesa);
 					System.out.println(restoprueba.listarCuentasActivas());
 					dispose();
+					VentanaMesa venMesa= new VentanaMesa(restoprueba, idMesa, usuarioIngresado);
+					venMesa.setVisible(true);
 				}
 				else
 				{

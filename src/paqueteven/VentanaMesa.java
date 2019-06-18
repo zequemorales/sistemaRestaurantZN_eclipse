@@ -1,4 +1,4 @@
-package paqueteven;
+ package paqueteven;
 
 import java.awt.EventQueue;
 import java.awt.event.ActionEvent;
@@ -18,6 +18,8 @@ import clases.Cuenta;
 import clases.Restaurante;
 import javax.swing.JTable;
 import javax.swing.SwingConstants;
+import javax.swing.SwingUtilities;
+
 import java.awt.Cursor;
 
 /**
@@ -38,25 +40,25 @@ public class VentanaMesa extends JFrame {
 	 * 
 	 * @param args
 	 * @param ocupado
-	 */
-	public static void main(String[] args, Restaurante resto, int idMesa, String usuarioIngresado) {
-		try {
-			UIManager.setLookAndFeel("javax.swing.plaf.metal.MetalLookAndFeel");
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					 VentanaMesa frame = new VentanaMesa(resto, idMesa, usuarioIngresado);
-					frame.setVisible(true);
-
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
+//	 */
+//	public static void main(String[] args, Restaurante resto, int idMesa, String usuarioIngresado) {
+//		try {
+//			UIManager.setLookAndFeel("javax.swing.plaf.metal.MetalLookAndFeel");
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//		}
+//		EventQueue.invokeLater(new Runnable() {
+//			public void run() {
+//				try {
+//					 VentanaMesa frame = new VentanaMesa(resto, idMesa, usuarioIngresado);
+//					frame.setVisible(true);
+//
+//				} catch (Exception e) {
+//					e.printStackTrace();
+//				}
+//			}
+//		});
+//	}
 
 	/**
 	 * Create the frame.
@@ -64,7 +66,9 @@ public class VentanaMesa extends JFrame {
 	private String estadoMesa;
 	private JTable tabla_pedidos;
 
-	public VentanaMesa(Restaurante resto, int idMesa, String usuarioIngresado) {
+	public VentanaMesa( Restaurante resto, int idMesa, String usuarioIngresado) {
+		
+		setTitle("MESA "+ idMesa);
 
 		setEstadoMesa(resto.mesaIsOcupada(idMesa));
 
@@ -86,10 +90,11 @@ public class VentanaMesa extends JFrame {
 			};
 			
 			tabla_pedidos = new JTable(model);
+			tabla_pedidos.setAutoResizeMode(1);
 			tabla_pedidos.setBounds(47, 54, 306, 205);
 			contentPane.add(tabla_pedidos);
 		
-			
+		
 			
 			
 			
@@ -126,7 +131,8 @@ public class VentanaMesa extends JFrame {
 			JButton btnCrearCuenta = new JButton("CREAR CUENTA");
 			btnCrearCuenta.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
-					VentanaCrearCuenta vencuenta = new VentanaCrearCuenta(resto, idMesa);
+					VentanaCrearCuenta vencuenta = new VentanaCrearCuenta(usuarioIngresado,resto, idMesa);
+					dispose();
 					vencuenta.setVisible(true);
 
 				}
@@ -136,14 +142,18 @@ public class VentanaMesa extends JFrame {
 
 		}
 
-		JButton btnGuardar = new JButton("Guardar");
+		JButton btnGuardar = new JButton("Ver Plano");
+		
+	
+		
+		
+		
 		btnGuardar.setFocusPainted(false);
 		btnGuardar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				dispose();
-
 			}
-		});
+		}); 
 		btnGuardar.setBounds(250, 401, 117, 29);
 		contentPane.add(btnGuardar);
 		
@@ -157,7 +167,7 @@ public class VentanaMesa extends JFrame {
 		} else {
 			this.estadoMesa = "MESA VACIA";
 		}
-
+		  
 	}
 
 	public String getEstadoMesa() {

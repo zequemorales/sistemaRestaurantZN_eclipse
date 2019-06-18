@@ -18,8 +18,9 @@ class MyButton extends JButton {
 
    
 
-	public MyButton(String text) {
-		 super(text); 
+	public MyButton(Integer numeroMesa) {
+		
+		 super(numeroMesa.toString()); 
 	     super.setContentAreaFilled(false); 
 	  
 	     
