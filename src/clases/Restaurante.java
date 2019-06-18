@@ -1,5 +1,6 @@
 package clases;
 
+import java.awt.Component;
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -329,6 +330,18 @@ public class Restaurante {
 	//////////////////////////////////////////////////////
 	//////////////////////////////////////////////////////
 
+	public ArrayList devuelveArrayMesas(){
+		
+		ArrayList mesas = new ArrayList();
+		int i =0;
+
+		HashMap<Integer, Mesa> listamesas = listadoDeMesas.devolverLista();
+		for (HashMap.Entry<Integer, Mesa> entry : listamesas.entrySet()) {
+			mesas.add(listadoDeMesas.buscar(entry.getKey()));
+			i++;
+		}
+		return mesas;
+	}
 	/**
 	 * Lista las mesas del Restaurante
 	 * 
@@ -501,7 +514,8 @@ public class Restaurante {
 		
 		return flag;
 	}
-		
+
+
 		
 }
 

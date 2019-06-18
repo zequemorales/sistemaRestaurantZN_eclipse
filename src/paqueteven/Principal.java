@@ -30,6 +30,7 @@ import java.awt.Toolkit;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.SwingConstants;
+import javax.swing.Timer;
 import javax.swing.UIManager;
 import java.awt.Button;
 import javax.swing.JLabel;
@@ -37,7 +38,10 @@ import com.jgoodies.forms.factories.DefaultComponentFactory;
 import java.awt.event.FocusAdapter;
 import java.awt.event.FocusEvent;
 import java.awt.event.MouseMotionAdapter;
+import java.util.ArrayList;
+
 import paqueteven.MyButton;
+import java.awt.GridLayout;
 
 /**
  * Clase de la ventana principal del restaurante. Muestra el plano del local.
@@ -91,6 +95,8 @@ public class Principal extends JFrame {
 		String direccionRest = "CONSTITUCION 5500";
 		
 		Restaurante restoprueba=new Restaurante(nombreRest, direccionRest);
+		
+	
 		
 		for(int i=0; i<14; i++){
 			restoprueba.agregarMesa(i+1);
@@ -214,7 +220,6 @@ public class Principal extends JFrame {
 	//////////// PANEL //////////////
 	contentPane = new JPanel();
 	setContentPane(contentPane);
-	contentPane.setLayout(null);
 	
 	//  DECLARACIONES
 	
@@ -223,51 +228,68 @@ public class Principal extends JFrame {
 	///////////BOTONES MESAS ////////////////
 	
 	
-	MyButton mesa1 = new MyButton("1");
-	setPropiedadesBotonMesa(mesa1, restoprueba.mesaIsOcupada(1), usuarioIngresado);
-	mesa1.setBounds(12, 54, 50, 50);
-	mesa1.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-	mesa1.addMouseListener(new MouseAdapter() {		
-		@Override		
-		public void mouseClicked(MouseEvent e) {
-			VentanaMesa mesa = new VentanaMesa(restoprueba, 1, usuarioIngresado);		
-			mesa.setTitle("MESA "+ "1");		
-			mesa.setVisible(true);		
-		}		
-	});	
 	
-	contentPane.add(mesa1);
+	contentPane.setLayout(new GridLayout(0, 3, 200, 10));
 	
-	MyButton mesa2 = new MyButton("2");
-	mesa2.setPressedBackgroundColor(Color.BLACK);
-	mesa2.setPreferredSize(new Dimension(50, 50));
-	mesa2.setMinimumSize(new Dimension(50, 50));
-	mesa2.setMaximumSize(new Dimension(50, 50));
-	mesa2.setHoverBackgroundColor(new Color(208, 208, 208));
-	mesa2.setHorizontalTextPosition(SwingConstants.CENTER);
-	mesa2.setForeground(Color.BLACK);
-	mesa2.setFocusPainted(false);
-	mesa2.setBorder(null);
-	mesa2.setBounds(12, 116, 50, 50);
-	mesa2.addMouseListener(new MouseAdapter() {		
-		@Override		
-		public void mouseClicked(MouseEvent e) {		
-			VentanaMesa mesa2 = new VentanaMesa(restoprueba,2, usuarioIngresado);
-			mesa2.setTitle("MESA "+ "2");		
-			mesa2.setVisible(true);		
-		}		
-	});	
-	setColorMesa(restoprueba.mesaIsOcupada(2), mesa2);
-	contentPane.add(mesa2);
+	JButton botonActualizar = new JButton("Actualizar");
+	botonActualizar.addActionListener(new ActionListener() {
+		public void actionPerformed(ActionEvent e) {
+			
+			contentPane.add(botonActualizar);
+			
+			
+		}
+	});
+	contentPane.add(botonActualizar);
+	
+	
+	crearBotonesMesaLista(restoprueba, usuarioIngresado);
+	
+//	MyButton mesa2 = new MyButton();
+//	mesa2.setPressedBackgroundColor(Color.BLACK);
+//	mesa2.setPreferredSize(new Dimension(50, 50));
+//	mesa2.setMinimumSize(new Dimension(50, 50));
+//	mesa2.setMaximumSize(new Dimension(50, 50));
+//	mesa2.setHoverBackgroundColor(new Color(208, 208, 208));
+//	mesa2.setHorizontalTextPosition(SwingConstants.CENTER);
+//	mesa2.setForeground(Color.BLACK);
+//	mesa2.setFocusPainted(false);
+//	mesa2.setBorder(null);
+//	mesa2.addMouseListener(new MouseAdapter() {		
+//		@Override		
+//		public void mouseClicked(MouseEvent e) {
+//			dispose();
+//			VentanaMesa mesa2 = new VentanaMesa(restoprueba,2, usuarioIngresado);
+//			mesa2.setTitle("MESA "+ "2");		
+//			mesa2.setVisible(true);		
+//		}		
+//	});	
+//	setColorMesa(restoprueba.mesaIsOcupada(2), mesa2);
+//	contentPane.add(mesa2);
 	
 	
 	
 	
 		
-	
+	int tiempoEnMilisegundos=3000;
+	Timer timer = new Timer (tiempoEnMilisegundos, new ActionListener () 
+	{ 
+	    public void actionPerformed(ActionEvent e) 
+	    { 
+	    	contentPane.repaint();
+			contentPane.validate();
+			contentPane.updateUI();
+			pintarMesas(restoprueba);
+	     } 
+	}); 
+
+
+	timer.start();
 	
 		
 	}
+	
+	
 
 	
 	
@@ -278,7 +300,6 @@ public class Principal extends JFrame {
 		     btnSave.setHoverBackgroundColor(new Color(208, 208, 208)); 
 		     btnSave.setPressedBackgroundColor(Color.BLACK);
 		     setColorMesa(ocupado, btnSave);
-		     btnSave.setSize(50, 50);
 		     btnSave.setMinimumSize(new Dimension(50, 50));
 		     btnSave.setMaximumSize(new Dimension(50, 50));
 		     btnSave.setPreferredSize(new Dimension(50, 50));
@@ -561,6 +582,54 @@ public class Principal extends JFrame {
 //		setColorMesa(resto.mesaIsOcupada(14), mesa14);
 //		contentPane.add(mesa14);
 		
+	}
+	ArrayList<MyButton> listadoBotones = new ArrayList<>();
+	
+	public void pintarMesas(Restaurante resto){
+		int idMesa = 1;
+		
+		for ( MyButton e : listadoBotones){
+			setColorMesa(resto.mesaIsOcupada(idMesa), e);
+			idMesa++;
+			
+		}
+		
+	}
+	
+	
+	
+	public void crearBotonesMesaLista(Restaurante restoprueba, String usuarioIngresado){
+		
+		
+		for(int i=0;i<restoprueba.devuelveArrayMesas().size();i++){
+			
+			
+			int nromesa = i + 1;
+			
+			MyButton mesa1 = new MyButton(nromesa);
+			
+			setPropiedadesBotonMesa(mesa1, restoprueba.mesaIsOcupada(i), usuarioIngresado);
+			mesa1.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+			listadoBotones.add(mesa1);
+			mesa1.addMouseListener(new MouseAdapter() {	
+				
+				@Override		
+				public void mouseClicked(MouseEvent e) {
+					
+					VentanaMesa mesa = new VentanaMesa(restoprueba, nromesa, usuarioIngresado);		
+					mesa.setTitle("MESA "+ nromesa);		
+					mesa.setVisible(true);		
+				}		
+			});	
+			
+			
+			
+			contentPane.add(mesa1);
+			
+			
+			
+			
+		}
 	}
 }
 
