@@ -22,6 +22,9 @@ import javax.swing.UIManager;
 import javax.swing.border.Border;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.LineBorder;
+
+
+
 import javax.swing.JProgressBar;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
@@ -34,17 +37,13 @@ import java.awt.Cursor;
  * @author Zeque
  *
  */
-public class Logueo extends JFrame {
+public class Logueo extends JFrame{
 
 	
 	private JTextField txtUsuario;
 	private JPasswordField txtPassword;
 	private JButton btnIngresar;
-
-	/**
-	 * Launch the application.
-	 * @param args 
-	 */
+	
 	public static void main(String[] args) {
 		try{
 			  UIManager.setLookAndFeel("javax.swing.plaf.metal.MetalLookAndFeel");
@@ -62,20 +61,20 @@ public class Logueo extends JFrame {
 			}
 		});
 	}
-	
 	/**
-	 * Create the frame.
+	 * Launch the application.
+	 * @param args 
 	 */
+
 	
 	public Logueo() {
-		VentanaPrincipal p = new VentanaPrincipal("");
-		p.setVisible(true);
+
 
 		setBackground(Color.WHITE);
 		
 		setVisible(true);
 		setTitle("LOGIN");
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setDefaultCloseOperation(JDialog.DO_NOTHING_ON_CLOSE);
 		Toolkit mipantalla= Toolkit.getDefaultToolkit();
 		
 		Dimension tamanioPantalla = mipantalla.getScreenSize();
@@ -249,5 +248,7 @@ public class Logueo extends JFrame {
 		}
 		
 	}
+
+	
 	
 }

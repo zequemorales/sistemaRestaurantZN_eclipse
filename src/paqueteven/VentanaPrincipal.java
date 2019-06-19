@@ -56,6 +56,8 @@ public class VentanaPrincipal extends JFrame {
 	public JPanel contentPane;
 	public JPanel panelMesasAbajo;
 	public JPanel panelMesasArriba;
+	ArrayList<MyButton> listadoBotones = new ArrayList<>();
+	
 
 	
 	public VentanaPrincipal(String usuarioIngresado) {
@@ -229,8 +231,8 @@ public class VentanaPrincipal extends JFrame {
 	menu_boton_salir.addActionListener(new ActionListener() {
 		public void actionPerformed(ActionEvent e) {
 			dispose();
-			Logueo l = new Logueo();
-			l.setVisible(true);
+//			Logueo l = new Logueo();
+//			l.setVisible(true);
 		}
 	});
 	barra_menu.add(menu_boton_salir);
@@ -611,7 +613,7 @@ public class VentanaPrincipal extends JFrame {
 //		contentPane.add(mesa14);
 		
 	}
-	ArrayList<MyButton> listadoBotones = new ArrayList<>();
+	
 	
 	public void pintarMesas(Restaurante resto){
 		int idMesa = 1;
@@ -660,15 +662,11 @@ public class VentanaPrincipal extends JFrame {
 			}
 			
 			
-			
-			
-			
-			
-			
-			
-			
 		}
 	}
+
+
+	
 }
 
 
