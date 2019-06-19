@@ -12,11 +12,6 @@ class MyButton extends JButton {
     private Color hoverBackgroundColor; 
     private Color pressedBackgroundColor; 
 
-//    public MyButton() { 
-//     this(null); 
-//    } 
-
-   
 
 	public MyButton(Integer numeroMesa) {
 		

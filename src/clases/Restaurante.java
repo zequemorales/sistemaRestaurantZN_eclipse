@@ -291,14 +291,18 @@ public class Restaurante {
 	//////////////////////////////////////////////////////
 
 	public boolean crearMozo(String nombre, String apellido, int idMozo) {
-		Mozo m = new Mozo(nombre, apellido, idMozo);
+		
 		boolean flag = false;
-		if (!listadoDeMozos.existe(m)) {
+		
+		if (!compruebaMozo(idMozo)){
+			Mozo m = new Mozo(nombre, apellido, idMozo);
 			listadoDeMozos.agregar(m);
 			flag = true;
 		}
+		
 		return flag;
 	}
+	
 
 	public boolean eliminarMozo(Mozo m) {
 		boolean flag = false;

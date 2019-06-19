@@ -44,44 +44,41 @@ import paqueteven.MyButton;
 import java.awt.GridLayout;
 import javax.swing.JInternalFrame;
 import java.awt.FlowLayout;
+import java.awt.Font;
 
 /**
  * Clase de la ventana principal del restaurante. Muestra el plano del local.
  * @author Zeque
  *
  */
-public class Principal extends JFrame {
+public class VentanaPrincipal extends JFrame {
 
 	public JPanel contentPane;
 	public JPanel panelMesasAbajo;
 	public JPanel panelMesasArriba;
 
-	/**
-	 * Launch the application.
-	 * @param args
-	 * @param usuarioIngresado
-	 */
-//	public static void main(String[] args) {
-//		try{
-//			  UIManager.setLookAndFeel("javax.swing.plaf.metal.MetalLookAndFeel");
-//			}catch(Exception e){
-//			  e.printStackTrace();
-//			} 
-//		EventQueue.invokeLater(new Runnable() {
-//			public void run() {
-//				try {
-//					
-//					Principal frame = new Principal("");
-//					
-//					frame.setVisible(true);
-//				} catch (Exception e) {
-//					e.printStackTrace();
-//				}
-//			}
-//		});
-//	}
 	
-	public Principal(String usuarioIngresado) {
+	public VentanaPrincipal(String usuarioIngresado) {
+		String nombreRest = "ANTARES";
+		String direccionRest = "CONSTITUCION 5500";
+		
+		Restaurante restoprueba=new Restaurante(nombreRest, direccionRest);
+		
+		int tiempoEnMilisegundos=3000;
+		Timer timer = new Timer (tiempoEnMilisegundos, new ActionListener () 
+		{ 
+		    public void actionPerformed(ActionEvent e) 
+		    { 
+		    	contentPane.repaint();
+				contentPane.validate();
+				contentPane.updateUI();
+				pintarMesas(restoprueba);
+		     } 
+		}); 
+
+
+		timer.start();
+		
 		
 		Toolkit mipantalla= Toolkit.getDefaultToolkit();
 		
@@ -91,18 +88,9 @@ public class Principal extends JFrame {
 		int anchoPantalla = tamanioPantalla.width;
 		
 		
-		setBounds(anchoPantalla/4, alturaPantalla/4, 500, 400);
-		
-		setResizable(true);
-		
-		String nombreRest = "ANTARES";
-		String direccionRest = "CONSTITUCION 5500";
-		
-		Restaurante restoprueba=new Restaurante(nombreRest, direccionRest);
-		
-	
-		
-		for(int i=0; i<20; i++){
+		setBounds(anchoPantalla/4, alturaPantalla/4, anchoPantalla-10, alturaPantalla-10);
+
+		for(int i=0; i<30; i++){
 			restoprueba.agregarMesa(i+1);
 		}
 		
@@ -115,10 +103,10 @@ public class Principal extends JFrame {
 		
 		// PROPIEDADES VENTANA
 		
-		setMinimumSize(new Dimension(750, 550));
+		
 		setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 750, 550);
+		
 		
 		
 ///////////////  BARRA DE MENU   /////////////
@@ -131,6 +119,8 @@ public class Principal extends JFrame {
 	JMenuItem menu_item_acerca = new JMenuItem("Acerca");
 	JMenu menu_gestion = new JMenu("GESTION");
 	JMenuItem menu_item_AgregarMozo = new JMenuItem("Agregar Mozo");
+	JMenuItem menu_item_AgregarMesa = new JMenuItem("Agregar Mesa");
+	
 	JMenu menu_reportes = new JMenu("REPORTES");
 	JButton menu_boton_salir = new JButton("SALIR");
 	
@@ -160,7 +150,7 @@ public class Principal extends JFrame {
 	// MENU INFO	
 	menu_item_info.addActionListener(new ActionListener() {
 		public void actionPerformed(ActionEvent e) {
-			VentanaInfo veninf = new VentanaInfo();
+			VentanaInfo veninf = new VentanaInfo(restoprueba);
 			veninf.setVisible(true);
 			
 		}
@@ -178,9 +168,48 @@ public class Principal extends JFrame {
 	
 	// MENU GESTION --> AGREGAR MOZO
 	menu_gestion.add(menu_item_AgregarMozo);
+	menu_item_AgregarMozo.addActionListener(new ActionListener() {
+		public void actionPerformed(ActionEvent e) {
+			VentanaAgregarMozo venAgreMozo = new VentanaAgregarMozo(restoprueba);
+			venAgreMozo.setVisible(true);
+			
+		}
+	});
+	
+	// MENU GESTION --> AGREGAR MESA
+	
+	menu_item_AgregarMesa.addActionListener(new ActionListener() {
+		public void actionPerformed(ActionEvent e) {
+			VentanaAgregarMesa venAgreMesa = new VentanaAgregarMesa(restoprueba);
+			venAgreMesa.setVisible(true);
+			
+			
+		}
+	});
+	
+	menu_gestion.add(menu_item_AgregarMesa);
+	
+	
 	
 	// MENU REPORTES 
 	barra_menu.add(menu_reportes);
+	
+	JMenuItem menu_item_cuentasActivas = new JMenuItem("Ver Cuentas Activas");
+	menu_item_cuentasActivas.addActionListener(new ActionListener() {
+		public void actionPerformed(ActionEvent e) {
+			System.out.println(restoprueba.listarCuentasActivas());
+			
+		}
+	});
+	menu_reportes.add(menu_item_cuentasActivas);
+	
+	JMenuItem menu_item_historialCuentas = new JMenuItem("Ver Historial Cuentas");
+	menu_item_historialCuentas.addActionListener(new ActionListener() {
+		public void actionPerformed(ActionEvent e) {
+			System.out.println(restoprueba.listarHistorialCuentas());
+		}
+	});
+	menu_reportes.add(menu_item_historialCuentas);
 	
 	// MENU LABEL USUARIO
 	barra_menu.add(menu_label_usuario);
@@ -224,69 +253,75 @@ public class Principal extends JFrame {
 	//////////// PANEL //////////////
 	contentPane = new JPanel();
 	setContentPane(contentPane);
-	contentPane.setLayout(new GridLayout(0, 1, 0, 0));
+	contentPane.setLayout(null);
 	
 	panelMesasArriba = new JPanel();
+	panelMesasArriba.setBounds(155, 12, 1121, 320);
 	contentPane.add(panelMesasArriba);
-	panelMesasArriba.setLayout(new GridLayout(0, 3, 300, 10));
+	panelMesasArriba.setLayout(new GridLayout(0, 3, 470, 10));
+	 
+	 JPanel panelMedio = new JPanel();
+	 panelMedio.setBounds(-1, 344, 1416, 79);
+	 contentPane.add(panelMedio);
+	 panelMedio.setLayout(null);
+	 
+	 JLabel lblBanios = new JLabel("BAÑOS");
+	 lblBanios.setBackground(Color.YELLOW);
+	 lblBanios.setOpaque(true);
+	 lblBanios.setHorizontalAlignment(SwingConstants.CENTER);
+	 lblBanios.setFont(new Font("Dialog", Font.BOLD, 50));
+	 lblBanios.setBounds(497, 0, 439, 79);
+	 panelMedio.add(lblBanios);
+	 
+	 JLabel lblCocina = new JLabel("COCINA");
+	 lblCocina.setOpaque(true);
+	 lblCocina.setBackground(Color.YELLOW);
+	 lblCocina.setHorizontalAlignment(SwingConstants.CENTER);
+	 lblCocina.setFont(new Font("Dialog", Font.BOLD, 50));
+	 lblCocina.setBounds(0, 0, 398, 79);
+	 panelMedio.add(lblCocina);
+	 
+	 JLabel lblPasillo2 = new JLabel("Pasillo");
+	 lblPasillo2.setOpaque(true);
+	 lblPasillo2.setHorizontalAlignment(SwingConstants.CENTER);
+	 lblPasillo2.setBackground(Color.CYAN);
+	 lblPasillo2.setBounds(410, 0, 64, 79);
+	 panelMedio.add(lblPasillo2);
+	 
+	 JLabel lblPasillo1 = new JLabel("Pasillo");
+	 lblPasillo1.setHorizontalAlignment(SwingConstants.CENTER);
+	 lblPasillo1.setBackground(Color.CYAN);
+	 lblPasillo1.setOpaque(true);
+	 lblPasillo1.setBounds(968, 0, 64, 79);
+	 panelMedio.add(lblPasillo1);
+	 
+	 JLabel lblEntrada = new JLabel("RECEPCCION | PUERTA");
+	 lblEntrada.setFont(new Font("Dialog", Font.BOLD, 30));
+	 lblEntrada.setOpaque(true);
+	 lblEntrada.setHorizontalAlignment(SwingConstants.CENTER);
+	 lblEntrada.setBackground(Color.CYAN);
+	 lblEntrada.setBounds(1044, 0, 372, 79);
+	 panelMedio.add(lblEntrada);
 	
 	 panelMesasAbajo = new JPanel();
+	 panelMesasAbajo.setBounds(50, 457, 1324, 328);
 	contentPane.add(panelMesasAbajo);
-	panelMesasAbajo.setLayout(new GridLayout(0, 3, 300, 10));
+	panelMesasAbajo.setLayout(new GridLayout(0, 5, 250, 10));
 	
 	
 	
-	crearBotonesMesaLista(restoprueba, usuarioIngresado);
-	
-//	MyButton mesa2 = new MyButton();
-//	mesa2.setPressedBackgroundColor(Color.BLACK);
-//	mesa2.setPreferredSize(new Dimension(50, 50));
-//	mesa2.setMinimumSize(new Dimension(50, 50));
-//	mesa2.setMaximumSize(new Dimension(50, 50));
-//	mesa2.setHoverBackgroundColor(new Color(208, 208, 208));
-//	mesa2.setHorizontalTextPosition(SwingConstants.CENTER);
-//	mesa2.setForeground(Color.BLACK);
-//	mesa2.setFocusPainted(false);
-//	mesa2.setBorder(null);
-//	mesa2.addMouseListener(new MouseAdapter() {		
-//		@Override		
-//		public void mouseClicked(MouseEvent e) {
-//			dispose();
-//			VentanaMesa mesa2 = new VentanaMesa(restoprueba,2, usuarioIngresado);
-//			mesa2.setTitle("MESA "+ "2");		
-//			mesa2.setVisible(true);		
-//		}		
-//	});	
-//	setColorMesa(restoprueba.mesaIsOcupada(2), mesa2);
-//	contentPane.add(mesa2);
+	crearBotonesMesaLista(restoprueba);
 	
 	
-	
-	
+}
 		
-	int tiempoEnMilisegundos=3000;
-	Timer timer = new Timer (tiempoEnMilisegundos, new ActionListener () 
-	{ 
-	    public void actionPerformed(ActionEvent e) 
-	    { 
-	    	contentPane.repaint();
-			contentPane.validate();
-			contentPane.updateUI();
-			pintarMesas(restoprueba);
-	     } 
-	}); 
-
-
-	timer.start();
 	
-		
-	}
 	
 	
 
 	
 	
-	public void setPropiedadesBotonMesa(MyButton btnSave, boolean ocupado,String usuarioIngresado){
+	public void setPropiedadesBotonMesa(MyButton btnSave, boolean ocupado){
 		   btnSave.setForeground(Color.BLACK); 
 		     btnSave.setHorizontalTextPosition(SwingConstants.CENTER); 
 		     btnSave.setBorder(null);  
@@ -591,7 +626,7 @@ public class Principal extends JFrame {
 	
 	
 	
-	public void crearBotonesMesaLista(Restaurante restoprueba, String usuarioIngresado){
+	public void crearBotonesMesaLista(Restaurante restoprueba ){
 		
 		
 		for(int i=0;i<restoprueba.devuelveArrayMesas().size();i++){
@@ -601,7 +636,7 @@ public class Principal extends JFrame {
 			
 			MyButton mesa1 = new MyButton(nromesa);
 			
-			setPropiedadesBotonMesa(mesa1, restoprueba.mesaIsOcupada(i), usuarioIngresado);
+			setPropiedadesBotonMesa(mesa1, restoprueba.mesaIsOcupada(i));
 			mesa1.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 			listadoBotones.add(mesa1);
 			mesa1.addMouseListener(new MouseAdapter() {	
@@ -609,13 +644,13 @@ public class Principal extends JFrame {
 				@Override		
 				public void mouseClicked(MouseEvent e) {
 					
-					VentanaMesa mesa = new VentanaMesa(restoprueba, nromesa, usuarioIngresado);		
+					VentanaMesa mesa = new VentanaMesa(restoprueba, nromesa);		
 					mesa.setTitle("MESA "+ nromesa);		
 					mesa.setVisible(true);		
 				}		
 			});	
 			
-			if (i<10){
+			if (i<13){
 				panelMesasArriba.add(mesa1);
 				
 			}

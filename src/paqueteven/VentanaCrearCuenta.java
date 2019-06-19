@@ -26,25 +26,9 @@ public class VentanaCrearCuenta extends JFrame {
 	private JTextField txtIdMozo;
 
 	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-//					VentanaCrearCuenta frame = new VentanaCrearCuenta(restoprueba, idMesa);
-//					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-
-	/**
 	 * Create the frame.
 	 */
-	public VentanaCrearCuenta(String usuarioIngresado, Restaurante restoprueba, int idMesa) {
+	public VentanaCrearCuenta( Restaurante restoprueba, int idMesa) {
 		Toolkit mipantalla= Toolkit.getDefaultToolkit();
 		
 		Dimension tamanioPantalla = mipantalla.getScreenSize();
@@ -83,7 +67,7 @@ public class VentanaCrearCuenta extends JFrame {
 					restoprueba.crearCuentaActiva(idMozoIngresado, idMesa);
 					System.out.println(restoprueba.listarCuentasActivas());
 					dispose();
-					VentanaMesa venMesa= new VentanaMesa(restoprueba, idMesa, usuarioIngresado);
+					VentanaMesa venMesa= new VentanaMesa(restoprueba, idMesa);
 					venMesa.setVisible(true);
 				}
 				else

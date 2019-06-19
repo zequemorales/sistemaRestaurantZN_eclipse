@@ -63,17 +63,14 @@ public class Logueo extends JFrame {
 		});
 	}
 	
-	
-	
-	
-	
-
-
 	/**
 	 * Create the frame.
 	 */
 	
 	public Logueo() {
+		VentanaPrincipal p = new VentanaPrincipal("");
+		p.setVisible(true);
+
 		setBackground(Color.WHITE);
 		
 		setVisible(true);
@@ -98,6 +95,7 @@ public class Logueo extends JFrame {
 	}
 	
 	private void iniciarComponentes(){
+		
 		//Creo panel
 		JPanel contentPane;
 		contentPane = new JPanel();
@@ -233,13 +231,13 @@ public class Logueo extends JFrame {
 	
 		if(txtUsuario.getText().equals(adminUsuario) && claveFinal.equals(adminPassword)){
 			dispose();
-			Principal p = new Principal(txtUsuario.getText());
+			VentanaPrincipal p = new VentanaPrincipal(txtUsuario.getText());
 			p.setVisible(true);
 			
 		}
 		else if (txtUsuario.getText().equals(mozoUsuario) && claveFinal.equals(mozoPassword)){
 			dispose();
-			Principal p = new Principal(txtUsuario.getText());
+			VentanaPrincipal p = new VentanaPrincipal(txtUsuario.getText());
 			p.setVisible(true);
 			
 		}

@@ -35,30 +35,6 @@ public class VentanaMesa extends JFrame {
 
 	private JPanel contentPane;
 
-	/**
-	 * Launch the application.
-	 * 
-	 * @param args
-	 * @param ocupado
-//	 */
-//	public static void main(String[] args, Restaurante resto, int idMesa, String usuarioIngresado) {
-//		try {
-//			UIManager.setLookAndFeel("javax.swing.plaf.metal.MetalLookAndFeel");
-//		} catch (Exception e) {
-//			e.printStackTrace();
-//		}
-//		EventQueue.invokeLater(new Runnable() {
-//			public void run() {
-//				try {
-//					 VentanaMesa frame = new VentanaMesa(resto, idMesa, usuarioIngresado);
-//					frame.setVisible(true);
-//
-//				} catch (Exception e) {
-//					e.printStackTrace();
-//				}
-//			}
-//		});
-//	}
 
 	/**
 	 * Create the frame.
@@ -66,7 +42,7 @@ public class VentanaMesa extends JFrame {
 	private String estadoMesa;
 	private JTable tabla_pedidos;
 
-	public VentanaMesa( Restaurante resto, int idMesa, String usuarioIngresado) {
+	public VentanaMesa( Restaurante resto, int idMesa) {
 		
 		setTitle("MESA "+ idMesa);
 
@@ -131,7 +107,7 @@ public class VentanaMesa extends JFrame {
 			JButton btnCrearCuenta = new JButton("CREAR CUENTA");
 			btnCrearCuenta.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
-					VentanaCrearCuenta vencuenta = new VentanaCrearCuenta(usuarioIngresado,resto, idMesa);
+					VentanaCrearCuenta vencuenta = new VentanaCrearCuenta(resto, idMesa);
 					dispose();
 					vencuenta.setVisible(true);
 

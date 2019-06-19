@@ -28,22 +28,6 @@ public class VentanaMesa_AgregarProducto extends JFrame {
 	private JPanel contentPane;
 	private JTextField txtIDProducto;
 	
-//	public static void main(String[] args) {
-//	
-//		EventQueue.invokeLater(new Runnable() {
-//			public void run() {
-//				try {
-//					VentanaMesa_AgregarProdcuto frame = new VentanaMesa_AgregarProdcuto();
-//					frame.setVisible(true);
-//					
-//				} catch (Exception e) {
-//					e.printStackTrace();
-//				}
-//			}
-//		});
-//	}
-	
-	
 	public VentanaMesa_AgregarProducto(Restaurante resto, int idMesa) {
 		setBounds(new Rectangle(100, 100, 450, 200));
 		getContentPane().setLayout(null);
