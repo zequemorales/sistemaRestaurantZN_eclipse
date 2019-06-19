@@ -42,6 +42,8 @@ import java.util.ArrayList;
 
 import paqueteven.MyButton;
 import java.awt.GridLayout;
+import javax.swing.JInternalFrame;
+import java.awt.FlowLayout;
 
 /**
  * Clase de la ventana principal del restaurante. Muestra el plano del local.
@@ -50,7 +52,9 @@ import java.awt.GridLayout;
  */
 public class Principal extends JFrame {
 
-	private JPanel contentPane;
+	public JPanel contentPane;
+	public JPanel panelMesasAbajo;
+	public JPanel panelMesasArriba;
 
 	/**
 	 * Launch the application.
@@ -98,7 +102,7 @@ public class Principal extends JFrame {
 		
 	
 		
-		for(int i=0; i<14; i++){
+		for(int i=0; i<20; i++){
 			restoprueba.agregarMesa(i+1);
 		}
 		
@@ -220,16 +224,15 @@ public class Principal extends JFrame {
 	//////////// PANEL //////////////
 	contentPane = new JPanel();
 	setContentPane(contentPane);
+	contentPane.setLayout(new GridLayout(0, 1, 0, 0));
 	
-	//  DECLARACIONES
+	panelMesasArriba = new JPanel();
+	contentPane.add(panelMesasArriba);
+	panelMesasArriba.setLayout(new GridLayout(0, 3, 300, 10));
 	
-	
-	
-	///////////BOTONES MESAS ////////////////
-	
-	
-	
-	contentPane.setLayout(new GridLayout(0, 3, 200, 10));
+	 panelMesasAbajo = new JPanel();
+	contentPane.add(panelMesasAbajo);
+	panelMesasAbajo.setLayout(new GridLayout(0, 3, 300, 10));
 	
 	
 	
@@ -612,9 +615,19 @@ public class Principal extends JFrame {
 				}		
 			});	
 			
+			if (i<10){
+				panelMesasArriba.add(mesa1);
+				
+			}
+			else{
+				panelMesasAbajo.add(mesa1);
+				
+			}
 			
 			
-			contentPane.add(mesa1);
+			
+			
+			
 			
 			
 			
