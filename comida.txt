@@ -1,0 +1,1 @@
+[{"tipoDePlato":"Aperitivo","caliente":true,"idProducto":1,"precioProducto":100,"nombreProducto":"Papas al Vapor"}]
