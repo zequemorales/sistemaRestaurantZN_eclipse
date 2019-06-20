@@ -99,8 +99,8 @@ public abstract class Producto {
 	}
 
 	/**
-	 * Obtiene el formato json
-	 * @return devuelve un objeto json
+	 * Formato json
+	 * @return devuelve objeto json
 	 */
 	public JSONObject getFormatoJSON()
 	{

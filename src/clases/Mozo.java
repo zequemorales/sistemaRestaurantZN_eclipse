@@ -2,7 +2,8 @@ package clases;
 /**
  * Clase Mozo
  * 
-
+ * @param idMozo	
+ * 				identificacion del mozo
  */
 public class Mozo extends Persona{
 	private int idMozo;
@@ -18,23 +19,23 @@ public class Mozo extends Persona{
 		setIdMozo(idMozo);
 	}
 	/**
-	 * Obtiene la identificaci�n del mozo
+	 * Obtiene la identificacion del mozo
 	 * @return int con la identificacion del mozo
 	 */
 	public int getIdMozo() {
 		return idMozo;
 	}
 	/**
-	 * Setea la identificaci�n del mozo
+	 * Setea la identificacion del mozo
 	 * @param idMozo
-	 * Recibe la identificaci�n del mozo a setear
+	 * Recibe la identificacion del mozo a setear
 	 */
 	public void setIdMozo(int idMozo) {
 		this.idMozo = idMozo;
 	}
 	/**
-	 * Descripci�n del mozo
-	 * @return String de la descripci�n del mozo
+	 * Descripcion del mozo
+	 * @return String de la descripcion del mozo
 	 */
 	@Override
 	public String toString() {		

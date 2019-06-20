@@ -1,5 +1,7 @@
 package clases;
-
+/**
+ * Clase JsonUtiles
+ */
 import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.file.Files;
@@ -8,8 +10,11 @@ import java.nio.file.Paths;
 import org.json.JSONArray;
 import org.json.JSONException;
 
-
 public class JsonUtiles {
+	/**
+	 * Grabar
+	 * @param array
+	 */
 	public static void grabar(JSONArray array) {
 		try {
 			FileWriter file = new FileWriter("test1.json");
@@ -21,7 +26,10 @@ public class JsonUtiles {
 			e.printStackTrace();
 		}
 	}
-
+/**
+ * Leer
+ * @return contenido leido
+ */
 	public static String leer() 
 	{
 		String contenido = "";

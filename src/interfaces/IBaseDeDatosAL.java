@@ -1,5 +1,11 @@
 package interfaces;
 
+/**
+ * 
+ * Clase IBaseDeDatosAL
+ *
+ * @param <T>
+ */
 public interface IBaseDeDatosAL<T> {
 	public boolean agregar(T objeto);
 	public boolean borrar(T objeto);

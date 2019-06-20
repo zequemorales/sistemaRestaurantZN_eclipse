@@ -4,6 +4,10 @@ import org.json.JSONObject;
 /**
  * Clase Comida
  * 
+ * @param tipoDePlato
+ * 					tipo de plato: entrada, plato principal, postre
+ * @param caliente
+ * 					Si el tipo de plato esta caliente devuelve true
  * 
  */
 
@@ -71,7 +75,10 @@ public class Comida extends Producto{
 	public void setCaliente(boolean caliente){
 		this.caliente=caliente;
 	}
-	
+	/**
+	 * Obtiene el formato json
+	 * @param objeto de json
+	 */
 	@Override
 	public JSONObject getFormatoJSON() 
 	{

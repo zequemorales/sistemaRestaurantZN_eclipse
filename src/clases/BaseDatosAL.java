@@ -3,7 +3,12 @@ package clases;
 import java.util.ArrayList;
 
 import interfaces.IBaseDeDatosAL;
-
+/**
+ * Clase BaseDeDatosAL
+ *
+ * @param ArrayList <T> listarAL
+ * 
+ */
 public class BaseDatosAL <T> implements IBaseDeDatosAL<T>{
 	
 	private ArrayList<T> listaAL;
@@ -12,7 +17,9 @@ public class BaseDatosAL <T> implements IBaseDeDatosAL<T>{
 		listaAL= new ArrayList<T>();
 	}
 	
-	// Agrega un elemento
+	/**
+	 * Agrega un elemento
+	 */
 	@Override
 	public boolean agregar(T objeto) {
 		boolean flag=false;
@@ -22,9 +29,9 @@ public class BaseDatosAL <T> implements IBaseDeDatosAL<T>{
 		}
 		return flag;
 	}
-	
- // Borra un elemento.
-	
+	/**
+	 * Borra un elemento.	
+	 */
 	@Override
 	public boolean borrar(T objeto) {
 		boolean flag=false;
@@ -33,7 +40,10 @@ public class BaseDatosAL <T> implements IBaseDeDatosAL<T>{
 		}
 		return flag;
 	}
-// Lista en un String toda la coleccion.
+	/**
+	 *  Lista 
+	 *  @return String toda la coleccion.
+	 */
 	@Override
 	public String listar() {
 		StringBuilder str = new StringBuilder();
@@ -44,7 +54,9 @@ public class BaseDatosAL <T> implements IBaseDeDatosAL<T>{
 		}
 		return str.toString();
 		}
-
+	/**
+	 * Buscar Objeto
+	 */
 	@Override
 	public  T buscar (T objeto) {
 		T copia = null;
@@ -56,7 +68,9 @@ public class BaseDatosAL <T> implements IBaseDeDatosAL<T>{
 		return copia;
 		
 	}
-
+	/**
+	 * Exite el objeto
+	 */
 	@Override
 	public boolean existe(T objeto) {
 		boolean flag=false;
@@ -68,12 +82,16 @@ public class BaseDatosAL <T> implements IBaseDeDatosAL<T>{
 		return flag;
 	}
 	
-	//Devuelve el tama�o de la lista
+	/**
+	 * Devuelve el tamanio de la lista
+	 */
 	@Override
 	public int tamanioLista(){
 		return listaAL.size();
 	}
-	//Devuelve el objeto de una determinada posicion
+	/**
+	 * Devuelve el objeto de una determinada posicion
+	 */
 	@Override
 	public T getindice(int i){
 		return listaAL.get(i);

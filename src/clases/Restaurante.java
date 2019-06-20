@@ -167,7 +167,7 @@ public class Restaurante {
 	 * Agrega una cuenta en histotial de cuentas.
 	 * 
 	 * @param idMesa
-	 * @return
+	 * @return true si se creo la cuenta y false si no.
 	 */
 	public boolean creaCuentaEnHistorialCuentas(int idMesa) {
 		boolean flag = false;
@@ -181,6 +181,11 @@ public class Restaurante {
 	}
 	
 	//Necesario para pasar de archivos a historial 
+	/**
+	 * Crea una cuenta en el historial de cuentas
+	 * @param cuenta
+	 * @return
+	 */
 	public boolean creaCuentaEnHistorialCuentas(Cuenta cuenta) {
 		boolean flag = false;
 
@@ -189,7 +194,11 @@ public class Restaurante {
 		return flag;
 
 	}
-
+	/**
+	 * Calcula el total de la cuenta
+	 * @param idMesa
+	 * @return el total
+	 */
 	public double calcularTotal(int idMesa) {
 		Cuenta cuenta = null;
 		double total = 0;
@@ -202,7 +211,11 @@ public class Restaurante {
 
 		return total;
 	}
-
+	/**
+	 * Producto en cuentas
+	 * @param c
+	 * @return productos en cuentas
+	 */
 	public ArrayList devuelveProductosEnCuenta(Cuenta c) {
 		ArrayList productosEnCuenta = new ArrayList();
 		int i =0;
@@ -212,24 +225,36 @@ public class Restaurante {
 			productosEnCuenta.add(listadoDeProductos.buscar(entry.getKey()));
 			i++;
 		}
-
 		return productosEnCuenta;
 	}
-
+	/**
+	 * Calcula importe
+	 * @param cantidad
+	 * @param precio
+	 * @return el resultado de la cantidad x el precio
+	 */
 	public double calcularImporte(int cantidad, double precio) {
 		return cantidad * precio;
 	}
-
-	
-
+	/**
+	 * Cuentas Activas
+	 * @return devuelve un string con las cuentas activas
+	 */
 	public String listarCuentasActivas() {
 		return cuentasActivas.listar();
 	}
-
+	/**
+	 * Historial de cuentas
+	 * @return devuelve un string con el historial de cuentas
+	 */
 	public String listarHistorialCuentas() {
 		return historialDeCuentas.listar();
 	}
-
+	/**
+	 * Indice en Cuentas
+	 * @param idMesa
+	 * @return
+	 */
 	public int devuelveIndiceCuenta(int idMesa) {
 		// Cuenta copia=new Cuenta(0, 0);
 		int index = 0;
@@ -241,28 +266,46 @@ public class Restaurante {
 
 		return index;
 	}
-
+	/**
+	 * Listado de cuentas activas
+	 * @return cuentas activas
+	 */
 	public BaseDatosAL<Cuenta> devuelveListadoCuentasActivas() {
 		return cuentasActivas;
-
 	}
-
+	/**
+	 * Devuelve cuentas
+	 * @param idMesa
+	 * @return
+	 */
 	public Cuenta devuelveCuenta(int idMesa) {
 		return cuentasActivas.getindice(devuelveIndiceCuenta(idMesa));
 	}
-
+	/**
+	 * Devuelve nombre del producto
+	 * @param idProducto
+	 * @return devuelve un String con nombre del producto
+	 */
 	public String devuelveNombreProducto(int idProducto) {
 		Producto p = null;
 		p = listadoDeProductos.buscar(idProducto);
 		return p.getNombreProducto();
 	}
-
+	/**
+	 * Devuelve producto
+	 * @param idProducto
+	 * @return
+	 */
 	public Producto devuelveProducto(int idProducto) {
 
 		return listadoDeProductos.buscar(idProducto);
 
 	}
-
+	/**
+	 * Comprueba cuenta
+	 * @param idMesa
+	 * @return
+	 */
 	public boolean compruebaCuenta(int idMesa) {
 		boolean flag = false;
 		for (int i = 0; i < cuentasActivas.tamanioLista(); i++) {
@@ -273,7 +316,13 @@ public class Restaurante {
 
 		return flag;
 	}
-
+	/**
+	 * Agrega productos a la cuenta
+	 * @param idMesa
+	 * @param idProducto
+	 * @param cant
+	 * @return
+	 */
 	public boolean agregaProductoAlaCuenta(int idMesa, int idProducto, int cant) {
 		boolean flag = false;
 		for (int i = 0; i < cuentasActivas.tamanioLista(); i++)
@@ -290,6 +339,13 @@ public class Restaurante {
 	//////////////////////////////////////////////////////
 	//////////////////////////////////////////////////////
 
+	/**
+	 * Crear Mozo
+	 * @param nombre
+	 * @param apellido
+	 * @param idMozo
+	 * @return true si se agrego y false si no.
+	 */
 	public boolean crearMozo(String nombre, String apellido, int idMozo) {
 		
 		boolean flag = false;
@@ -302,8 +358,11 @@ public class Restaurante {
 		
 		return flag;
 	}
-	
-
+	/**
+	 * Elimimar Mozo
+	 * @param m
+	 * @return true si lo elimina y false si no.
+	 */
 	public boolean eliminarMozo(Mozo m) {
 		boolean flag = false;
 		if (listadoDeMozos.existe(m)) {
@@ -312,11 +371,18 @@ public class Restaurante {
 		}
 		return flag;
 	}
-
+	/**
+	 * Listar Mozo
+	 * @return
+	 */
 	public String listarMozos() {
 		return listadoDeMozos.listar();
 	}
-
+	/**
+	 * Comprueba si ese mozo ya existe
+	 * @param idMozo
+	 * @return true si ya existe y false si no.
+	 */
 	public boolean compruebaMozo(int idMozo) {
 		boolean flag = false;
 		for (int i = 0; i < listadoDeMozos.tamanioLista(); i++) {
@@ -334,6 +400,10 @@ public class Restaurante {
 	//////////////////////////////////////////////////////
 	//////////////////////////////////////////////////////
 
+	/**
+	 * Devuelve Mesas
+	 * @return mesas
+	 */
 	public ArrayList devuelveArrayMesas(){
 		
 		ArrayList mesas = new ArrayList();
@@ -373,7 +443,11 @@ public class Restaurante {
 		}
 		return flag;
 	}
-
+	/**
+	 * Eliminar Mesa
+	 * @param m
+	 * @return true si lo elimina y false si no.
+	 */
 	public boolean eliminarMesa(Mesa m) {
 		boolean flag = false;
 		if (listadoDeMesas.existe(m.getNumeroDeMesa())) {
@@ -382,11 +456,19 @@ public class Restaurante {
 		}
 		return flag;
 	}
-
+	/**
+	 * Devuelve mesa
+	 * @param idMesa
+	 * @return
+	 */
 	public Mesa devuelveMesa(int idMesa) {
 		return listadoDeMesas.buscar((Integer) idMesa);
 	}
-
+	/**
+	 * La mesa esta esta ocupada
+	 * @param idMesa
+	 * @return devueleve si la mesa esta ocupada
+	 */
 	public boolean mesaIsOcupada(int idMesa) {
 		boolean ocupado = false;
 		if (listadoDeMesas.existe(idMesa)) {
@@ -401,11 +483,18 @@ public class Restaurante {
 	/////////////////// PRUDUCTOS //////////////////////
 	//////////////////////////////////////////////////////
 	//////////////////////////////////////////////////////
+	/**
+	 * Listar Producto
+	 * @return Devuelve un String con el listado de productos
+	 */
 	public String listarProductos() {
 
 		return listadoDeProductos.listar();
 	}
-
+	/**
+	 * Listar Comidas
+	 * @return devuelve un String con el listado de comidas
+	 */
 	public String listarComidas() {
 		StringBuilder str = new StringBuilder();
 		HashMap<Integer, Producto> listaC = listadoDeProductos.devolverLista();
@@ -415,7 +504,10 @@ public class Restaurante {
 
 		return str.toString();
 	}
-
+	/**
+	 * Listar Bebidas
+	 * @return devuelve un String con el listado de bebidas
+	 */
 	public String listarBebidas() {
 		StringBuilder str = new StringBuilder();
 		HashMap<Integer, Producto> listaC = listadoDeProductos.devolverLista();
@@ -467,7 +559,9 @@ public class Restaurante {
 		}
 		return flag;
 	}
-
+	/**
+	 * @return devuelve un String con los datos del establecimiento
+	 */
 	@Override
 	public String toString() {
 
