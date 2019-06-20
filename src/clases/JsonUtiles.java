@@ -15,9 +15,9 @@ public class JsonUtiles {
 	 * Grabar
 	 * @param array
 	 */
-	public static void grabar(JSONArray array) {
+	public static void grabar(JSONArray array,String nombre) {
 		try {
-			FileWriter file = new FileWriter("test1.json");
+			FileWriter file = new FileWriter(nombre);
 			file.write(array.toString());
 			file.flush();
 			file.close();
@@ -30,12 +30,12 @@ public class JsonUtiles {
  * Leer
  * @return contenido leido
  */
-	public static String leer() 
+	public static String leer(String nombre) 
 	{
 		String contenido = "";
 		try 
 		{
-			contenido = new String(Files.readAllBytes(Paths.get("test1.json")));
+			contenido = new String(Files.readAllBytes(Paths.get(nombre)));
 		} 
 		catch (IOException e) 
 		{

@@ -16,14 +16,7 @@ public class Comida extends Producto{
 	private String tipoDePlato;
 	private boolean caliente;
 	
-	/**
-	 * Descripcion de la comida
-	 * @return String con las descripcion de la comida
-	 */
-	@Override
-	public String toString() {
-		return super.toString()+ "Tipo De Plato:" + getTipoDePlato() + " Caliente:" + isCalienteOno();
-	}
+	
 	/**
 	 * Costructor
 	 * @param idProducto
@@ -38,6 +31,19 @@ public class Comida extends Producto{
 		setCaliente(caliente);
 		
 	}
+	
+	/**
+	 * constructor
+	 * @param comida
+	 */
+	public Comida(Comida comida)
+	{
+		super(comida.getIdProducto(),comida.getNombreProducto(),comida.getPrecioProducto());
+		setTipoDePlato(comida.getTipoDePlato());
+		setCaliente(comida.isCalienteOno());
+		
+	}
+	
 	/**
 	 * Costructor Vacio
 	 */
@@ -92,6 +98,15 @@ public class Comida extends Producto{
 		}
 		
 		return jsonObject;
+	}
+	
+	/**
+	 * Descripcion de la comida
+	 * @return String con las descripcion de la comida
+	 */
+	@Override
+	public String toString() {
+		return super.toString()+ "Tipo De Plato:" + getTipoDePlato() + " Caliente:" + isCalienteOno();
 	}
 	
 

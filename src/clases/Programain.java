@@ -10,10 +10,14 @@ public class Programain {
 		restoprueba.agregarMesa(1);
 		restoprueba.agregarMesa(2);
 		restoprueba.crearCuentaActiva(1, 1);
-		restoprueba.agregarProducto(1, "Papas al Vapor", 100, "Aperitivo", true);
+		restoprueba.jsonReaderBebida();
+		restoprueba.jsonReaderComida();
+		restoprueba.listarProductos();
+		/*restoprueba.agregarProducto(1, "Papas al Vapor", 100, "Aperitivo", true);
 		restoprueba.agregarProducto(2, "IPA", 130, "Cerveza", 400);
-		restoprueba.agregarProducto(3,"Golden",100,"Cerveza",500);
-		restoprueba.agregaProductoAlaCuenta(1, 1, 5);
+		restoprueba.agregarProducto(3,"Golden",100,"Cerveza",500);*/
+		
+		/*restoprueba.agregaProductoAlaCuenta(1, 1, 5);
 		restoprueba.agregaProductoAlaCuenta(1, 2, 3);
 		restoprueba.agregaProductoAlaCuenta(1, 1, 1);
 		restoprueba.agregaProductoAlaCuenta(1, 3, 1);
@@ -24,13 +28,17 @@ public class Programain {
 		restoprueba.agregaProductoAlaCuenta(2, 1, 6);
 		restoprueba.agregaProductoAlaCuenta(2, 3, 3);
 		restoprueba.creaCuentaEnHistorialCuentas(restoprueba.devuelveCuenta(2));
+		
+		restoprueba.grabarBebidas();
+		restoprueba.grabarComida();
+		*/
 			
 		//Producto producto = new Comida(1, "Papas al Vapor", 100, "Aperitivo", true);
 		//System.out.println(producto.getFormatoJSON());
-		restoprueba.grabaHistorialCuenta();
+		/*restoprueba.grabaHistorialCuenta();
 		System.out.println(restoprueba.calcularTotal(1));
 		restoprueba.jsonReaderCuenta();
-		System.out.println(restoprueba.listarHistorialCuentas());
+		System.out.println(restoprueba.listarHistorialCuentas());*/
 		
 	}
 

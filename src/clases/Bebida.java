@@ -13,14 +13,7 @@ public class Bebida extends Producto{
 	private String tipoDeBebida;
 	private int tamanioML;
 
-	/**
-	 * Descripcion de la bebida
-	 * @return String con las descripcion de la bebida
-	 */
-	@Override
-	public String toString() {
-		return super.toString()+ "Tipo De Bebida:" + getTipoDeBebida() + "Tamanio ML=" + getTamanioML();
-	}
+	
 	/**
 	 * Constructor
 	 * @param idProducto identificador del producto
@@ -33,6 +26,13 @@ public class Bebida extends Producto{
 		super(idProducto, nombreProducto, precioProducto);
 		setTipoDeBebida(tipoDeBebida);
 		setTamanioML(tamanioML);
+	}
+	
+	public Bebida(Bebida bebida)
+	{
+		super(bebida.getIdProducto(), bebida.getNombreProducto(), bebida.getPrecioProducto());
+		setTipoDeBebida(bebida.getTipoDeBebida());
+		setTamanioML(bebida.getTamanioML());
 	}
 	/**
 	 * Constructor vacio
@@ -89,6 +89,15 @@ public class Bebida extends Producto{
 		
 		return jsonObject;
 		
+	}
+	
+	/**
+	 * Descripcion de la bebida
+	 * @return String con las descripcion de la bebida
+	 */
+	@Override
+	public String toString() {
+		return super.toString()+ "Tipo De Bebida:" + getTipoDeBebida() + "Tamanio ML=" + getTamanioML();
 	}
 
 }

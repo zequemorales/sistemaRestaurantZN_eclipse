@@ -539,6 +539,21 @@ public class Restaurante {
 		}
 		return flag;
 	}
+	
+	/**
+	 * Agrega comida
+	 * @param meal
+	 * @return
+	 */
+	public boolean agregarProducto(Comida meal) {
+		boolean flag = false;
+		Comida comida = new Comida(meal);
+		if (!listadoDeProductos.existe(comida.getIdProducto())) {
+			listadoDeProductos.agregar(comida.getIdProducto(), comida);
+			flag = true;
+		}
+		return flag;
+	}
 
 	/**
 	 * Crea y agrega bebida a la listaDeProductos
@@ -554,6 +569,21 @@ public class Restaurante {
 			int tamanioML) {
 		boolean flag = false;
 		Bebida bebida = new Bebida(idProducto, nombreProducto, precioProducto, tipoDeBebida, tamanioML);
+		if (!listadoDeProductos.existe(bebida.getIdProducto())) {
+			listadoDeProductos.agregar(bebida.getIdProducto(), bebida);
+			flag = true;
+		}
+		return flag;
+	}
+	
+	/**
+	 * Agrega bebida
+	 * @param drink
+	 * @return
+	 */
+	public boolean agregarProducto(Bebida drink) {
+		boolean flag = false;
+		Bebida bebida = new Bebida(drink);
 		if (!listadoDeProductos.existe(bebida.getIdProducto())) {
 			listadoDeProductos.agregar(bebida.getIdProducto(), bebida);
 			flag = true;
@@ -577,9 +607,36 @@ public class Restaurante {
 	//////////////////////////////////////////////////////
 	
 	
+	/**
+	 * Graba bebidas
+	 * @return
+	 */
 	
+	public boolean grabarComida ()
+	{
+		boolean flag = false;
+		JSONArray array = new JSONArray();
+		HashMap<Integer, Producto> listaC = listadoDeProductos.devolverLista();
+		for (HashMap.Entry<Integer, Producto> entry : listaC.entrySet())
+			{	
+			
+				Producto producto = entry.getValue();
+				if(producto instanceof Comida) 
+				{
+					array.put(producto.getFormatoJSON());
+					flag = true;
+				}
+				
+		
+			}
+		JsonUtiles.grabar(array,"comida.txt");
+		return flag;
+	}
 	
-	
+	/**
+	 * Graba la Comida del menu 
+	 * @return
+	 */
 	public boolean grabarBebidas ()
 	{
 		boolean flag = false;
@@ -587,9 +644,17 @@ public class Restaurante {
 		HashMap<Integer, Producto> listaC = listadoDeProductos.devolverLista();
 		for (HashMap.Entry<Integer, Producto> entry : listaC.entrySet())
 			{	
+			
+				Producto producto = entry.getValue();
+				if(producto instanceof Bebida) 
+				{
+					array.put(producto.getFormatoJSON());
+					flag = true;
+				}
 				
-			}
 		
+			}
+		JsonUtiles.grabar(array,"bebida.txt");
 		return flag;
 	}
 	
@@ -609,13 +674,13 @@ public class Restaurante {
 		{
 			for(int i = 0; i<historialDeCuentas.tamanioLista();i++)
 			{	
-					System.out.println(listarHistorialCuentas());
+					
 					Cuenta cuenta = historialDeCuentas.getindice(i);
 					array.put(cuenta.getJson());
 						
 					
 			}
-			JsonUtiles.grabar(array);
+			JsonUtiles.grabar(array,"Historial Cuenta.txt");
 		}
 		return flag;
 	}
@@ -630,7 +695,7 @@ public class Restaurante {
 
 		JSONArray array;
 		try {
-			array = new JSONArray(JsonUtiles.leer());
+			array = new JSONArray(JsonUtiles.leer("Historial Cuenta.txt"));
 			Cuenta cuenta = new Cuenta();
 			for (int i = 0;i<array.length();i++)
 			{
@@ -658,8 +723,61 @@ public class Restaurante {
 		
 		return flag;
 	}
-		
+	/**
+	 * Lee las bebidas de un JSONArray de bebidas	
+	 * @return true si se pudo leer , false sino
+	 */
+	public boolean jsonReaderBebida()
+	{
+		boolean flag = false;
+		JSONArray array = new JSONArray();
+		try {
+			array = new JSONArray(JsonUtiles.leer("bebida.txt"));
+			Bebida bebida = new Bebida();
+			for (int i = 0;i<array.length();i++)
+			{
+				JSONObject jsonObject = array.getJSONObject(i);
+				bebida.setIdProducto(jsonObject.getInt("idProducto"));
+				bebida.setNombreProducto(jsonObject.getString("nombreProducto"));
+				bebida.setPrecioProducto(jsonObject.getDouble("precioProducto"));
+				bebida.setTamanioML(jsonObject.getInt("tamanioML"));
+				bebida.setTipoDeBebida(jsonObject.getString("tipoDeBebida"));
+				agregarProducto(bebida);
+				System.out.println(bebida.toString());
+				flag = true;
+			}
+			
+		}catch(JSONException e) {
+			e.printStackTrace();
+		}
+		return flag;
+	}
 
+	public boolean jsonReaderComida()
+	{
+		boolean flag = false;
+		JSONArray array = new JSONArray();
+		try {
+			array = new JSONArray(JsonUtiles.leer("comida.txt"));
+			Comida comida = new Comida();
+			for (int i = 0;i<array.length();i++)
+			{
+				JSONObject jsonObject = array.getJSONObject(i);
+				comida.setIdProducto(jsonObject.getInt("idProducto"));
+				comida.setNombreProducto(jsonObject.getString("nombreProducto"));
+				comida.setPrecioProducto(jsonObject.getDouble("precioProducto"));
+				comida.setTipoDePlato(jsonObject.getString("tipoDePlato"));
+				comida.setCaliente(jsonObject.getBoolean("caliente"));
+				agregarProducto(comida);
+				System.out.println(comida.toString());
+				flag = true;
+			}
+			
+		}catch(JSONException e) {
+			e.printStackTrace();
+		}
+		return flag;
+	}
 
 		
 }
