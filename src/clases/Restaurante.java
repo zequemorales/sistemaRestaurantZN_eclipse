@@ -1,6 +1,7 @@
 package clases;
 
 import java.awt.Component;
+import java.awt.TextField;
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.HashMap;
