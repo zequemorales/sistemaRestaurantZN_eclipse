@@ -151,7 +151,7 @@ public class Cuenta {
 				jsonArray.put(jsonObjectLista);
 			}
 			
-			jsonObject.put("Cuenta",jsonArray);
+			jsonObject.put("Ticket",jsonArray);
 		} catch (JSONException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

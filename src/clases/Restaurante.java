@@ -576,11 +576,56 @@ public class Restaurante {
 	//////////////////////////////////////////////////////
 	//////////////////////////////////////////////////////
 	
+	
+	
+	
+	
+	public boolean grabarBebidas ()
+	{
+		boolean flag = false;
+		JSONArray array = new JSONArray();
+		HashMap<Integer, Producto> listaC = listadoDeProductos.devolverLista();
+		for (HashMap.Entry<Integer, Producto> entry : listaC.entrySet())
+			{	
+				
+			}
+		
+		return flag;
+	}
+	
+	
+	
+	
 	/**
-	 * Lee un Archivo JSON y lo agrega al Historial de Cuentas.
+	 * Graba todo el historial de cuenta en archivo json
 	 * @return
 	 */
-	public boolean JsonReader ()
+	
+	public boolean grabaHistorialCuenta()
+	{ 
+		boolean flag = false;
+		JSONArray array = new JSONArray();
+		if(historialDeCuentas.tamanioLista()>0)
+		{
+			for(int i = 0; i<historialDeCuentas.tamanioLista();i++)
+			{	
+					System.out.println(listarHistorialCuentas());
+					Cuenta cuenta = historialDeCuentas.getindice(i);
+					array.put(cuenta.getJson());
+						
+					
+			}
+			JsonUtiles.grabar(array);
+		}
+		return flag;
+	}
+	
+	/**
+	 * Lee un Archivo JSON y lo agrega al Historial de Cuentas.
+	 * @return true si lo pudo agregar , false si no
+	 */
+	
+	public boolean jsonReaderCuenta()
 	{	boolean flag = false;
 
 		JSONArray array;
@@ -593,7 +638,7 @@ public class Restaurante {
 				cuenta.setIdMesa(jsonObject.getInt("IdMesa"));
 				cuenta.setIdMozo(jsonObject.getInt("IdMozo"));
 				cuenta.setFecha(jsonObject.getString("Fecha"));
-				JSONArray listaCuenta = jsonObject.getJSONArray("Cuenta");
+				JSONArray listaCuenta = jsonObject.getJSONArray("Ticket");
 				for(int x = 0 ; x<listaCuenta.length();x++)
 				{
 					JSONObject key = listaCuenta.getJSONObject(x);
@@ -613,6 +658,7 @@ public class Restaurante {
 		
 		return flag;
 	}
+		
 
 
 		
