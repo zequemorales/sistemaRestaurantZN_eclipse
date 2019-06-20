@@ -444,6 +444,17 @@ public class Restaurante {
 		}
 		return flag;
 	}
+	
+	
+	public boolean agregarMesa(int nromesa, Boolean ocupado) {
+		Mesa m = new Mesa(nromesa,ocupado);
+		boolean flag = false;
+		if (!listadoDeMesas.existe(m.getNumeroDeMesa())) {
+			listadoDeMesas.agregar(m.getNumeroDeMesa(), m);
+			flag = true;
+		}
+		return flag;
+	}
 	/**
 	 * Eliminar Mesa
 	 * @param m
@@ -607,6 +618,26 @@ public class Restaurante {
 	//////////////////////////////////////////////////////
 	
 	/**
+	 * Graba las mesas del HashMap de mesas a un archivo con JSONArray
+	 * @return true si se pudo hacer la operacion false sino
+	 */
+	public boolean grabarMesa()
+	{
+		boolean flag = false;
+		JSONArray array = new JSONArray();
+		HashMap<Integer, Mesa> listaC = listadoDeMesas.devolverLista();
+		for (HashMap.Entry<Integer, Mesa> entry : listaC.entrySet())
+		{
+			Mesa mesa = entry.getValue();
+			array.put(mesa.getFormatoJson());
+			flag = true;
+		}
+		JsonUtiles.grabar(array,"mesas.txt");
+		return flag;
+	}
+	
+	
+	/**
 	 * Guarda en archivo un JSONArray de los mozos en la listaMozo
 	 * @return
 	 */
@@ -626,7 +657,7 @@ public class Restaurante {
 	
 	/**
 	 * Graba bebidas
-	 * @return
+	 * @return true si se pudo completar false sino.
 	 */
 	
 	public boolean grabarComida ()
@@ -652,7 +683,7 @@ public class Restaurante {
 	
 	/**
 	 * Graba la Comida del menu 
-	 * @return
+	 * @return true si se pudo hacer , false sino.
 	 */
 	public boolean grabarBebidas ()
 	{
@@ -702,6 +733,26 @@ public class Restaurante {
 		return flag;
 	}
 	
+	public boolean jsonReaderMesa()
+	{
+		boolean flag = false;
+		JSONArray array;
+		try {
+			array = new JSONArray(JsonUtiles.leer("mesas.txt"));
+			for(int i = 0; i<array.length();i++)
+			{
+				JSONObject jsonObject = array.getJSONObject(i);
+				agregarMesa(jsonObject.getInt("numeroMesa"), jsonObject.getBoolean("ocupadoOno"));
+				flag = true;
+				
+			}
+		} catch (JSONException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return flag;
+	}
+	
 	
 	/**
 	 * Agregar Mozo a listaMozo desde un archivo con JSONArray
@@ -715,7 +766,6 @@ public class Restaurante {
 			for(int i = 0 ; i<array.length();i++)
 			{
 				JSONObject jsonObject = array.getJSONObject(i);
-				System.out.println(i);
 				crearMozo(jsonObject.getString("Nombre"),jsonObject.getString("Apellido"), jsonObject.getInt("idMozo"));
 				flag = true;
 			}

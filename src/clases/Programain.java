@@ -9,14 +9,16 @@ public class Programain {
 		Restaurante restoprueba=new Restaurante("Antares", "Constitucion 5500");
 		
 		restoprueba.jsonReaderMozo();
-		
-		restoprueba.agregarMesa(1);
-		restoprueba.agregarMesa(2);
+		restoprueba.jsonReaderMesa();
+		//restoprueba.agregarMesa(1);
+		//restoprueba.agregarMesa(2);
+		//restoprueba.grabarMesa();
+		System.out.println(restoprueba.listarMesas());
 		//restoprueba.crearMozo("Mauro", "Castillo", 1);
 		//restoprueba.crearMozo("Julian", "Rocasalvo", 2);
-		restoprueba.crearCuentaActiva(1, 1);
+		//restoprueba.crearCuentaActiva(1, 1);
 		//restoprueba.grabarMozo();
-		System.out.println(restoprueba.listarMozos());
+		//System.out.println(restoprueba.listarMozos());
 		//restoprueba.jsonReaderBebida();
 		//restoprueba.jsonReaderComida();
 		/*restoprueba.listarProductos();

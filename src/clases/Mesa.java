@@ -24,6 +24,17 @@ public class Mesa {
 		setNumeroDeMesa(nromesa);
 		setOcupadoONO(false);
 	}
+	
+	/**
+	 * Contructor
+	 * @param nromesa
+	 * @param ocupado
+	 */
+	public Mesa(int nromesa,Boolean ocupado){
+		setNumeroDeMesa(nromesa);
+		setOcupadoONO(ocupado);
+	}
+	
 	/**
 	 * Constructor Vacio
 	 */
