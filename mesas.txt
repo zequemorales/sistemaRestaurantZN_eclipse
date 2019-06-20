@@ -1,0 +1,1 @@
+[{"numeroMesa":1,"ocupadoOno":false},{"numeroMesa":2,"ocupadoOno":false}]
