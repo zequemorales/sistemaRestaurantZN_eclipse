@@ -708,6 +708,31 @@ public class Restaurante {
 	
 	
 	
+
+	/**
+	 * Graba todas las cuentas activas en archivo json
+	 * @return
+	 */
+	
+	public boolean grabaCuentasActivas()
+	{ 
+		boolean flag = false;
+		JSONArray array = new JSONArray();
+		if(cuentasActivas.tamanioLista()>0)
+		{
+			for(int i = 0; i<cuentasActivas.tamanioLista();i++)
+			{	
+					
+					Cuenta cuenta = cuentasActivas.getindice(i);
+					array.put(cuenta.getJson());
+						
+					
+			}
+			JsonUtiles.grabar(array,"CuentasActivas.txt");
+		}
+		return flag;
+	}
+	
 	
 	/**
 	 * Graba todo el historial de cuenta en archivo json
@@ -768,6 +793,45 @@ public class Restaurante {
 				JSONObject jsonObject = array.getJSONObject(i);
 				crearMozo(jsonObject.getString("Nombre"),jsonObject.getString("Apellido"), jsonObject.getInt("idMozo"));
 				flag = true;
+			}
+		} catch (JSONException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return flag;
+	}
+	
+	/**
+	 * Lee un Archivo JSON y lo agrega al Historial de Cuentas.
+	 * @return true si lo pudo agregar , false si no
+	 */
+	
+	public boolean jsonReaderCuentaActiva()
+	{	boolean flag = false;
+
+		JSONArray array;
+		try {
+			array = new JSONArray(JsonUtiles.leer("CuentasActivas.txt"));
+			Cuenta cuenta = new Cuenta();
+			for (int i = 0;i<array.length();i++)
+			{
+				JSONObject jsonObject = array.getJSONObject(i);
+				cuenta.setIdMesa(jsonObject.getInt("IdMesa"));
+				cuenta.setIdMozo(jsonObject.getInt("IdMozo"));
+				cuenta.setFecha(jsonObject.getString("Fecha"));
+				JSONArray listaCuenta = jsonObject.getJSONArray("Ticket");
+				for(int x = 0 ; x<listaCuenta.length();x++)
+				{
+					JSONObject key = listaCuenta.getJSONObject(x);
+					JSONObject value = listaCuenta.getJSONObject(x);
+					int key_cuenta = key.getInt("Key");
+					int value_Cuenta = value.getInt("Value");
+					cuenta.ponerEnCuenta(key_cuenta,value_Cuenta);
+				}
+				//agregar cuenta a historial cuenta.
+				crearCuentaActiva(cuenta.getIdMozo(), cuenta.getIdMesa());
+				
 			}
 		} catch (JSONException e) {
 			// TODO Auto-generated catch block

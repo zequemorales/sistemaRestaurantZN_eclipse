@@ -10,10 +10,14 @@ public class Programain {
 		
 		restoprueba.jsonReaderMozo();
 		restoprueba.jsonReaderMesa();
+		restoprueba.jsonReaderBebida();
+		restoprueba.jsonReaderComida();
+		restoprueba.jsonReaderCuentaActiva();
+		System.out.println(restoprueba.listarCuentasActivas());
 		//restoprueba.agregarMesa(1);
 		//restoprueba.agregarMesa(2);
 		//restoprueba.grabarMesa();
-		System.out.println(restoprueba.listarMesas());
+		//System.out.println(restoprueba.listarMesas());
 		//restoprueba.crearMozo("Mauro", "Castillo", 1);
 		//restoprueba.crearMozo("Julian", "Rocasalvo", 2);
 		//restoprueba.crearCuentaActiva(1, 1);
@@ -25,22 +29,23 @@ public class Programain {
 		restoprueba.agregarProducto(1, "Papas al Vapor", 100, "Aperitivo", true);
 		restoprueba.agregarProducto(2, "IPA", 130, "Cerveza", 400);
 		restoprueba.agregarProducto(3,"Golden",100,"Cerveza",500);
-		
-		restoprueba.agregaProductoAlaCuenta(1, 1, 5);
+		*/
+		/*restoprueba.agregaProductoAlaCuenta(1, 1, 5);
 		restoprueba.agregaProductoAlaCuenta(1, 2, 3);
 		restoprueba.agregaProductoAlaCuenta(1, 1, 1);
 		restoprueba.agregaProductoAlaCuenta(1, 3, 1);
-		restoprueba.creaCuentaEnHistorialCuentas(restoprueba.devuelveCuenta(1));
+		//restoprueba.creaCuentaEnHistorialCuentas(restoprueba.devuelveCuenta(1));
 		restoprueba.crearCuentaActiva(2, 2);
 		restoprueba.agregaProductoAlaCuenta(2, 1, 6);
-		restoprueba.agregaProductoAlaCuenta(2, 2, 3);
-		restoprueba.agregaProductoAlaCuenta(2, 1, 6);
-		restoprueba.agregaProductoAlaCuenta(2, 3, 3);
-		restoprueba.creaCuentaEnHistorialCuentas(restoprueba.devuelveCuenta(2));
+		restoprueba.grabaCuentasActivas();*/
+		//restoprueba.agregaProductoAlaCuenta(2, 2, 3);
+		//restoprueba.agregaProductoAlaCuenta(2, 1, 6);
+		//restoprueba.agregaProductoAlaCuenta(2, 3, 3);
+		//restoprueba.creaCuentaEnHistorialCuentas(restoprueba.devuelveCuenta(2));
 		
-		restoprueba.grabarBebidas();
-		restoprueba.grabarComida();
-		*/
+		//restoprueba.grabarBebidas();
+		//restoprueba.grabarComida();
+		
 			
 		//Producto producto = new Comida(1, "Papas al Vapor", 100, "Aperitivo", true);
 		//System.out.println(producto.getFormatoJSON());
