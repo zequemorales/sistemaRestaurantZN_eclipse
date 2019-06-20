@@ -606,6 +606,23 @@ public class Restaurante {
 	//////////////////////////////////////////////////////
 	//////////////////////////////////////////////////////
 	
+	/**
+	 * Guarda en archivo un JSONArray de los mozos en la listaMozo
+	 * @return
+	 */
+	public boolean grabarMozo()
+	{
+		boolean flag = false;
+		JSONArray array = new JSONArray();
+		for(int i = 0; i<listadoDeMozos.tamanioLista(); i++)
+		{
+				Mozo mozo = listadoDeMozos.getindice(i);
+				array.put(mozo.getFormatoJson());
+				flag = true;
+		}
+		JsonUtiles.grabar(array, "mozos.txt");
+		return flag;
+	}
 	
 	/**
 	 * Graba bebidas
@@ -685,6 +702,32 @@ public class Restaurante {
 		return flag;
 	}
 	
+	
+	/**
+	 * Agregar Mozo a listaMozo desde un archivo con JSONArray
+	 * @return
+	 */
+	public boolean jsonReaderMozo()
+	{
+		boolean flag = false;
+		try {
+			JSONArray array = new JSONArray(JsonUtiles.leer("mozos.txt"));
+			for(int i = 0 ; i<array.length();i++)
+			{
+				JSONObject jsonObject = array.getJSONObject(i);
+				System.out.println(i);
+				crearMozo(jsonObject.getString("Nombre"),jsonObject.getString("Apellido"), jsonObject.getInt("idMozo"));
+				flag = true;
+			}
+		} catch (JSONException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return flag;
+	}
+	
+	
 	/**
 	 * Lee un Archivo JSON y lo agrega al Historial de Cuentas.
 	 * @return true si lo pudo agregar , false si no
@@ -724,7 +767,7 @@ public class Restaurante {
 		return flag;
 	}
 	/**
-	 * Lee las bebidas de un JSONArray de bebidas	
+	 * Lee las bebidas de un JSONArray de bebidas y lo guarda en listadoProductos
 	 * @return true si se pudo leer , false sino
 	 */
 	public boolean jsonReaderBebida()
@@ -743,7 +786,6 @@ public class Restaurante {
 				bebida.setTamanioML(jsonObject.getInt("tamanioML"));
 				bebida.setTipoDeBebida(jsonObject.getString("tipoDeBebida"));
 				agregarProducto(bebida);
-				System.out.println(bebida.toString());
 				flag = true;
 			}
 			
@@ -752,7 +794,10 @@ public class Restaurante {
 		}
 		return flag;
 	}
-
+/**
+ * lee jsonArray Comida y lo guarda en listadoProducto
+ * @return
+ */
 	public boolean jsonReaderComida()
 	{
 		boolean flag = false;
@@ -769,7 +814,6 @@ public class Restaurante {
 				comida.setTipoDePlato(jsonObject.getString("tipoDePlato"));
 				comida.setCaliente(jsonObject.getBoolean("caliente"));
 				agregarProducto(comida);
-				System.out.println(comida.toString());
 				flag = true;
 			}
 			

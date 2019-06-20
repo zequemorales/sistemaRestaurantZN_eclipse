@@ -1,4 +1,8 @@
 package clases;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
 /**
  * Clase Persona
  * 
@@ -20,6 +24,8 @@ public class Persona {
 		setNombre(nombre);
 		setApellido(apellido);
 	}
+	
+	
 	/**
 	 * Obtiene el nombre de la persona
 	 * @return
@@ -50,6 +56,20 @@ public class Persona {
 	public void setApellido(String apellido) {
 		this.apellido = apellido;
 	}
+	
+	public JSONObject getFormatoJson()
+	{
+		JSONObject jsonObject = new JSONObject();
+		try {
+			jsonObject.put("Nombre", getNombre());
+			jsonObject.put("Apellido", getApellido());
+		} catch (JSONException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return jsonObject;
+	}
+	
 	/**
 	 * Descripcion de la persona
 	 * @return String con la descripcion de la persona

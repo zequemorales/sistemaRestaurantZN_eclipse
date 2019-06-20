@@ -1,4 +1,10 @@
 package clases;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import com.sun.xml.internal.bind.v2.runtime.RuntimeUtil.ToStringAdapter;
+
 /**
  * Clase Mozo
  * 
@@ -14,6 +20,8 @@ public class Mozo extends Persona{
 	 * @param apellido
 	 * @param idMozo
 	 */
+
+	
 	public Mozo(String nombre, String apellido, int idMozo) {
 		super(nombre, apellido);
 		setIdMozo(idMozo);
@@ -33,6 +41,7 @@ public class Mozo extends Persona{
 	public void setIdMozo(int idMozo) {
 		this.idMozo = idMozo;
 	}
+	
 	/**
 	 * Descripcion del mozo
 	 * @return String de la descripcion del mozo
@@ -42,7 +51,18 @@ public class Mozo extends Persona{
 		return "||" + super.toString() + "Id Mozo: " + getIdMozo() + " ||";
 	}
 	
+	public JSONObject getFormatoJson()
+	{
+		JSONObject jsonObject = super.getFormatoJson();
+		try {
+			jsonObject.put("idMozo", getIdMozo());
+		} catch (JSONException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return jsonObject;
+	}
 	
-	
+
 
 }

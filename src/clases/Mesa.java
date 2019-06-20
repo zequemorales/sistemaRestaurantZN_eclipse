@@ -1,4 +1,8 @@
 package clases;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
 /**
  * Clase Mesa
  * 
@@ -77,4 +81,17 @@ public class Mesa {
 		setOcupadoONO(false);
 	}
 
+	public JSONObject getFormatoJson()
+	{
+		JSONObject jsonObject = new JSONObject();
+		try {
+			jsonObject.put("numeroMesa", getNumeroDeMesa());
+			jsonObject.put("ocupadoOno", isOcupadoONO());
+		} catch (JSONException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return jsonObject;
+		
+	}
 }

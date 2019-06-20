@@ -37,7 +37,7 @@ public class JsonUtiles {
 		{
 			contenido = new String(Files.readAllBytes(Paths.get(nombre)));
 		} 
-		catch (IOException e) 
+		catch (IOException e ) 
 		{
 			e.printStackTrace();
 		}
