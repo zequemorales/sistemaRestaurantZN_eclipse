@@ -37,6 +37,12 @@ public class VentanaMesa_AgregarProducto extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
+		txtIDProducto = new JTextField();
+		txtIDProducto.setHorizontalAlignment(SwingConstants.CENTER);
+		txtIDProducto.setBounds(175, 62, 100, 30);
+		contentPane.add(txtIDProducto);
+		txtIDProducto.setColumns(10);
+		
 		JComboBox selectorProducto = new JComboBox();
 		selectorProducto.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		
@@ -59,11 +65,7 @@ public class VentanaMesa_AgregarProducto extends JFrame {
 		
 		
 		
-		txtIDProducto = new JTextField();
-		txtIDProducto.setHorizontalAlignment(SwingConstants.CENTER);
-		txtIDProducto.setBounds(175, 62, 100, 30);
-		contentPane.add(txtIDProducto);
-		txtIDProducto.setColumns(10);
+		
 		
 
 	
