@@ -908,6 +908,7 @@ public class Restaurante {
 		}
 		return flag;
 	}
+	
 /**
  * lee jsonArray Comida y lo guarda en listadoProducto
  * @return
@@ -935,6 +936,90 @@ public class Restaurante {
 			e.printStackTrace();
 		}
 		return flag;
+	}
+	
+	//////////////////////////////////////////////////////
+	//////////////////////////////////////////////////////
+	/////////////////// Estadisticas /////////////////////
+	//////////////////////////////////////////////////////
+	//////////////////////////////////////////////////////
+	
+	/**
+	 * Devuelve el producto mas vendido de un hashmap
+	 * @param listaPedidos
+	 * @return
+	 */
+	public int maxLista(HashMap<Integer,Integer> listaPedidos)
+	{
+		int id = 0;
+		for(HashMap.Entry<Integer,Integer> entry : listaPedidos.entrySet())
+		{
+			if(id < entry.getValue())
+				id = entry.getKey();
+		}
+		
+		
+		return id;
+	}
+	
+	/**
+	 * Hace un hashmap con el id y la cantidad de todos los productos vendidos
+	 * @return
+	 */
+	public HashMap<Integer,Integer> historialComidas()
+	{
+		HashMap<Integer,Integer> listaComidaPedidos = new HashMap<Integer,Integer>();
+		for(int i=0; i<historialDeCuentas.tamanioLista(); i++)
+		{
+			Cuenta cuenta = historialDeCuentas.getindice(i);
+			
+			HashMap<Integer, Integer> listaC = cuenta.devolverLista();
+			for (HashMap.Entry<Integer, Integer> entry : listaC.entrySet())
+			{
+				if(devuelveProducto(entry.getKey()) instanceof Comida)
+				{
+					if(listaComidaPedidos.get(entry.getKey()) != null)
+					{
+						int val = listaComidaPedidos.get(entry.getKey());
+						val += entry.getValue();
+						listaComidaPedidos.put(entry.getKey(),val);
+					}else {
+						listaComidaPedidos.put(entry.getKey(), entry.getValue());
+					}
+				}
+			}
+			
+		}
+		return listaComidaPedidos;
+		
+	}
+	
+	public HashMap<Integer,Integer> historialBebidas()
+	{
+		HashMap<Integer,Integer> listaBebidaPedida = new HashMap<Integer,Integer>();
+		for(int i=0; i<historialDeCuentas.tamanioLista(); i++)
+		{
+			Cuenta cuenta = historialDeCuentas.getindice(i);
+			
+			HashMap<Integer, Integer> listaC = cuenta.devolverLista();
+			for (HashMap.Entry<Integer, Integer> entry : listaC.entrySet())
+			{
+				if(devuelveProducto(entry.getKey()) instanceof Bebida)
+				{
+					if(listaBebidaPedida.get(entry.getKey()) != null)
+					{
+						int val = listaBebidaPedida.get(entry.getKey());
+						val += entry.getValue();
+						listaBebidaPedida.put(entry.getKey(),val);
+					}else {
+						listaBebidaPedida.put(entry.getKey(), entry.getValue());
+					}
+				}
+			}
+			
+		}
+		return listaBebidaPedida;
+		
 	}
 
 		
