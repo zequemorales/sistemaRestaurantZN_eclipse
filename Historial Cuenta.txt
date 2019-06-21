@@ -1,0 +1,1 @@
+[{"Ticket":[{"Value":1,"Key":3},{"Value":1,"Key":4},{"Value":2,"Key":6}],"Fecha":"21/06/19","IdMozo":2,"IdMesa":4}]

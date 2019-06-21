@@ -747,14 +747,12 @@ public class Restaurante {
 		{
 			for(int i = 0; i<historialDeCuentas.tamanioLista();i++)
 			{	
-					
 					Cuenta cuenta = historialDeCuentas.getindice(i);
 					array.put(cuenta.getJson());
-						
-					
 			}
-			JsonUtiles.grabar(array,"Historial Cuenta.txt");
+			
 		}
+		JsonUtiles.grabar(array,"Historial Cuenta.txt");
 		return flag;
 	}
 	
@@ -945,6 +943,54 @@ public class Restaurante {
 	//////////////////////////////////////////////////////
 	
 	/**
+	 * Saca el segundo mas vendido.
+	 * @param listaPedidos
+	 * @param idMax
+	 * @return 
+	 */
+	public int segundolista (HashMap<Integer,Integer> listaPedidos, int idMax)
+	{
+		int id = 0;
+		listaPedidos.remove(idMax);
+		for(HashMap.Entry<Integer,Integer> entry : listaPedidos.entrySet())
+		{
+			if(id < entry.getValue())
+				id = entry.getKey();
+		}
+		
+		
+		return id;
+	}
+	
+	/**
+	 * Guarda la probabilidad de un producto en ser pedido. usar Historial Comidas o Historial bebidas para el hashmap
+	 * @param listaPedidos
+	 * @param idProducto
+	 * @return
+	 */
+	public double probabilidadProducto(HashMap<Integer,Integer>listaPedidos,int idProducto)
+	{
+		double probabilidad= 0;
+		int cant = 0;
+		if(listaPedidos.containsKey(idProducto)){
+			for(HashMap.Entry<Integer,Integer> entry:listaPedidos.entrySet())
+			{
+				cant += entry.getValue();
+			}
+			if (listaPedidos.get(idProducto)!=0){
+				double cantProd = listaPedidos.get(idProducto);
+				probabilidad = (cantProd/cant)*100;
+			}
+			
+		}
+
+		
+		
+		return probabilidad;
+	}
+	
+	
+	/**
 	 * Devuelve el producto mas vendido de un hashmap
 	 * @param listaPedidos
 	 * @return
@@ -962,9 +1008,11 @@ public class Restaurante {
 		return id;
 	}
 	
+	
+	
 	/**
-	 * Hace un hashmap con el id y la cantidad de todos los productos vendidos
-	 * @return
+	 * Hace un hashmap con el id y la cantidad de todos las comidas vendidas
+	 * @returnHashMap <Integer,Integer>
 	 */
 	public HashMap<Integer,Integer> historialComidas()
 	{
@@ -994,6 +1042,33 @@ public class Restaurante {
 		
 	}
 	
+	/**
+	 * Calcula el total Historico de Historial de cuenta
+	 * @return
+	 */
+	public double  totalHistorico()
+	{
+		double total = 0;
+		for(int i=0; i<historialDeCuentas.tamanioLista(); i++)
+		{
+			Cuenta cuenta = historialDeCuentas.getindice(i);
+			HashMap<Integer, Integer> listaC = cuenta.devolverLista();
+			for (HashMap.Entry<Integer, Integer> entry : listaC.entrySet())
+			{
+				double precioProducto = devuelveProducto(entry.getKey()).getPrecioProducto();
+				total += (entry.getValue()* precioProducto);
+				
+			}
+			
+		}
+		return total;
+		
+	}
+	
+	/**
+	 * Devuelve un Hashmap con todas las bebidas consumidas y sus cantidades
+	 * @return  HashMap<Integer,Integer>
+	 */
 	public HashMap<Integer,Integer> historialBebidas()
 	{
 		HashMap<Integer,Integer> listaBebidaPedida = new HashMap<Integer,Integer>();

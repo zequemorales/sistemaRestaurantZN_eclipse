@@ -74,7 +74,7 @@ public class Logueo extends JFrame{
 		
 		setVisible(true);
 		setTitle("LOGIN");
-		setDefaultCloseOperation(JDialog.DO_NOTHING_ON_CLOSE);
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		Toolkit mipantalla= Toolkit.getDefaultToolkit();
 		
 		Dimension tamanioPantalla = mipantalla.getScreenSize();
