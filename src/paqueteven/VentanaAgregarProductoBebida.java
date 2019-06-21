@@ -35,7 +35,7 @@ private JTextField textTamaño;
 
 
 public VentanaAgregarProductoBebida(Restaurante restoprueba) {
-	setBounds(new Rectangle(100, 100, 450, 200));
+	setBounds(new Rectangle(100, 100, 450, 450));
 	getContentPane().setLayout(null);
 	setTitle("AGREGAR BEBIDA");
 	

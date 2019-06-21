@@ -36,7 +36,7 @@ private JCheckBox chekCaliente;
 
 
 public VentanaAgregarProductoComida(Restaurante restoprueba) {
-	setBounds(new Rectangle(100, 100, 450, 200));
+	setBounds(new Rectangle(100, 100, 450, 450));
 	getContentPane().setLayout(null);
 	setTitle("AGREGAR COMIDA");
 	

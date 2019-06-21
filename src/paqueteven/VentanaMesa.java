@@ -96,6 +96,7 @@ public class VentanaMesa extends JFrame {
 			btnCerrarCuenta.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					resto.eliminarCuentaActiva(idMesa);
+					dispose();
 
 				}
 			});

@@ -125,6 +125,12 @@ public class VentanaPrincipal extends JFrame {
 	
 	JMenu menu_version = new JMenu("VERSION");
 	JMenuItem menu_item_acerca = new JMenuItem("Acerca");
+	menu_item_acerca.addActionListener(new ActionListener() {
+		public void actionPerformed(ActionEvent e) {
+			JOptionPane.showMessageDialog(null,"Ezequiel Morales / Mauro Castillo / Nicolas Cristobal / VERSION 1.0");
+			
+		}
+	});
 	JMenu menu_gestion = new JMenu("GESTION");
 	JMenuItem menu_item_AgregarMozo = new JMenuItem("Agregar Mozo");
 	JMenuItem menu_item_AgregarMesa = new JMenuItem("Agregar Mesa");
